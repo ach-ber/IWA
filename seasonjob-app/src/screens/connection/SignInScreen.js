@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 
-import i18n from '../localization/i18n';
+import i18n from "../../localization/i18n"
 
 const SignInScreen = ({ navigation }) => {
   const navigateToSignUp = () => {
