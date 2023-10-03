@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import i18n from "../../localization/i18n"
+
 const SignInScreen = ({ navigation }) => {
 
   const [isPasswordVisible, setPasswordVisible] = useState(false);
@@ -18,9 +20,13 @@ const SignInScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.topSection}>
-        <Text style={styles.title}>Se connecter</Text>
+        <Text style={styles.title}>
+          {i18n.t("signin")}
+        </Text>
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>Adresse e-mail</Text>
+          <Text style={styles.label}>
+            {i18n.t("email")}
+          </Text>
           <TextInput
             style={styles.input}
             placeholder="recruteur@gmail.com"
@@ -29,7 +35,9 @@ const SignInScreen = ({ navigation }) => {
           />
         </View>
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>Mot de passe</Text>
+          <Text style={styles.label}>
+            {i18n.t("password")}
+          </Text>
           <View style={styles.passwordInputContainer}>
             <TextInput
               style={styles.passwordInput}
@@ -52,21 +60,23 @@ const SignInScreen = ({ navigation }) => {
           <Text
             style={styles.forgotPwdLink}
           >
-            Vous avez oublié votre mot de passe ?
+            {i18n.t("forgot_password")}
           </Text>
         </View>
       </View>
       <View style={styles.bottomSection}>
         <TouchableOpacity style={styles.button} onPress={handleSignIn}>
-          <Text style={styles.buttonText}>Connexion</Text>
+          <Text style={styles.buttonText}>
+            {i18n.t("signin")}
+          </Text>
         </TouchableOpacity>
         <Text style={styles.signUpText}>
-          Vous n'avez pas de compte ?{' '}
+          {i18n.t("dont_have_account")}
           <Text
             style={styles.signUpLink}
             onPress={() => navigation.navigate('Inscription')}
           >
-            S'inscrire
+            {i18n.t("signup")}
           </Text>
         </Text>
       </View>

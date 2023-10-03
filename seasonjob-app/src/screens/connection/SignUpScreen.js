@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import i18n from "../../localization/i18n"
+
 const SignUpScreen = ({ navigation }) => {
 
   const [isPasswordVisible, setPasswordVisible] = useState(false);
@@ -23,21 +25,21 @@ const SignUpScreen = ({ navigation }) => {
 
   const handleSignUp = () => {
     if (!fullName) {
-      setFullNameError("Veuillez entrer votre nom complet");
+      setFullNameError(i18n.t("enter_complete_name"));
     } else {
       setFullNameError("");
     }
 
     if (!email) {
-      setEmailError("Veuillez entrer votre adresse e-mail");
+      setEmailError(i18n.t("enter_email"));
     } else if (!validateEmail(email)) {
-      setEmailError("Veuillez corriger le format d’email");
+      setEmailError(i18n. t("enter_valid_email"));
     } else {
       setEmailError("");
     }
 
     if (!password || password.length < 8) {
-      setPasswordError("Le mot de passe doit contenir au moins 8 caractères");
+      setPasswordError(i18n.t("enter_valid_password"));
     } else {
       setPasswordError("");
     }
@@ -50,9 +52,13 @@ const SignUpScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.topSection}>
-        <Text style={styles.title}>S'inscrire</Text>
+        <Text style={styles.title}>
+          {i18n.t("signup")}
+        </Text>
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>Nom complet</Text>
+          <Text style={styles.label}>
+            {i18n.t("full_name")}
+          </Text>
           <TextInput
             style={[
               styles.input,
@@ -68,7 +74,9 @@ const SignUpScreen = ({ navigation }) => {
           ) : null}
         </View>
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>Adresse e-mail</Text>
+          <Text style={styles.label}>
+            {i18n.t("email")}
+          </Text>
           <TextInput
             style={[
               styles.input,
@@ -85,14 +93,16 @@ const SignUpScreen = ({ navigation }) => {
           ) : null}
         </View>
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>Mot de passe</Text>
+          <Text style={styles.label}>
+            {i18n.t("password")}
+          </Text>
           <View style={styles.passwordInputContainer}>
             <TextInput
               style={[
                 styles.passwordInput,
                 passwordError && { borderColor: 'red' }
               ]}
-              placeholder="Minimum 8 caractères"
+              placeholder={i18n.t("min_8_characters")}
               secureTextEntry={!isPasswordVisible}
               value={password}
               onChangeText={(text) => setPassword(text)}
@@ -115,15 +125,17 @@ const SignUpScreen = ({ navigation }) => {
       </View>
       <View style={styles.bottomSection}>
         <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-          <Text style={styles.buttonText}>S'inscrire</Text>
+          <Text style={styles.buttonText}>
+            {i18n.t("signup")}
+          </Text>
         </TouchableOpacity>
         <Text style={styles.signUpText}>
-          Vous avez déjà un compte ?{' '}
+          {i18n.t("already_have_account")}
           <Text
             style={styles.signUpLink}
             onPress={() => navigation.navigate('Connexion')}
           >
-            Se connecter
+            {i18n.t("signin")}
           </Text>
         </Text>
       </View>
