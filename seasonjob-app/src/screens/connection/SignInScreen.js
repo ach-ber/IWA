@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 
+import i18n from "../../localization/i18n"
+
 const SignInScreen = ({ navigation }) => {
   const navigateToSignUp = () => {
     navigation.navigate('SignUp'); // Navigate to the SignUp screen
@@ -8,8 +10,8 @@ const SignInScreen = ({ navigation }) => {
 
   return (
     <View>
-      <Text>Sign In Screen</Text>
-      <Button title="Sign Up" onPress={navigateToSignUp} />
+      <Text>{i18n.t("signin_screen")}</Text>
+      <Button title={i18n.t("signup")} onPress={navigateToSignUp} />
     </View>
   );
 };
