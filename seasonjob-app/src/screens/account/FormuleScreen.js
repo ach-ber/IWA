@@ -32,6 +32,7 @@ const FormuleScreen = ({ navigation }) => {
                     <FormuleComponent
                         title="Silver"
                         description={descriptionSilver}
+
                         price="5€ / mois"
                         date="10-09-2023"
                         backgroundColor="grey"
