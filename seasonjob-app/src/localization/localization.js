@@ -5,13 +5,15 @@ const translations = {
     en: {
         signin: "Sign In",
         signin_screen: "Sign In Screen",
-        signup: "Sign Up"
+        signup: "Sign Up",
+        signup_screen: "Sign Up Screen",
     },
 
     fr: {
         signin: "Se connecter",
         signin_screen: "Écran de connexion",
-        signup: "S'inscrire"
+        signup: "S'inscrire",
+        signup_screen: "Écran d'inscription",
     },
 }
 
