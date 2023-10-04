@@ -4,7 +4,7 @@ import LinkShared from "../../shared/links/LinkShared";
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import ButtonShared from "../../shared/buttons/ButtonShared";
-import FormuleAccountComponent from "../../components/Formule/FormuleAccountComponent";
+import FormuleAccountComponent from "../../components/formule/FormuleAccountComponent";
 import Colors from '../../assets/colors/Colors';
 import i18n from "../../localization/i18n";
 const AccountScreen = ({ navigation }) => {

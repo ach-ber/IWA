@@ -67,6 +67,16 @@ const translations = {
         numJobs: "%{numJobs} offres",
         sort: "Trier",
         my_establishments: "Mes établissements",
+        employees: "Employés",
+        offers: "Offres",
+        past_offers: "Passées",
+        offers_associated_with_establishment: "Offres associées à cet établissement",
+        fulltime: "Temps plein",
+        salaryPerMonth: "%{salary}€/mois",
+        match: {
+            one: "%{count} match",
+            other: "%{count} matches",
+        },
     },
 }
 

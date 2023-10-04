@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '100%',
         padding: 10,
-        // borderRadius: 30, // I don't get why it doesn't work
         borderRadius: 4,
         paddingVertical: 12,
         backgroundColor: "white",

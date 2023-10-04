@@ -33,7 +33,7 @@ const SignUpScreen = ({ navigation }) => {
     if (!email) {
       setEmailError(i18n.t("enter_email"));
     } else if (!validateEmail(email)) {
-      setEmailError(i18n. t("enter_valid_email"));
+      setEmailError(i18n.t("enter_valid_email"));
     } else {
       setEmailError("");
     }

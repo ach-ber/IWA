@@ -63,10 +63,6 @@ const SignInScreen = ({ navigation }) => {
             {i18n.t("forgot_password")}
           </Text>
         </View>
-        <Text
-          style={styles.signUpLink}
-          onPress={() => navigation.navigate('Etablissement')}
-        >Établissement</Text>
       </View>
       <View style={styles.bottomSection}>
         <TouchableOpacity style={styles.button} onPress={handleSignIn}>

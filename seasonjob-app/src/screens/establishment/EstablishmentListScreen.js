@@ -6,7 +6,7 @@ import EstablishmentList from '../../components/Establishment/EstablishmentList'
 
 import i18n from "../../localization/i18n"
 
-const EstablishmentScreen = ({ navigation }) => {
+const EstablishmentListScreen = ({ navigation }) => {
 
   const handleSort = () => {
     console.log("sort")
@@ -17,19 +17,22 @@ const EstablishmentScreen = ({ navigation }) => {
   };
 
   const handleEstablishment = () => {
-    console.log("establishment")
+    navigation.navigate("EstablishmentDetails", { establishment: itemsExample[0] })
   };
 
   const itemsExample = [
     {
+      id: 0,
       name: "Établissement 1",
       address: "12 rue du Moulins, 34000 Montpellier",
       numJobs: 3,
     }, {
+      id: 1,
       name: "Établissement 2",
       address: "Rue du Truel, 34000 Montpellier",
       numJobs: 2,
     }, {
+      id: 2,
       name: "Établissement 3",
       address: "Rue de l'université, 34000 Montpellier",
       numJobs: 5,
@@ -89,4 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EstablishmentScreen;
+export default EstablishmentListScreen;
