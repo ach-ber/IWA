@@ -11,7 +11,10 @@ const Colors = {
   },
   borderGrey: {
     color: '#ebebed',
-  }
+  },
+  lightBlue: {
+    color: '#6295E2',
+  },
 };
 
 export default Colors;
