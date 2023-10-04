@@ -9,9 +9,9 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name={"SignIn"} component={SignInScreen} />
-        <Stack.Screen name={"SignUp"} component={SignUpScreen} />
+      <Stack.Navigator initialRouteName="Connexion">
+        <Stack.Screen name="Connexion" component={SignInScreen} options={{ headerShown: false, gestureEnabled: false }} />
+        <Stack.Screen name="Inscription" component={SignUpScreen} options={{ headerShown: false, gestureEnabled: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
