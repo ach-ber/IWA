@@ -3,6 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignInScreen from './src/screens/connection/SignInScreen';
 import SignUpScreen from './src/screens/connection/SignUpScreen';
+import AccountScreen from "./src/screens/account/AccountScreen";
+import FormuleScreen from "./src/screens/account/FormuleScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -12,6 +14,8 @@ const App = () => {
       <Stack.Navigator initialRouteName="Connexion">
         <Stack.Screen name="Connexion" component={SignInScreen} options={{ headerShown: false, gestureEnabled: false }} />
         <Stack.Screen name="Inscription" component={SignUpScreen} options={{ headerShown: false, gestureEnabled: false }} />
+        <Stack.Screen name="Compte" component={AccountScreen} options={{ headerShown: false, gestureEnabled: false }} />
+        <Stack.Screen name="Formule" component={FormuleScreen} options={{ headerShown: false, gestureEnabled: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
