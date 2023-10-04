@@ -9,7 +9,7 @@ export default function FormuleAccountComponent({ label, color, backgroundColor,
                 <View style={[styles.formuleLogo, {backgroundColor: backgroundColor}]}></View>
                 <View style={{flexDirection: 'column'}}>
                     <Text style={[styles.formuleLabel, { color: color }]}>{label}</Text>
-                    <Text style={styles.formuleDate}>Renouvellement le {date}</Text>
+                    <Text style={styles.formuleDate}>{date}</Text>
                 </View>
             </Pressable>
         </View>

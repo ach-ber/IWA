@@ -24,7 +24,7 @@ export default function FormuleComponent({ title, description , price,date, back
                     {description[0] && <Text style={styles.formuleLabel}><AntDesign name="checkcircle" size={14} color="black" />{description[0]}</Text>}
                     {description[1] && <Text style={styles.formuleLabel}><AntDesign name="checkcircle" size={14} color="black" />{description[1]}</Text>}
                     {description[2] && <Text style={styles.formuleLabel}><AntDesign name="checkcircle" size={14} color="black" />{description[2]}</Text>}
-                    {selected && <Text style={styles.formuleDate}>Renouvellement le {date}</Text>}
+                    {selected && <Text style={styles.formuleDate}>{date}</Text>}
 
                 </View>
             </Pressable>

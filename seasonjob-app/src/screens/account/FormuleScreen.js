@@ -2,11 +2,13 @@ import React, {useState} from 'react';
 import {View, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import Colors from '../../assets/colors/Colors';
 import FormuleComponent from "../../components/Formule/FormuleComponent";
+import i18n from "../../localization/i18n";
+
 const FormuleScreen = () => {
-    const descriptionFree = ["Candidats limité","Accès profile simple"]
-    const descriptionSilver = ["Candidats limité","Accès profile complet"]
-    const descriptionGold = ["Candidats illimité","Accès profile complet"]
-    const descriptionPlatinum = ["Candidats illimité","Accès profile complet","Accès à la messagerie","Accès aux offres d'emploi"]
+    const descriptionFree = [i18n.t("formula_descr.limited_candidate"),i18n.t("formula_descr.simple_profile")];
+    const descriptionSilver = [i18n.t("formula_descr.limited_candidate"),i18n.t("formula_descr.full_profile")];
+    const descriptionGold = [i18n.t("formula_descr.unlimited_candidate"),i18n.t("formula_descr.full_profile")];
+    const descriptionPlatinum = [i18n.t("formula_descr.unlimited_candidate"),i18n.t("formula_descr.full_profile"),i18n.t("formula_descr.messaging"),i18n.t("formula_descr.job_offers")];
     const [selected,setSelected] = useState([true,false,false,false])
     const changeSelected = (index) => {
         let newSelected = [false,false,false,false];
@@ -20,40 +22,40 @@ const FormuleScreen = () => {
             <SafeAreaView >
                 <View>
                     <FormuleComponent
-                        title="Free"
+                        title={i18n.t("formula_option.free")}
                         description={descriptionFree}
-                        price="GRATUIT"
-                        date="10-09-2023"
+                        price={i18n.t("price_formula_free")}
+                        date={i18n.t("renewal",{date:"10-09-2023"})}
                         backgroundColor="grey"
                         borderColor={Colors.borderGrey.color}
                         onPress={() => changeSelected(0)}
                         selected={selected[0]}
                     />
                     <FormuleComponent
-                        title="Silver"
+                        title={i18n.t("formula_option.silver")}
                         description={descriptionSilver}
-                        price="5€ / mois"
-                        date="10-09-2023"
+                        price={i18n.t("price_formula",{price:"5"})}
+                        date={i18n.t("renewal",{date:"10-09-2023"})}
                         backgroundColor="grey"
                         borderColor={Colors.borderGrey.color}
                         onPress={() => changeSelected(1)}
                         selected={selected[1]}
                     />
                     <FormuleComponent
-                        title="Gold"
+                        title={i18n.t("formula_option.gold")}
                         description={descriptionGold}
-                        price="12€ / mois"
-                        date="10-09-2023"
+                        price={i18n.t("price_formula",{price:"12"})}
+                        date={i18n.t("renewal",{date:"10-09-2023"})}
                         backgroundColor="grey"
                         borderColor={Colors.borderGrey.color}
                         onPress={() => changeSelected(2)}
                         selected={selected[2]}
                     />
                     <FormuleComponent
-                        title="Platinum"
+                        title={i18n.t("formula_option.platinum")}
                         description={descriptionPlatinum}
-                        price="25€ / mois"
-                        date="10-09-2023"
+                        price={i18n.t("price_formula",{price:"25"})}
+                        date={i18n.t("renewal",{date:"10-09-2023"})}
                         backgroundColor="grey"
                         borderColor={Colors.borderGrey.color}
                         onPress={() => changeSelected(3)}

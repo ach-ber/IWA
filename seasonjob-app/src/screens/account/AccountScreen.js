@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, ScrollView, SafeAreaView, Button} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import LinkShared from "../../shared/links/LinkShared";
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import ButtonShared from "../../shared/buttons/ButtonShared";
 import FormuleAccountComponent from "../../components/Formule/FormuleAccountComponent";
 import Colors from '../../assets/colors/Colors';
+import i18n from "../../localization/i18n";
 const AccountScreen = ({ navigation }) => {
     const navigateFormule = () => {
         navigation.navigate('Formule');
@@ -16,25 +17,29 @@ const AccountScreen = ({ navigation }) => {
             <SafeAreaView >
                 <View style={styles.view}>
                     <View style={styles.titleSectionContainer}>
-                        <MaterialIcons name="stars" size={24} color="#111425" /><Text style={styles.titleSection}>Formule</Text>
+                        <MaterialIcons name="stars" size={24} color="#111425" /><Text style={styles.titleSection}>{i18n.t("formula")}</Text>
                     </View>
-                    <FormuleAccountComponent date="10-09-2023" backgroundColor="grey" borderColor={Colors.borderGrey.color} label="Free" onPress={navigateFormule} />
+                    <FormuleAccountComponent
+                        date={i18n.t("renewal",{date:"10-09-2023"})}
+                        backgroundColor="grey"
+                        borderColor={Colors.borderGrey.color}
+                        label={i18n.t("formula_option.free")}
+                        onPress={navigateFormule} />
                 </View>
                 <View style={styles.view}>
                     <View style={styles.titleSectionContainer}>
-                        <Ionicons name="person-circle" size={24} color="#111425" /><Text style={styles.titleSection}>Général</Text>
+                        <Ionicons name="person-circle" size={24} color="#111425" /><Text style={styles.titleSection}>{i18n.t("general")}</Text>
                     </View>
-                    <LinkShared label="Mes informations" onPress={() => alert('You pressed a button.')} />
-                    <LinkShared label="Sign Out" onPress={() => alert('You pressed a button.')} />
+                    <LinkShared label={i18n.t("my_information")} onPress={() => alert('You pressed a button.')} />
                 </View>
                 <View style={styles.view}>
                     <View style={styles.titleSectionContainer}>
-                        <MaterialIcons name="group-work" size={24} color="#111425" /><Text style={styles.titleSection}>Entreprise</Text>
+                        <MaterialIcons name="group-work" size={24} color="#111425" /><Text style={styles.titleSection}>{i18n.t("company")}</Text>
                     </View>
-                    <LinkShared label="Mes informations" onPress={() => alert('You pressed a button.')} />
+                    <LinkShared label={i18n.t("my_information")} onPress={() => alert('You pressed a button.')} />
                 </View>
                 <View style={[styles.view,{marginVertical:20}]}>
-                    <ButtonShared label="SE DECONNECTER"
+                    <ButtonShared label={i18n.t("disconnect")}
                                   onPress={() => alert('You pressed a button.')}
                                   color="white"
                                   backgroundColor={Colors.red.color}
