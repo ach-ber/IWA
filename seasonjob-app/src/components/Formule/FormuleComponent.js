@@ -1,14 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Pressable, Text } from 'react-native';
-import Colors from '../../assets/colors/Colors';
-import { Entypo } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function FormuleComponent({ title, description , price,date, backgroundColor, borderColor, onPress,selected }) {
     return (
         <View style={[styles.formuleContainer, {borderColor: borderColor }]}>
-            <Pressable style={styles.button} onPress={onPress}>
+            <Pressable style={styles.formulePressable} onPress={onPress}>
 
                 <View style={styles.leftContainer}>
                     <Text>
@@ -21,12 +19,12 @@ export default function FormuleComponent({ title, description , price,date, back
                 <View style={styles.rightContainer}>
                     <View style={styles.titleContainer}>
                         <Text style={styles.formuleTitle}>{title}</Text>
-                        <Text style={styles.formuleDateLabel}>{price}</Text>
+                        <Text style={styles.formuleDate}>{price}</Text>
                     </View>
                     {description[0] && <Text style={styles.formuleLabel}><AntDesign name="checkcircle" size={14} color="black" />{description[0]}</Text>}
                     {description[1] && <Text style={styles.formuleLabel}><AntDesign name="checkcircle" size={14} color="black" />{description[1]}</Text>}
                     {description[2] && <Text style={styles.formuleLabel}><AntDesign name="checkcircle" size={14} color="black" />{description[2]}</Text>}
-                    {selected && <Text style={styles.formuleDateLabel}>Renouvellement le {date}</Text>}
+                    {selected && <Text style={styles.formuleDate}>Renouvellement le {date}</Text>}
 
                 </View>
             </Pressable>
@@ -44,17 +42,24 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 1,
     },
-    titleContainer: {
+    formulePressable: {
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
         flexDirection: 'row',
-        alignItems: 'flex-end',
-        justifyContent: 'space-between',
-        width: '90%',
     },
     leftContainer: {
         width: "30%",
         height: "100%",
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    formuleLogo: {
+        height: 60,
+        width: 60,
+        marginHorizontal: 20,
+        borderRadius: 10,
     },
     rightContainer: {
         width: "70%",
@@ -63,28 +68,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'column',
     },
-    button: {
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
+    titleContainer: {
         flexDirection: 'row',
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+        width: '90%',
     },
     formuleTitle: {
         fontSize: 22,
         fontWeight: 'bold',
         textAlign: 'left',
     },
-    formuleDateLabel: {
+    formuleDate: {
         fontSize: 12,
         textAlign: 'left',
         color: '#a3a3a3',
-    },
-    formuleLogo: {
-        height: 60,
-        width: 60,
-        marginHorizontal: 20,
-        borderRadius: 10,
     },
     formuleLabel: {
         fontSize: 14,

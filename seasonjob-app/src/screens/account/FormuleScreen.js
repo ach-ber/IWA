@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView, SafeAreaView, Button} from 'react-native';
+import {View, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import Colors from '../../assets/colors/Colors';
 import FormuleComponent from "../../components/Formule/FormuleComponent";
-const FormuleScreen = ({ navigation }) => {
+const FormuleScreen = () => {
     const descriptionFree = ["Candidats limité","Accès profile simple"]
     const descriptionSilver = ["Candidats limité","Accès profile complet"]
     const descriptionGold = ["Candidats illimité","Accès profile complet"]
@@ -12,7 +12,7 @@ const FormuleScreen = ({ navigation }) => {
         let newSelected = [false,false,false,false];
         newSelected[index] = true;
         setSelected(newSelected);
-        alert("selected : " +index + " value : " + selected[index] )
+        alert("selected : " + index + " value : " + selected[index] )
     }
 
     return (
@@ -32,7 +32,6 @@ const FormuleScreen = ({ navigation }) => {
                     <FormuleComponent
                         title="Silver"
                         description={descriptionSilver}
-
                         price="5€ / mois"
                         date="10-09-2023"
                         backgroundColor="grey"
