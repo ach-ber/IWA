@@ -5,7 +5,7 @@ import EstablishmentItem from './EstablishmentItem';
 const EstablishmentList = ({ items, onPress }) => {
   return (
     <View style={styles.listContainer}>
-      {items.map(item => (<EstablishmentItem onPress={onPress} name={item.name} address={item.address} numJobs={item.numJobs} />))}
+      {items.map(item => (<EstablishmentItem key={item.id} onPress={() => onPress(item)} name={item.name} address={item.address} numJobs={item.numJobs} />))}
     </View>
   );
 };

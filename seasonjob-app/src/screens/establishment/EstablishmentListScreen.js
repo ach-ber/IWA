@@ -17,8 +17,8 @@ const EstablishmentListScreen = ({ navigation }) => {
     console.log("plus")
   };
 
-  const handleEstablishment = () => {
-    navigation.navigate("EstablishmentDetails", { establishment: itemsExample[0] })
+  const handleEstablishment = (item) => {
+    navigation.navigate("EstablishmentDetails", { establishment: item })
   };
 
   const itemsExample = [
@@ -27,16 +27,22 @@ const EstablishmentListScreen = ({ navigation }) => {
       name: "Établissement 1",
       address: "12 rue du Moulins, 34000 Montpellier",
       numJobs: 3,
+      numEmployees: 5,
+      pastOffers: 2,
     }, {
       id: 1,
       name: "Établissement 2",
       address: "Rue du Truel, 34000 Montpellier",
       numJobs: 2,
+      numEmployees: 10,
+      pastOffers: 0,
     }, {
       id: 2,
       name: "Établissement 3",
       address: "Rue de l'université, 34000 Montpellier",
       numJobs: 5,
+      numEmployees: 6,
+      pastOffers: 1,
     }
   ];
 

@@ -9,14 +9,14 @@ import JobOfferList from '../../components/Establishment/JobOfferList';
 const EstablishmentDetailsScreen = ({ route }) => {
   const { establishment } = route.params;
 
-  const handleJobOffer = () => {
-    console.log("establishment")
+  const handleJobOffer = (item) => {
+    console.log("joboffer", item)
   };
 
   const itemsExample = [
-    { title: "Moniteur de ski", period: "Hiver 2023", salary: 1700, workSchedule: i18n.t("fulltime"), numMatches: 2 },
-    { title: "Serveur", period: "Été 2024", salary: 1600, workSchedule: i18n.t("fulltime"), numMatches: 1 },
-    { title: "Chef de rang", period: "Été 2024", salary: 2000, workSchedule: i18n.t("fulltime"), numMatches: 0 },
+    { id: 0, title: "Moniteur de ski", period: "Hiver 2023", salary: 1700, workSchedule: i18n.t("fulltime"), numMatches: 2 },
+    { id: 1, title: "Serveur", period: "Été 2024", salary: 1600, workSchedule: i18n.t("fulltime"), numMatches: 1 },
+    { id: 2, title: "Chef de rang", period: "Été 2024", salary: 2000, workSchedule: i18n.t("fulltime"), numMatches: 0 },
   ];
 
   return (
@@ -27,11 +27,11 @@ const EstablishmentDetailsScreen = ({ route }) => {
         </View>
         <Text style={styles.address}>{establishment.address}</Text>
 
-        <EstablishmentEmployeesDetails numEmployees={5} numJobs={establishment.numJobs} numPastOffers={6} />
+        <EstablishmentEmployeesDetails numEmployees={establishment.numEmployees} numJobs={establishment.numJobs} numPastOffers={establishment.pastOffers} />
 
         <View style={{ marginTop: 10 }}>
           <Text style={styles.jobOffersText}>{i18n.t("offers_associated_with_establishment")}</Text>
-          <JobOfferList items={itemsExample} />
+          <JobOfferList items={itemsExample} onPress={handleJobOffer}/>
         </View>
       </View>
     </View>

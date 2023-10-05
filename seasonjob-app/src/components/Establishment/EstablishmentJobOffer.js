@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Colors from '../../assets/colors/Colors';
 
@@ -8,11 +8,10 @@ import Icon5 from 'react-native-vector-icons/FontAwesome5';
 
 import i18n from '../../localization/i18n';
 
-const EstablishmentJobOffer = ({ title, period, workSchedule, salary, numMatches }) => {
+const EstablishmentJobOffer = ({ onPress, title, period, workSchedule, salary, numMatches }) => {
 
     return (
-        <View style={styles.container}>
-
+        <TouchableOpacity style={styles.container} onPress={onPress}>
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>{title}</Text>
                 {(numMatches > 0 ?
@@ -26,7 +25,7 @@ const EstablishmentJobOffer = ({ title, period, workSchedule, salary, numMatches
                 <IconText iconClass={Icon5} iconName="clock" text={workSchedule} />
                 <IconText iconClass={Icon} iconName="dollar" text={i18n.t("salaryPerMonth", { salary })} />
             </View>
-        </View>
+        </TouchableOpacity>
     );
 };
 
