@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     buttonIcon: {
-        width:"5%",
+        width: "5%",
     },
     buttonLabel: {
         color: Colors.lightGrey.color,

@@ -7,7 +7,7 @@ import ButtonShared from "../../shared/buttons/ButtonShared";
 import FormuleAccountComponent from "../../components/formule/FormuleAccountComponent";
 import Colors from '../../assets/colors/Colors';
 import i18n from "../../localization/i18n";
-const ProfileScreen = ({ navigation }) => {
+const AccountScreen = ({ navigation }) => {
     const navigateFormule = () => {
         navigation.navigate('Formule');
     };
@@ -86,4 +86,4 @@ const styles = StyleSheet.create({
         color: Colors.darkGrey.color,
     }
 });
-export default ProfileScreen;
+export default AccountScreen;
