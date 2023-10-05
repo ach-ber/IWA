@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-import PlusButton from '../../components/Buttons/PlusButton';
+import SmallButton from '../../shared/buttons/SmallButton';
 import EstablishmentList from '../../components/Establishment/EstablishmentList';
 
 import i18n from "../../localization/i18n"
+import TopBar from '../../shared/TopBar';
 
 const EstablishmentListScreen = ({ navigation }) => {
 
@@ -42,13 +43,8 @@ const EstablishmentListScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.topSection}>
-        <View style={styles.establishmentBar}>
-          <Text style={styles.title}>{i18n.t("my_establishments")}</Text>
-          <PlusButton onPress={handlePlus} />
-        </View>
-        <TouchableOpacity style={styles.sortButton} onPress={handleSort}>
-          <Text style={styles.sortButtonText}>{i18n.t("sort")}</Text>
-        </TouchableOpacity>
+        <TopBar title={i18n.t("my_establishments")} handlePlus={handlePlus} />
+        <SmallButton onPress={handleSort} text={i18n.t("sort")} />
         <EstablishmentList onPress={handleEstablishment} items={itemsExample} />
       </View>
     </View>
@@ -65,30 +61,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     width: '100%',
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 32,
-    marginTop: 32,
-  },
-  establishmentBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-  },
-  sortButton: {
-    width: '35%',
-    backgroundColor: '#66CA98',
-    borderRadius: 4,
-    paddingVertical: 12,
-    alignItems: 'center',
-  },
-  sortButtonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
   },
 });
 
