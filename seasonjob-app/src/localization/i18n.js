@@ -12,6 +12,6 @@ i18n.enableFallback = true;
 
 // force the app to use a specific language
 // i18n.locale = 'en';
-// i18n.locale = 'fr';
+i18n.locale = 'fr';
 
 export default i18n;
