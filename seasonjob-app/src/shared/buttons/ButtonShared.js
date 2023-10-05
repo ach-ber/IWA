@@ -3,7 +3,7 @@ import { StyleSheet, View, Pressable, Text } from 'react-native';
 
 export default function ButtonShared({ label, onPress, color, backgroundColor, borderColor }) {
     return (
-        <View style={[styles.buttonContainer, { backgroundColor: backgroundColor,borderColor: borderColor }]}>
+        <View style={[styles.buttonContainer, { backgroundColor: backgroundColor, borderColor: borderColor }]}>
             <Pressable style={styles.button} onPress={onPress}>
                 <Text style={[styles.buttonLabel, { color: color }]}>{label}</Text>
             </Pressable>

@@ -53,7 +53,7 @@ const SignInScreen = ({ navigation }) => {
               <Icon
                 name={!isPasswordVisible ? 'eye-slash' : 'eye'}
                 size={20}
-                color="#000" 
+                color="#000"
               />
             </TouchableOpacity>
           </View>

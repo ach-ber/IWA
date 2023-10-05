@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import LinkShared from "../../shared/links/LinkShared";
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -20,7 +20,7 @@ const ProfileScreen = ({ navigation }) => {
                         <MaterialIcons name="stars" size={24} color="#111425" /><Text style={styles.titleSection}>{i18n.t("formula")}</Text>
                     </View>
                     <FormuleAccountComponent
-                        date={i18n.t("renewal",{date:"10-09-2023"})}
+                        date={i18n.t("renewal", { date: "10-09-2023" })}
                         backgroundColor="grey"
                         borderColor={Colors.borderGrey.color}
                         label={i18n.t("formula_option.free")}
@@ -38,12 +38,12 @@ const ProfileScreen = ({ navigation }) => {
                     </View>
                     <LinkShared label={i18n.t("my_information")} onPress={() => alert('You pressed a button.')} />
                 </View>
-                <View style={[styles.view,{marginVertical:20}]}>
+                <View style={[styles.view, { marginVertical: 20 }]}>
                     <ButtonShared label={i18n.t("disconnect")}
-                                  onPress={() => alert('You pressed a button.')}
-                                  color="white"
-                                  backgroundColor={Colors.red.color}
-                                  borderColor={Colors.red.color}
+                        onPress={() => alert('You pressed a button.')}
+                        color="white"
+                        backgroundColor={Colors.red.color}
+                        borderColor={Colors.red.color}
                     />
                 </View>
             </SafeAreaView>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         width: '90%',
         marginTop: 20,
         borderRadius: 10,
-        marginHorizontal:"5%",
+        marginHorizontal: "5%",
         height: '100%',
         backgroundColor: 'white',
         display: 'flex',
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        marginHorizontal:"5%",
+        marginHorizontal: "5%",
         backgroundColor: 'white',
     },
     titleSectionContainer: {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginLeft: 10,
-        color:Colors.darkGrey.color,
+        color: Colors.darkGrey.color,
     }
 });
 export default ProfileScreen;
