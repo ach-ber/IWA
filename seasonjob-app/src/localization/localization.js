@@ -59,6 +59,11 @@ const translations = {
         company:"Entreprise",
         my_information:"Mes informations",
         disconnect:"Se déconnecter",
+        home:"Accueil",
+        offers:"Offres",
+        account:"Compte",
+        chat:"Chat",
+        review:"Avis",
     },
 }
 

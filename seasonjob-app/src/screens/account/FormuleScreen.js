@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import Colors from '../../assets/colors/Colors';
-import FormuleComponent from "../../components/Formule/FormuleComponent";
+import FormuleComponent from "../../components/formule/FormuleComponent";
 import i18n from "../../localization/i18n";
 
 const FormuleScreen = () => {
