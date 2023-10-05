@@ -36,7 +36,7 @@ const translations = {
         already_have_account: "Vous avez déjà un compte ?",
         forgot_password: "Mot de passe oublié ?",
         dont_have_account: "Vous n'avez pas de compte ?",
-        formula: "formule",
+        formula: "Formule",
         price: "Prix",
         renewal:"Renouvellement le %{date}",
         formula_option:{

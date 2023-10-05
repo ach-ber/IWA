@@ -5,7 +5,7 @@ import BottomTabNavigator from "./src/components/bottomTabNavigator/BottomTabNav
 const App = () => {
   return (
     <NavigationContainer>
-      <BottomTabNavigator />
+      <BottomTabNavigator/>
     </NavigationContainer>
 
   );
