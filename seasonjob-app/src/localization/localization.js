@@ -56,6 +56,8 @@ const translations = {
         datePlaceholder: "dd/mm/yyyy",
         cancel: "Cancel",
         post: "Post",
+        selectEstablishment: "Select an establishment",
+        selectJobCategory: "Select a job category",
     },
 
     fr: {
@@ -112,6 +114,8 @@ const translations = {
         datePlaceholder: "jj/mm/aaaa",
         cancel: "Annuler",
         post: "Publier",
+        selectEstablishment: "Sélectionner un établissement",
+        selectJobCategory: "Sélectionner une catégorie d'emploi",
     },
 }
 
