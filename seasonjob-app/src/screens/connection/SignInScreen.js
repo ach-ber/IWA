@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import i18n from "../../localization/i18n"
+import t from '../../utils/translation';
 
 const SignInScreen = ({ navigation }) => {
 
@@ -21,11 +21,11 @@ const SignInScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.topSection}>
         <Text style={styles.title}>
-          {i18n.t("signin")}
+          {t("signin")}
         </Text>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>
-            {i18n.t("email")}
+            {t("email")}
           </Text>
           <TextInput
             style={styles.input}
@@ -36,7 +36,7 @@ const SignInScreen = ({ navigation }) => {
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>
-            {i18n.t("password")}
+            {t("password")}
           </Text>
           <View style={styles.passwordInputContainer}>
             <TextInput
@@ -60,23 +60,23 @@ const SignInScreen = ({ navigation }) => {
           <Text
             style={styles.forgotPwdLink}
           >
-            {i18n.t("forgot_password")}
+            {t("forgot_password")}
           </Text>
         </View>
       </View>
       <View style={styles.bottomSection}>
         <TouchableOpacity style={styles.button} onPress={handleSignIn}>
           <Text style={styles.buttonText}>
-            {i18n.t("signin")}
+            {t("signin")}
           </Text>
         </TouchableOpacity>
         <Text style={styles.signUpText}>
-          {i18n.t("dont_have_account")}
+          {t("dont_have_account")}
           <Text
             style={styles.signUpLink}
             onPress={() => navigation.navigate('Inscription')}
           >
-            {i18n.t("signup")}
+            {t("signup")}
           </Text>
         </Text>
       </View>
