@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-import PlusButton from '../components/Buttons/PlusButton';
+import PlusButton from './buttons/PlusButton';
 
 const TopBar = ({ title, handlePlus }) => {
     return (

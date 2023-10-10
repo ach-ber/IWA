@@ -58,6 +58,8 @@ const translations = {
         post: "Post",
         selectEstablishment: "Select an establishment",
         selectJobCategory: "Select a job category",
+        my_offers: "My offers",
+        sort: "Sort",
     },
 
     fr: {
@@ -116,6 +118,8 @@ const translations = {
         post: "Publier",
         selectEstablishment: "Sélectionner un établissement",
         selectJobCategory: "Sélectionner une catégorie d'emploi",
+        my_offers: "Mes offres",
+        sort: "Trier",
     },
 }
 
