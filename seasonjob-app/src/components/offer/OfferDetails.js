@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { Datepicker, Select, Text, SelectItem } from '@ui-kitten/components';
 
-import i18n from '../../localization/i18n';
+import t from '../../utils/translation';
 
 const OfferDetails = ({ id }) => {
     const [establishment, setEstablishment] = useState('');
@@ -54,7 +54,7 @@ const OfferDetails = ({ id }) => {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <Text style={styles.label}>
-                        {i18n.t('jobName')}
+                        {t('jobName')}
                     </Text>
                     <TextInput
                         style={styles.input}
@@ -63,11 +63,11 @@ const OfferDetails = ({ id }) => {
                     />
                     
                     <Text style={styles.label}>
-                        {i18n.t('establishment')}
+                        {t('establishment')}
                     </Text>
                     <Select
                         selectedIndex={establishment}
-                        placeholder={i18n.t('selectEstablishment')}
+                        placeholder={t('selectEstablishment')}
                         onSelect={index => setEstablishment(establishments[index])}
                         style={styles.select}
                     >
@@ -79,11 +79,11 @@ const OfferDetails = ({ id }) => {
                     </Select>
 
                     <Text style={styles.label}>
-                        {i18n.t('jobCategory')}
+                        {t('jobCategory')}
                     </Text>
                     <Select
                         selectedIndex={jobCategory}
-                        placeholder={i18n.t('selectJobCategory')}
+                        placeholder={t('selectJobCategory')}
                         onSelect={index => setJobCategory(jobCategories[index])}
                         style={styles.select}
                     >
@@ -95,7 +95,7 @@ const OfferDetails = ({ id }) => {
                     </Select>
 
                     <Text style={styles.label}>
-                        {i18n.t('perks')}
+                        {t('perks')}
                     </Text>
                     <TextInput
                         style={styles.inputTextArea}
@@ -105,7 +105,7 @@ const OfferDetails = ({ id }) => {
                     />
 
                     <Text style={styles.label}>
-                        {i18n.t('salary')}
+                        {t('salary')}
                     </Text>
                     <TextInput
                         style={styles.input}
@@ -116,7 +116,7 @@ const OfferDetails = ({ id }) => {
                     />
 
                     <Text style={styles.label}>
-                        {i18n.t('startDate')}
+                        {t('startDate')}
                     </Text>
                     <Datepicker
                         date={startDate}
@@ -124,7 +124,7 @@ const OfferDetails = ({ id }) => {
                     />
 
                     <Text style={styles.label}>
-                        {i18n.t('endDate')}
+                        {t('endDate')}
                     </Text>
                     <Datepicker
                         date={endDate}
@@ -134,7 +134,7 @@ const OfferDetails = ({ id }) => {
                     <View>
                         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
                         <Text style={styles.buttonText}>
-                            {i18n.t("post")}
+                            {t("post")}
                         </Text>
                         </TouchableOpacity>
                     </View>
