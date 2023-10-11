@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import OfferList from '../../components/offer/OfferList';
 
-const OfferListScreen = () => {
+const OfferListScreen = ({ navigation }) => {
 
     const [offerList, setOfferList] = useState([
         {
@@ -22,7 +22,7 @@ const OfferListScreen = () => {
     ]);
 
     return (
-        <OfferList list={offerList} />
+        <OfferList navigation={navigation} list={offerList} />
     )
 };
 

@@ -7,10 +7,10 @@ import { Card, List, Text } from '@ui-kitten/components';
 
 import t from '../../utils/translation';
 
-const OfferList = ({ list }) => {
+const OfferList = ({ navigation, list }) => {
 
     const handlePlus = () => {
-        console.log('handlePlus');
+        navigation.navigate('OfferDetails');
     };
 
     const handleSort = () => {
@@ -18,14 +18,16 @@ const OfferList = ({ list }) => {
     };
 
     return (
-        <SafeAreaView >
+        <SafeAreaView style={styles.container} >
             <TopBar title={t('my_offers')} handlePlus={handlePlus} />
-            <SmallButton onPress={handleSort} text={t("sort")} style={{ backgroundColor: 'grey' }} />
+            <SmallButton onPress={handleSort} text={t("sort")} style={{ backgroundColor: 'white' }} />
 
             <List
+                style={styles.list}
                 data={list}
                 renderItem={(info) =>
                     <Card
+                        style={styles.card}
                         header={
                             <View>
                                 <Text category='h6'>
@@ -48,50 +50,13 @@ const styles = StyleSheet.create({
     container: {
         padding: 16,
     },
-    label: {
-        fontSize: 16,
-        marginBottom: 4,
-        marginTop: 16,
+    list: {
+        marginVertical: 8,
+        marginHorizontal: 16,
+        backgroundColor: 'transparent',
     },
-    select: {
-        backgroundColor: 'white',
-    },
-    input: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 4,
-        padding: 8,
-        width: '100%',
-        backgroundColor: 'white',
-    },
-    inputTextArea: {
-        minHeight: 64,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 4,
-        padding: 8,
-        width: '100%',
-        backgroundColor: 'white',
-    },
-    datePicker: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 4,
-        padding: 8,
-        width: '100%',
-    },
-    button: {
-        width: '100%',
-        backgroundColor: '#66CA98',
-        borderRadius: 4,
-        paddingVertical: 12,
-        alignItems: 'center',
-        marginTop: 32,
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: 18,
-        fontWeight: 'bold',
+    card: {
+        marginVertical: 8,
     },
 });
 

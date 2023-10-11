@@ -1,6 +1,7 @@
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import Colors from '../../assets/colors/Colors';
 
-const SortButton = ({ onPress, text, style = {backgroundColor: '#66CA98'} }) => {
+const SortButton = ({ onPress, text, style = {backgroundColor: Colors.green.color} }) => {
     return (
         <TouchableOpacity style={{...styles.sortButton, ...style}} onPress={onPress}>
             <Text style={styles.sortButtonText}>{text}</Text>
@@ -14,9 +15,10 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         paddingVertical: 12,
         alignItems: 'center',
+        marginVertical: 8,
+        marginHorizontal: 16,
     },
     sortButtonText: {
-        color: 'white',
         fontSize: 18,
         fontWeight: 'bold',
     },
