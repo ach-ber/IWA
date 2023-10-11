@@ -1,10 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SignInScreen from "../../screens/connection/SignInScreen";
+import ConnectionStack from "../../screens/connection/ConnectionStack";
 import AccountStack from "../../screens/account/AccountStack";
 import EstablishmentStack from "../../screens/establishment/EstablishmentStack";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import i18n from "../../localization/i18n";
+import OfferStack from '../../screens/offer/OfferStack';
 
 const Tab = createBottomTabNavigator();
 export default function BottomTabNavigator() {
@@ -12,7 +13,7 @@ export default function BottomTabNavigator() {
         <Tab.Navigator screenOptions={{ tabBarStyle: { position: 'absolute' }, tabBarActiveTintColor: '#e91e63' }}>
             <Tab.Screen
                 name={i18n.t("home")}
-                component={SignInScreen}
+                component={ConnectionStack}
                 options={{
                     tabBarLabel: 'Accueil',
                     tabBarIcon: ({ color, size }) => (
@@ -23,7 +24,7 @@ export default function BottomTabNavigator() {
             />
             <Tab.Screen
                 name={i18n.t("offers")}
-                component={AccountStack}
+                component={OfferStack}
                 options={{
                     tabBarLabel: 'Offres',
                     tabBarIcon: ({ color, size }) => (
