@@ -1,17 +1,17 @@
-import {View, Text, StyleSheet, ScrollView} from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import AvisItem from "../../components/avis/AvisItem";
 import AddButton from "../../shared/buttons/AddButton";
 import Colors from "../../assets/colors/Colors";
 import i18n from "../../localization/i18n";
 
-export default function AvisListScreen({navigation}) {
+export default function AvisListScreen({ navigation }) {
 
     const Avis = [
-        {id: 1, nom: "nom", prenom: "prenom", note: 9, job: "Serveur", date: "11-09-2023",titre:"titre avis 1",avis:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",},
-        {id: 2, nom: "nom", prenom: "prenom", note: 8, job: "Serveur", date: "11-09-2023",titre:"titre avis 2",avis:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",},
-        {id: 3, nom: "nom", prenom: "prenom", note: 3, job: "Serveur", date: "11-09-2023",titre:"titre avis 3",avis:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",},
-        {id: 4, nom: "nom", prenom: "prenom", note: 5, job: "Serveur", date: "11-09-2023",titre:"titre avis 4",avis:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",},
-        {id: 5, nom: "nom", prenom: "prenom", note: 1, job: "Serveur", date: "11-09-2023",titre:"titre avis 5",avis:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",},
+        { id: 1, nom: "nom", prenom: "prenom", note: 9, job: "Serveur", date: "11-09-2023", titre: "titre avis 1", avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation", },
+        { id: 2, nom: "nom", prenom: "prenom", note: 8, job: "Serveur", date: "11-09-2023", titre: "titre avis 2", avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation", },
+        { id: 3, nom: "nom", prenom: "prenom", note: 3, job: "Serveur", date: "11-09-2023", titre: "titre avis 3", avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation", },
+        { id: 4, nom: "nom", prenom: "prenom", note: 5, job: "Serveur", date: "11-09-2023", titre: "titre avis 4", avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation", },
+        { id: 5, nom: "nom", prenom: "prenom", note: 1, job: "Serveur", date: "11-09-2023", titre: "titre avis 5", avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation", },
     ];
     const navigateAvisDetails = (avis) => {
         navigation.navigate('AvisDetails', { avis });
@@ -28,7 +28,7 @@ export default function AvisListScreen({navigation}) {
                 <Text style={styles.title}>{i18n.t("review")}</Text>
                 {
                     Avis.map((avis) => {
-                        return <AvisItem key={avis.id} avis={avis} onpress={ () =>  navigateAvisDetails(avis)}/>
+                        return <AvisItem key={avis.id} avis={avis} onpress={() => navigateAvisDetails(avis)} />
                     })
                 }
             </ScrollView>

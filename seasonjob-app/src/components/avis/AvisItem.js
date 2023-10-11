@@ -1,15 +1,15 @@
-import {Pressable, View, StyleSheet, Image, Text} from "react-native";
+import { Pressable, View, StyleSheet, Image, Text } from "react-native";
 import Colors from "../../assets/colors/Colors";
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import React from "react";
 import RatingStars from "../../utils/RatingStars";
 
-export default function AvisItem({avis,onpress}) {
+export default function AvisItem({ avis, onpress }) {
 
-    return avis.note?(
+    return avis.note ? (
         <Pressable style={styles.avisContainer} onPress={onpress}>
             <View style={styles.imageContainer}>
-                <Image src="" style={styles.image}/>
+                <Image src="" style={styles.image} />
             </View>
             <View style={styles.condidatContainer}>
                 <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
@@ -20,10 +20,10 @@ export default function AvisItem({avis,onpress}) {
                 <Text style={styles.date}>{avis.date}</Text>
             </View>
         </Pressable>
-    ):(
+    ) : (
         <Pressable style={styles.avisContainer} onPress={onpress}>
             <View style={styles.imageContainer}>
-                <Image src="" style={styles.image}/>
+                <Image src="" style={styles.image} />
             </View>
             <View style={styles.condidatContainer}>
                 <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         height: 60,
         width: 60,
         borderRadius: 100,
-        backgroundColor:'grey'
+        backgroundColor: 'grey'
     },
     condidatContainer: {
         width: "40%",
