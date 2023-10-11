@@ -60,6 +60,17 @@ const translations = {
         selectJobCategory: "Select a job category",
         my_offers: "My offers",
         sort: "Sort",
+        my_establishments: "My establishments",
+        employees: "Employees",
+        offers: "Offers",
+        past_offers: "Past",
+        offers_associated_with_establishment: "Offers associated with this establishment",
+        fulltime: "Full time",
+        salaryPerMonth: "%{salary}€/month",
+        match: {
+            one: "%{count} match",
+            other: "%{count} matches",
+        },
     },
 
     fr: {
@@ -120,6 +131,17 @@ const translations = {
         selectJobCategory: "Sélectionner une catégorie d'emploi",
         my_offers: "Mes offres",
         sort: "Trier",
+        my_establishments: "Mes établissements",
+        employees: "Employés",
+        offers: "Offres",
+        past_offers: "Passées",
+        offers_associated_with_establishment: "Offres associées à cet établissement",
+        fulltime: "Temps plein",
+        salaryPerMonth: "%{salary}€/mois",
+        match: {
+            one: "%{count} match",
+            other: "%{count} matches",
+        },
     },
 }
 
