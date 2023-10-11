@@ -8,7 +8,7 @@ export default function OfferStack() {
     return (
         <Stack.Navigator initialRouteName="Offer">
             <Stack.Screen name="OfferList" component={OfferListScreen} options={{ headerShown: false }}/>
-            <Stack.Screen name="OfferDetails" component={OfferDetailsScreen} />
+            <Stack.Screen name="OfferDetails" component={OfferDetailsScreen}  />
         </Stack.Navigator>
     );
 }

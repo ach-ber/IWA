@@ -8,6 +8,9 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Keyboard,
+    ScrollView,
+    SafeAreaView,
+
 } from 'react-native';
 import { Datepicker, Select, Text, SelectItem } from '@ui-kitten/components';
 
@@ -48,99 +51,103 @@ const OfferDetails = ({ id }) => {
     };
 
     return (
-        <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            style={styles.container}>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View>
-                    <Text style={styles.label}>
-                        {t('jobName')}
-                    </Text>
-                    <TextInput
-                        style={styles.input}
-                        value={jobName}
-                        onChangeText={setJobName}
-                    />
-                    
-                    <Text style={styles.label}>
-                        {t('establishment')}
-                    </Text>
-                    <Select
-                        selectedIndex={establishment}
-                        placeholder={t('selectEstablishment')}
-                        onSelect={index => setEstablishment(establishments[index])}
-                        style={styles.select}
-                    >
-                        {
-                            establishments.map((establishment, index) => (
-                                <SelectItem key={index} title={establishment} />
-                            ))
-                        }
-                    </Select>
+        <SafeAreaView>
+            <ScrollView>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                    style={styles.container}>
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                        <View>
+                            <Text style={styles.label}>
+                                {t('jobName')}
+                            </Text>
+                            <TextInput
+                                style={styles.input}
+                                value={jobName}
+                                onChangeText={setJobName}
+                            />
+                            
+                            <Text style={styles.label}>
+                                {t('establishment')}
+                            </Text>
+                            <Select
+                                selectedIndex={establishment}
+                                placeholder={t('selectEstablishment')}
+                                onSelect={index => setEstablishment(establishments[index])}
+                                style={styles.select}
+                            >
+                                {
+                                    establishments.map((establishment, index) => (
+                                        <SelectItem key={index} title={establishment} />
+                                    ))
+                                }
+                            </Select>
 
-                    <Text style={styles.label}>
-                        {t('jobCategory')}
-                    </Text>
-                    <Select
-                        selectedIndex={jobCategory}
-                        placeholder={t('selectJobCategory')}
-                        onSelect={index => setJobCategory(jobCategories[index])}
-                        style={styles.select}
-                    >
-                        {
-                            jobCategories.map((category, index) => (
-                                <SelectItem key={index} title={category} />
-                            ))
-                        }
-                    </Select>
+                            <Text style={styles.label}>
+                                {t('jobCategory')}
+                            </Text>
+                            <Select
+                                selectedIndex={jobCategory}
+                                placeholder={t('selectJobCategory')}
+                                onSelect={index => setJobCategory(jobCategories[index])}
+                                style={styles.select}
+                            >
+                                {
+                                    jobCategories.map((category, index) => (
+                                        <SelectItem key={index} title={category} />
+                                    ))
+                                }
+                            </Select>
 
-                    <Text style={styles.label}>
-                        {t('perks')}
-                    </Text>
-                    <TextInput
-                        style={styles.inputTextArea}
-                        value={perks}
-                        onChangeText={setPerks}
-                        multiline={true}
-                    />
+                            <Text style={styles.label}>
+                                {t('perks')}
+                            </Text>
+                            <TextInput
+                                style={styles.inputTextArea}
+                                value={perks}
+                                onChangeText={setPerks}
+                                multiline={true}
+                            />
 
-                    <Text style={styles.label}>
-                        {t('salary')}
-                    </Text>
-                    <TextInput
-                        style={styles.input}
-                        value={salary}
-                        onChangeText={setSalary}
-                        keyboardType="numeric"
-                        placeholder='€'
-                    />
+                            <Text style={styles.label}>
+                                {t('salary')}
+                            </Text>
+                            <TextInput
+                                style={styles.input}
+                                value={salary}
+                                onChangeText={setSalary}
+                                keyboardType="numeric"
+                                placeholder='€'
+                            />
 
-                    <Text style={styles.label}>
-                        {t('startDate')}
-                    </Text>
-                    <Datepicker
-                        date={startDate}
-                        onSelect={nextDate => setStartDate(nextDate)}
-                    />
+                            <Text style={styles.label}>
+                                {t('startDate')}
+                            </Text>
+                            <Datepicker
+                                date={startDate}
+                                onSelect={nextDate => setStartDate(nextDate)}
+                            />
 
-                    <Text style={styles.label}>
-                        {t('endDate')}
-                    </Text>
-                    <Datepicker
-                        date={endDate}
-                        onSelect={nextDate => setEndDate(nextDate)}
-                    />
+                            <Text style={styles.label}>
+                                {t('endDate')}
+                            </Text>
+                            <Datepicker
+                                date={endDate}
+                                onSelect={nextDate => setEndDate(nextDate)}
+                            />
 
-                    <View>
-                        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                        <Text style={styles.buttonText}>
-                            {t("post")}
-                        </Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
+                            <View>
+                                <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                                <Text style={styles.buttonText}>
+                                    {t("post")}
+                                </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </TouchableWithoutFeedback>
+                </KeyboardAvoidingView>
+            </ScrollView>
+        </SafeAreaView>
     )
 };
 
