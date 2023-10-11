@@ -76,6 +76,19 @@ const translations = {
             one: "%{count} match",
             other: "%{count} matches",
         },
+        modificate: "Modifier",
+        delete: "Supprimer",
+        note: "Note",
+        title: "Titre",
+        comment: "Commentaire",
+        textNote: {
+
+            horrible:"Horrible",
+            awful: "Mauvais",
+            medium: "Moyen",
+            good: "Bon",
+            excellent: "Excellent",
+        }
     },
 }
 

@@ -1,58 +1,37 @@
-import {View, Text, Image, StyleSheet, ScrollView, Pressable, TouchableOpacity} from "react-native";
+import {View, Text, Image, StyleSheet, ScrollView, TouchableOpacity} from "react-native";
 import React, { useState} from "react";
 import Colors from "../../assets/colors/Colors";
-import IconAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import IconAwesome from "react-native-vector-icons/FontAwesome";
+import ButtonShared from "../../shared/buttons/ButtonShared";
+import { Input } from '@ui-kitten/components';
+import i18n from "../../localization/i18n";
+
 
 export default function AvisAddScreen() {
 
-    const RatingStars = ({ rating, size, color,style }) => {
-        const wholeStars = Math.floor(rating / 2);
-        const hasHalfStar = rating % 2 !== 0;
-        const stars = [];
-        for (let i = 0; i < wholeStars; i++) {
-            stars.push(
-                <IconAwesome name="star" size={size} color={color}  />
-            );
-        }
-        if (hasHalfStar) {
-            stars.push(
-                <IconAwesome name="star-half-empty" size={size} color={color} />
-            );
-        }
-        while (stars.length < 5) {
-            stars.push(
-                <IconAwesome name="star-o" size={size} color={color} />
-            );
-        }
-        return (
-            <View style={style}>
-                {stars}
-            </View>
-        );
-    };
-
     const [rating, setRating] = useState(0);
     const [ratingText, setRatingText] = useState('');
+    const [titre, setTitre] = React.useState('');
+    const [commentaire, setCommentaire] = React.useState('');
     const handleStarPress = (starIndex) => {
         const newRating = starIndex + 1;
         setRating(newRating);
         let text = '';
         switch (newRating) {
             case 1:
-                text = 'Horrible';
+                text = i18n.t("textNote.horrible")
                 break;
             case 2:
-                text = 'Mauvais';
+                text = i18n.t("textNote.awful")
                 break;
             case 3:
-                text = 'Moyen';
+                text = i18n.t("textNote.medium")
                 break;
             case 4:
-                text = 'Bon';
+                text = i18n.t("textNote.good")
                 break;
             case 5:
-                text = 'Excellent';
+                text = i18n.t("textNote.excellent")
                 break;
             default:
                 text = '';
@@ -93,24 +72,34 @@ export default function AvisAddScreen() {
                     <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
                     <Text>{avis.job}</Text>
                 </View>
-                <View style={styles.rightContainer}>
-                    <Pressable style={styles.modifierContainer} onPress={() => alert('Pressed')}>
-                        <IconAwesome5  name="ellipsis-v" size={24} color='black'  />
-                    </Pressable>
-
-                </View>
             </View>
 
-            <Text style={styles.titleFields}>Note</Text>
+            <Text style={styles.titleFields}>{i18n.t("note")}</Text>
             <View style={styles.noteContainer}>
                 {stars}
                 <Text style={{ marginLeft: 20 }}>{ratingText}</Text>
             </View>
-            <View style={styles.avisContainer}>
-                <Text style={styles.date}>{avis.date}</Text>
-                <Text style={styles.titre}>{avis.titre}</Text>
-                <Text style={styles.avis}>{avis.avis}</Text>
-            </View>
+            {rating!=0&&(
+                <View>
+                    <Text style={styles.titleFields}>{i18n.t("title")}</Text>
+                    <Input
+                        placeholder='Titre'
+                        value={titre}
+                        onChangeText={nextValue => setTitre(nextValue)}
+                    />
+                    <Text style={styles.titleFields}>{i18n.t("comment")}</Text>
+                    <Input
+                        placeholder='Commentaire'
+                        value={commentaire}
+                        onChangeText={nextValue => setCommentaire(nextValue)}
+                        multiline={true}
+                        textStyle={styles.inputTextStyle}
+                    />
+                    <View style={styles.buttonContainer}>
+                        <ButtonShared label="Publier" color="white" backgroundColor={Colors.darkGrey.color} borderColor={Colors.darkGrey.color} onPress={() => alert('You pressed a button.')} />
+                    </View>
+                </View>
+            )}
         </ScrollView>
     );
 }
@@ -196,5 +185,14 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         color: Colors.darkGrey.color,
         fontWeight: 'bold',
+    },
+    inputTextStyle: {
+        minHeight: 64,
+    },
+    buttonContainer:{
+        width: "100%",
+        height: 100,
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });

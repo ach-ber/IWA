@@ -2,35 +2,11 @@ import {View, Text, Image, StyleSheet, ScrollView, Pressable} from "react-native
 import React, {useEffect, useState} from "react";
 import Colors from "../../assets/colors/Colors";
 import IconAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import IconAwesome from "react-native-vector-icons/FontAwesome";
+import RatingStars from "../../utils/RatingStars";
+import {MenuItem, OverflowMenu} from "@ui-kitten/components";
+import i18n from "../../localization/i18n";
 
 export default function AvisDetailsScreen({ route }) {
-
-    const RatingStars = ({ rating, size, color,style }) => {
-        const wholeStars = Math.floor(rating / 2);
-        const hasHalfStar = rating % 2 !== 0;
-        const stars = [];
-        for (let i = 0; i < wholeStars; i++) {
-            stars.push(
-                <IconAwesome name="star" size={size} color={color}  />
-            );
-        }
-        if (hasHalfStar) {
-            stars.push(
-                <IconAwesome name="star-half-empty" size={size} color={color} />
-            );
-        }
-        while (stars.length < 5) {
-            stars.push(
-                <IconAwesome name="star-o" size={size} color={color} />
-            );
-        }
-        return (
-            <View style={style}>
-                {stars}
-            </View>
-        );
-    };
 
     const [avis, setAvis] = useState({
         id: 0,
@@ -47,6 +23,21 @@ export default function AvisDetailsScreen({ route }) {
         }
     }, [route.params]);
 
+    const renderToggleButton = () => (
+        <Pressable style={styles.modifierContainer}  onPress={() => setVisible(true)} >
+            <IconAwesome5  name="ellipsis-v" size={24} color='black'  />
+        </Pressable>
+    );
+
+    const [selectedIndex, setSelectedIndex] = React.useState(null);
+    const [visible, setVisible] = React.useState(false);
+
+    const onItemSelect = (index) => {
+        setSelectedIndex(index);
+        setVisible(false);
+    };
+
+
     return (
         <ScrollView style={styles.scrollContainer}>
             <View style={styles.topContainer}>
@@ -58,10 +49,16 @@ export default function AvisDetailsScreen({ route }) {
                     <Text>{avis.job}</Text>
                 </View>
                 <View style={styles.rightContainer}>
-                    <Pressable style={styles.modifierContainer} onPress={() => alert('Pressed')}>
-                        <IconAwesome5  name="ellipsis-v" size={24} color='black'  />
-                    </Pressable>
 
+                    <OverflowMenu
+                        anchor={renderToggleButton}
+                        visible={visible}
+                        onSelect={onItemSelect}
+                        onBackdropPress={() => setVisible(false)}
+                    >
+                        <MenuItem title={i18n.t("modificate")} />
+                        <MenuItem title={i18n.t("delete")} />
+                    </OverflowMenu>
                 </View>
             </View>
             <RatingStars rating={avis.note} color={Colors.yellowStar.color} size={22} style={styles.noteContainer} />
