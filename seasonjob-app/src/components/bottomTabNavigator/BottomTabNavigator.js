@@ -5,7 +5,7 @@ import AccountStack from "../../screens/account/AccountStack";
 import EstablishmentStack from "../../screens/establishment/EstablishmentStack";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import i18n from "../../localization/i18n";
-import OfferStack from '../../screens/offer/OfferStack';
+import OfferStack from '../../screens/offer/OfferStack'
 
 const Tab = createBottomTabNavigator();
 export default function BottomTabNavigator() {

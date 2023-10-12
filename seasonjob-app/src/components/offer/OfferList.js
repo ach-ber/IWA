@@ -17,6 +17,10 @@ const OfferList = ({ navigation, list }) => {
         console.log('handleSort');
     };
 
+    const handleView = (offer) => {
+        navigation.navigate('OfferCandidates', {offer});
+    }
+
     return (
         <SafeAreaView style={styles.container} >
             <TopBar title={t('my_offers')} handlePlus={handlePlus} />
@@ -27,6 +31,7 @@ const OfferList = ({ navigation, list }) => {
                 data={list}
                 renderItem={(info) =>
                     <Card
+                        onPress={() => handleView(info.item)}
                         style={styles.card}
                         header={
                             <View>

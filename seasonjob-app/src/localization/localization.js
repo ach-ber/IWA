@@ -72,6 +72,7 @@ const translations = {
             one: "%{count} match",
             other: "%{count} matches",
         },
+        offer_details: "Offer details",
     },
 
     fr: {
@@ -144,6 +145,7 @@ const translations = {
             one: "%{count} match",
             other: "%{count} matches",
         },
+        offer_details: "Détails de l'offre",
     },
 }
 
