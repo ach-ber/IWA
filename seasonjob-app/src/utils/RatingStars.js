@@ -8,17 +8,17 @@ const RatingStars = ({ rating, size, color,style }) => {
     const stars = [];
     for (let i = 0; i < wholeStars; i++) {
         stars.push(
-            <IconAwesome name="star" size={size} color={color}  />
+            <IconAwesome key={i} name="star" size={size} color={color}  />
         );
     }
     if (hasHalfStar) {
         stars.push(
-            <IconAwesome name="star-half-empty" size={size} color={color} />
+            <IconAwesome key={wholeStars} name="star-half-empty" size={size} color={color} />
         );
     }
     while (stars.length < 5) {
         stars.push(
-            <IconAwesome name="star-o" size={size} color={color} />
+            <IconAwesome key={stars.length} name="star-o" size={size} color={color} />
         );
     }
     return (

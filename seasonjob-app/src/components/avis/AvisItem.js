@@ -2,36 +2,9 @@ import {Pressable, View, StyleSheet, Image, Text} from "react-native";
 import Colors from "../../assets/colors/Colors";
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import React from "react";
+import RatingStars from "../../utils/RatingStars";
 
 export default function AvisItem({avis,onpress}) {
-
-
-    const RatingStars = ({ rating, size, color,style }) => {
-        const wholeStars = Math.floor(rating / 2);
-        const hasHalfStar = rating % 2 !== 0;
-        const stars = [];
-        for (let i = 0; i < wholeStars; i++) {
-            stars.push(
-                <IconAwesome name="star" size={size} color={color}  />
-            );
-        }
-        if (hasHalfStar) {
-            stars.push(
-                <IconAwesome name="star-half-empty" size={size} color={color} />
-            );
-        }
-        while (stars.length < 5) {
-            stars.push(
-                <IconAwesome name="star-o" size={size} color={color} />
-            );
-        }
-        return (
-            <View style={style}>
-                {stars}
-            </View>
-        );
-    };
-
 
     return avis.note?(
         <Pressable style={styles.avisContainer} onPress={onpress}>

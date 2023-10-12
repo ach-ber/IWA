@@ -88,6 +88,10 @@ const translations = {
             medium: "Moyen",
             good: "Bon",
             excellent: "Excellent",
+        },
+        errorInput: {
+            required: "Ce champ est requis",
+            length: "Ce champ doit contenir au moins %{min} caractères",
         }
     },
 }

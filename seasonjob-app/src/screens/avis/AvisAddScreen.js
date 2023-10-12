@@ -1,5 +1,5 @@
 import {View, Text, Image, StyleSheet, ScrollView, TouchableOpacity} from "react-native";
-import React, { useState} from "react";
+import React, {useEffect, useState} from "react";
 import Colors from "../../assets/colors/Colors";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
 import ButtonShared from "../../shared/buttons/ButtonShared";
@@ -13,6 +13,45 @@ export default function AvisAddScreen() {
     const [ratingText, setRatingText] = useState('');
     const [titre, setTitre] = React.useState('');
     const [commentaire, setCommentaire] = React.useState('');
+    const [titreError, setTitreError] = React.useState('');
+    const [commentaireError, setCommentaireError] = React.useState('');
+    const [titreTouched, setTitreTouched] = React.useState(false);
+    const [commentaireTouched, setCommentaireTouched] = React.useState(false);
+
+    const validateTitre = () => {
+        if (titreTouched && titre.length === 0) {
+            setTitreError(i18n.t("errorInput.required"));
+        }
+        else if (titreTouched && titre.length < 8) {
+            setTitreError(i18n.t("errorInput.length", { min: "8" }));
+        } else {
+            setTitreError('');
+        }
+    };
+
+    useEffect(() => {
+        if (titreTouched) {
+            validateTitre();
+        }
+    }, [titre, titreTouched]);
+
+    const validateCommentaire = () => {
+        if (commentaireTouched && commentaire.length === 0) {
+            setCommentaireError(i18n.t("errorInput.required"));
+        }
+        else if (commentaireTouched && commentaire.length < 20) {
+            setCommentaireError(i18n.t("errorInput.length", { min: "20" }));
+        } else {
+            setCommentaireError('');
+        }
+    }
+
+    useEffect(() => {
+        if (commentaireTouched) {
+            validateCommentaire();
+        }
+    }, [commentaire, commentaireTouched]);
+
     const handleStarPress = (starIndex) => {
         const newRating = starIndex + 1;
         setRating(newRating);
@@ -86,7 +125,13 @@ export default function AvisAddScreen() {
                         placeholder='Titre'
                         value={titre}
                         onChangeText={nextValue => setTitre(nextValue)}
+                        onBlur={() => setTitreTouched(true)}
+                        status={titreError !== '' ? 'danger' : 'basic'}
                     />
+                    <Text style={[styles.errorInput, titreTouched && titreError !== '' ? { opacity: 1 } : { opacity: 0 }]}>
+                        {titreError}
+                    </Text>
+
                     <Text style={styles.titleFields}>{i18n.t("comment")}</Text>
                     <Input
                         placeholder='Commentaire'
@@ -94,7 +139,12 @@ export default function AvisAddScreen() {
                         onChangeText={nextValue => setCommentaire(nextValue)}
                         multiline={true}
                         textStyle={styles.inputTextStyle}
+                        onBlur={() => setCommentaireTouched(true)}
+                        status={commentaireError !== '' ? 'danger' : 'basic'}
                     />
+                    <Text style={[styles.errorInput, commentaireTouched && commentaireError !== '' ? { opacity: 1 } : { opacity: 0 }]}>
+                        {commentaireError}
+                    </Text>
                     <View style={styles.buttonContainer}>
                         <ButtonShared label="Publier" color="white" backgroundColor={Colors.darkGrey.color} borderColor={Colors.darkGrey.color} onPress={() => alert('You pressed a button.')} />
                     </View>
@@ -188,6 +238,13 @@ const styles = StyleSheet.create({
     },
     inputTextStyle: {
         minHeight: 64,
+    },
+    errorInput: {
+        color: 'red',
+        height: 20,
+        width: '100%',
+        fontSize: 12,
+        marginTop: 5,
     },
     buttonContainer:{
         width: "100%",
