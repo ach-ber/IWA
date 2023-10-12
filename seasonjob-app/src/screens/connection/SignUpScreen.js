@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import i18n from "../../localization/i18n"
+import t from '../../utils/translation';
 
 const SignUpScreen = ({ navigation }) => {
 
@@ -25,21 +25,21 @@ const SignUpScreen = ({ navigation }) => {
 
   const handleSignUp = () => {
     if (!fullName) {
-      setFullNameError(i18n.t("enter_complete_name"));
+      setFullNameError(t("enter_complete_name"));
     } else {
       setFullNameError("");
     }
 
     if (!email) {
-      setEmailError(i18n.t("enter_email"));
+      setEmailError(t("enter_email"));
     } else if (!validateEmail(email)) {
-      setEmailError(i18n.t("enter_valid_email"));
+      setEmailError(t("enter_valid_email"));
     } else {
       setEmailError("");
     }
 
     if (!password || password.length < 8) {
-      setPasswordError(i18n.t("enter_valid_password"));
+      setPasswordError(t("enter_valid_password"));
     } else {
       setPasswordError("");
     }
@@ -53,11 +53,11 @@ const SignUpScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.topSection}>
         <Text style={styles.title}>
-          {i18n.t("signup")}
+          {t("signup")}
         </Text>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>
-            {i18n.t("full_name")}
+            {t("full_name")}
           </Text>
           <TextInput
             style={[
@@ -75,7 +75,7 @@ const SignUpScreen = ({ navigation }) => {
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>
-            {i18n.t("email")}
+            {t("email")}
           </Text>
           <TextInput
             style={[
@@ -94,7 +94,7 @@ const SignUpScreen = ({ navigation }) => {
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>
-            {i18n.t("password")}
+            {t("password")}
           </Text>
           <View style={styles.passwordInputContainer}>
             <TextInput
@@ -102,7 +102,7 @@ const SignUpScreen = ({ navigation }) => {
                 styles.passwordInput,
                 passwordError && { borderColor: 'red' }
               ]}
-              placeholder={i18n.t("min_8_characters")}
+              placeholder={t("min_8_characters")}
               secureTextEntry={!isPasswordVisible}
               value={password}
               onChangeText={(text) => setPassword(text)}
@@ -126,16 +126,16 @@ const SignUpScreen = ({ navigation }) => {
       <View style={styles.bottomSection}>
         <TouchableOpacity style={styles.button} onPress={handleSignUp}>
           <Text style={styles.buttonText}>
-            {i18n.t("signup")}
+            {t("signup")}
           </Text>
         </TouchableOpacity>
         <Text style={styles.signUpText}>
-          {i18n.t("already_have_account")}
+          {t("already_have_account")}
           <Text
             style={styles.signUpLink}
             onPress={() => navigation.navigate('Connexion')}
           >
-            {i18n.t("signin")}
+            {t("signin")}
           </Text>
         </Text>
       </View>

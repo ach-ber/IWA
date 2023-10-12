@@ -18,6 +18,9 @@ const Colors = {
   red2: {
     color: '#FF6C52',
   },
+  green: {
+    color: '#66CA98',
+  },
   yellowStar: {
     color: '#FFC80D',
   }
