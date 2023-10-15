@@ -135,7 +135,6 @@ const translations = {
         sort: "Trier",
         my_establishments: "Mes établissements",
         employees: "Employés",
-        offers: "Offres",
         past_offers: "Passées",
         offers_associated_with_establishment: "Offres associées à cet établissement",
         fulltime: "Temps plein",
@@ -144,6 +143,23 @@ const translations = {
             one: "%{count} match",
             other: "%{count} matches",
         },
+        modificate: "Modifier",
+        delete: "Supprimer",
+        note: "Note",
+        title: "Titre",
+        comment: "Commentaire",
+        textNote: {
+
+            horrible:"Horrible",
+            awful: "Mauvais",
+            medium: "Moyen",
+            good: "Bon",
+            excellent: "Excellent",
+        },
+        errorInput: {
+            required: "Ce champ est requis",
+            length: "Ce champ doit contenir au moins %{min} caractères",
+        }
     },
 }
 
