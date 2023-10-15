@@ -3,9 +3,8 @@ import { View, Text, StyleSheet, ScrollView, SafeAreaView, Linking, Image } from
 import Colors from '../../assets/colors/Colors';
 import i18n from "../../localization/i18n";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import { A } from "@expo/html-elements";
-
+import AvisItem from '../../components/avis/AvisItem';
 import ButtonShared from '../../shared/buttons/ButtonShared';
 
 const CandidateScreen = ({ navigation }) => {
@@ -43,52 +42,88 @@ const CandidateScreen = ({ navigation }) => {
         email: "candidat2@email.com",
     }
 
+    const avisExample = [
+        {
+            id: 1, nom: "nom", prenom: "prenom", note: 9, job: "Serveur", date: "11-09-2023", titre: "titre avis 1",
+            avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+        },
+        {
+            id: 2, nom: "nom", prenom: "prenom", note: 8, job: "Serveur", date: "11-09-2023", titre: "titre avis 2",
+            avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+        },
+    ]
+
+    const referentsExample = [
+        {
+            id: 1, nom: "nom", prenom: "prenom", job: "Serveur", date: "11-09-2023", titre: "titre avis 1",
+            avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+        },
+        {
+            id: 2, nom: "nom", prenom: "prenom", job: "Serveur", date: "11-09-2023", titre: "titre avis 2",
+            avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+        },
+    ]
+
+    const navigateAvisDetails = (avis) => {
+        navigation.navigate('AvisDetails', { avis });
+    };
+
     return (
         <SafeAreaView>
-            <Text style={{ fontWeight: "bold", fontSize: 30, marginBottom: 10 }}>Candidate Screen</Text>
+            <ScrollView>
+                <View style={styles.candidateContainer}>
+                    <View style={styles.imageContainer}>
+                        <Image src="" style={styles.image} />
+                    </View>
 
-            <View style={styles.candidateContainer}>
-                <View style={styles.imageContainer}>
-                    <Image src="" style={styles.image} />
-                </View>
+                    <View style={styles.candidateInfos}>
+                        <Text style={styles.candidateName}>{candidateDetailsExample.name}</Text>
+                        <Text>{candidateDetailsExample.address}</Text>
+                        <A href={`tel:${candidateDetailsExample.phone}`}>{candidateDetailsExample.phone}</A>
+                        <A href={`mailto:${candidateDetailsExample.email}`}>{candidateDetailsExample.email}</A>
 
-                <View style={styles.candidateInfos}>
-                    <Text style={styles.candidateName}>{candidateDetailsExample.name}</Text>
-                    <Text>{candidateDetailsExample.address}</Text>
-                    <A href={`tel:${candidateDetailsExample.phone}`}>{candidateDetailsExample.phone}</A>
-                    <A href={`mailto:${candidateDetailsExample.email}`}>{candidateDetailsExample.email}</A>
-
-                    <View style={styles.icons}>
-                        <Icon name={"email"} size={styles.icons.size} color="#000" onPress={() => handleEmailPress(candidateDetailsExample.email)} />
-                        <Icon name={"phone"} size={styles.icons.size} color="#000" onPress={() => handlePhonePress(candidateDetailsExample.phone)} />
+                        <View style={styles.icons}>
+                            <Icon name={"email"} size={styles.icons.size} color="#000" onPress={() => handleEmailPress(candidateDetailsExample.email)} />
+                            <Icon name={"phone"} size={styles.icons.size} color="#000" onPress={() => handlePhonePress(candidateDetailsExample.phone)} />
+                        </View>
                     </View>
                 </View>
-            </View>
 
-            {/* la potentiellement ScrollView */}
+                <View style={styles.hireButtonContainer}>
+                    <ButtonShared label={hireButtonText}
+                        onPress={() => handleHireButtonPress()}
+                        color="white"
+                        backgroundColor={hireButtonColor}
+                        borderColor={hireButtonColor}
+                    />
+                </View>
 
-            <View style={{ margin: 10 }}>
-                <ButtonShared label={hireButtonText}
-                    onPress={() => handleHireButtonPress()}
-                    color="white"
-                    backgroundColor={hireButtonColor}
-                    borderColor={hireButtonColor}
-                />
-            </View>
+                {/* <Text>Expériences</Text>
+                <Text>voir tout</Text> */}
 
-            <Text>Expériences</Text>
-            <Text>voir tout</Text>
+                {/* intitulé, quel entreprise, durée genre fev-mars 2024 */}
+                {/* <Text>Expérience 1</Text>
+                <Text>Expérience 2</Text>
+                <Text>Expérience 3</Text> */}
 
-            {/* intitulé, quel entreprise, durée genre fev-mars 2024 */}
-            <Text>Expérience 1</Text>
-            <Text>Expérience 2</Text>
-            <Text>Expérience 3</Text>
+                <View style={styles.listContainer}>
+                    <Text style={styles.listTitle}>{i18n.t("review")}</Text>
+                    {
+                        avisExample.map((avis) => {
+                            return <AvisItem key={avis.id} avis={avis} onpress={() => navigateAvisDetails(avis)} />
+                        })
+                    }
+                </View>
 
-            <Text>Avis</Text>
-            {/* attente du merge de achille */}
-
-            <Text>Référents</Text>
-            {/* attente du merge de achille */}
+                <View style={styles.listContainer}>
+                    <Text style={styles.listTitle}>Référents</Text>
+                    {
+                        referentsExample.map((avis) => {
+                            return <AvisItem key={avis.id} avis={avis} onpress={() => navigateAvisDetails(avis)} />
+                        })
+                    }
+                </View>
+            </ScrollView>
         </SafeAreaView>
     );
 };
@@ -158,6 +193,17 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginLeft: 10,
         color: Colors.darkGrey.color,
-    }
+    },
+    listTitle: {
+        fontSize: 22,
+        fontWeight: 'bold',
+    },
+    listContainer: {
+        marginTop: 10,
+        marginHorizontal: 10,
+    },
+    hireButtonContainer: {
+        margin: 10,
+    },
 });
 export default CandidateScreen;

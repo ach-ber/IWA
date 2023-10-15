@@ -11,7 +11,7 @@ export default function AvisItem({ avis, onpress }) {
             <View style={styles.imageContainer}>
                 <Image src="" style={styles.image} />
             </View>
-            <View style={styles.condidatContainer}>
+            <View style={styles.candidatContainer}>
                 <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
                 <Text>{avis.job}</Text>
             </View>
@@ -25,14 +25,11 @@ export default function AvisItem({ avis, onpress }) {
             <View style={styles.imageContainer}>
                 <Image src="" style={styles.image} />
             </View>
-            <View style={styles.condidatContainer}>
+            <View style={styles.candidatContainer}>
                 <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
                 <Text>{avis.job}</Text>
             </View>
-            <View style={styles.noteContainer}>
-                <Text>{avis.note}
-                    <IconAwesome name="star" size={12} color="yellow" />
-                </Text>
+            <View style={styles.rightContainer}>
                 <Text >{avis.date}</Text>
             </View>
         </Pressable>
@@ -62,7 +59,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         backgroundColor: 'grey'
     },
-    condidatContainer: {
+    candidatContainer: {
         width: "40%",
         height: "100%",
         alignItems: 'flex-start',

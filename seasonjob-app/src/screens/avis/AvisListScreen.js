@@ -36,8 +36,6 @@ export default function AvisListScreen({ navigation }) {
     );
 }
 
-//<AvisItem nom="nom" prenom="prenom" note={8} job="Serveur" date="11-09-2023" onpress={ () =>  navigateAvisDetails()}/>
-
 const styles = StyleSheet.create({
     title: {
         fontSize: 22,
