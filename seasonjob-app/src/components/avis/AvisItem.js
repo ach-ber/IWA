@@ -1,6 +1,5 @@
 import { Pressable, View, StyleSheet, Image, Text } from "react-native";
 import Colors from "../../assets/colors/Colors";
-import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import React from "react";
 import RatingStars from "../../utils/RatingStars";
 

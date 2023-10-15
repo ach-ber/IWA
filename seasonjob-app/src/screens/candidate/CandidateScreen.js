@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { A } from "@expo/html-elements";
 import AvisItem from '../../components/avis/AvisItem';
 import ButtonShared from '../../shared/buttons/ButtonShared';
+import IconText from '../../components/IconText';
 
 const CandidateScreen = ({ navigation }) => {
     const handleEmailPress = (email) => {
@@ -64,6 +65,11 @@ const CandidateScreen = ({ navigation }) => {
         },
     ]
 
+    const experiencesExample = [
+        { id: 1, entreprise: "KFC", job: "Serveur", period: "Janvier-Mars 2023", },
+        { id: 2, entreprise: "McDonald's", job: "Employé polyvalent", period: "Juin-Août 2023", },
+    ]
+
     const navigateAvisDetails = (avis) => {
         navigation.navigate('AvisDetails', { avis });
     };
@@ -98,13 +104,20 @@ const CandidateScreen = ({ navigation }) => {
                     />
                 </View>
 
-                {/* <Text>Expériences</Text>
-                <Text>voir tout</Text> */}
-
-                {/* intitulé, quel entreprise, durée genre fev-mars 2024 */}
-                {/* <Text>Expérience 1</Text>
-                <Text>Expérience 2</Text>
-                <Text>Expérience 3</Text> */}
+                <View style={styles.listContainer}>
+                    <Text style={styles.listTitle}>Expériences</Text>
+                    {
+                        experiencesExample.map((experience) => {
+                            return (
+                                <View key={experience.id} style={styles.experienceContainer}>
+                                    <Text style={styles.entrepriseTitle}>{experience.entreprise}</Text>
+                                    <Text>{experience.job}</Text>
+                                    <IconText iconClass={Icon} iconName="calendar" text={experience.period} />
+                                </View>
+                            )
+                        })
+                    }
+                </View>
 
                 <View style={styles.listContainer}>
                     <Text style={styles.listTitle}>{i18n.t("review")}</Text>
@@ -171,14 +184,17 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
     },
-    view: {
-        width: '90%',
+    experienceContainer: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        marginHorizontal: "5%",
         backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 10,
+        marginBottom: 10,
+    },
+    entrepriseTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
     },
     titleSectionContainer: {
         display: 'flex',
@@ -197,6 +213,7 @@ const styles = StyleSheet.create({
     listTitle: {
         fontSize: 22,
         fontWeight: 'bold',
+        marginBottom: 10,
     },
     listContainer: {
         marginTop: 10,
