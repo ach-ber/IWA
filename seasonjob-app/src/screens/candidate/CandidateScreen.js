@@ -19,18 +19,18 @@ const CandidateScreen = ({ navigation }) => {
 
     const [hiring, setHiring] = useState(true);
     const [hireButtonColor, setHireButtonColor] = useState("green");
-    const [hireButtonText, setHireButtonText] = useState("Recruter le candidat");
+    const [hireButtonText, setHireButtonText] = useState(i18n.t("hireCandidate"));
 
     const handleHireButtonPress = () => {
         if (hiring) {
             setHiring(false);
             setHireButtonColor("red");
-            setHireButtonText("Annuler le recrutement");
+            setHireButtonText(i18n.t("cancelHiring"));
             // cancel hiring process
         } else {
             setHiring(true);
             setHireButtonColor("green");
-            setHireButtonText("Recruter le candidat");
+            setHireButtonText(i18n.t("hireCandidate"));
             // hiring process
         }
     }
@@ -45,22 +45,22 @@ const CandidateScreen = ({ navigation }) => {
 
     const avisExample = [
         {
-            id: 1, nom: "nom", prenom: "prenom", note: 9, job: "Serveur", date: "11-09-2023", titre: "titre avis 1",
+            id: 1, nom: "nom", prenom: "prenom", note: 9, job: "Serveur", date: "11/09/2023", titre: "titre avis 1",
             avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
         },
         {
-            id: 2, nom: "nom", prenom: "prenom", note: 8, job: "Serveur", date: "11-09-2023", titre: "titre avis 2",
+            id: 2, nom: "nom", prenom: "prenom", note: 8, job: "Serveur", date: "11/09/2023", titre: "titre avis 2",
             avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
         },
     ]
 
-    const referentsExample = [
+    const referencesExample = [
         {
-            id: 1, nom: "nom", prenom: "prenom", job: "Serveur", date: "11-09-2023", titre: "titre avis 1",
+            id: 1, nom: "nom", prenom: "prenom", job: "Serveur", date: "11/09/2023", titre: "titre avis 1",
             avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
         },
         {
-            id: 2, nom: "nom", prenom: "prenom", job: "Serveur", date: "11-09-2023", titre: "titre avis 2",
+            id: 2, nom: "nom", prenom: "prenom", job: "Serveur", date: "11/09/2023", titre: "titre avis 2",
             avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
         },
     ]
@@ -105,7 +105,7 @@ const CandidateScreen = ({ navigation }) => {
                 </View>
 
                 <View style={styles.listContainer}>
-                    <Text style={styles.listTitle}>Expériences</Text>
+                    <Text style={styles.listTitle}>{i18n.t("experiences")}</Text>
                     {
                         experiencesExample.map((experience) => {
                             return (
@@ -129,10 +129,10 @@ const CandidateScreen = ({ navigation }) => {
                 </View>
 
                 <View style={styles.listContainer}>
-                    <Text style={styles.listTitle}>Référents</Text>
+                    <Text style={styles.listTitle}>{i18n.t("references")}</Text>
                     {
-                        referentsExample.map((avis) => {
-                            return <AvisItem key={avis.id} avis={avis} onpress={() => navigateAvisDetails(avis)} />
+                        referencesExample.map((reference) => {
+                            return <AvisItem key={reference.id} avis={reference} onpress={() => navigateAvisDetails(reference)} />
                         })
                     }
                 </View>
@@ -223,4 +223,5 @@ const styles = StyleSheet.create({
         margin: 10,
     },
 });
+
 export default CandidateScreen;
