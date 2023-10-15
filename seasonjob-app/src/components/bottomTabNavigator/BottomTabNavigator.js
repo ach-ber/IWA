@@ -2,6 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ConnectionStack from "../../screens/connection/ConnectionStack";
 import AccountStack from "../../screens/account/AccountStack";
+import AvisStack from "../../screens/avis/AvisStack";
 import EstablishmentStack from "../../screens/establishment/EstablishmentStack";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import i18n from "../../localization/i18n";
@@ -35,7 +36,8 @@ export default function BottomTabNavigator() {
             />
             <Tab.Screen
                 name={i18n.t("reviews")}
-                component={AccountStack}
+                component={AvisStack}
+                // component={AccountStack}
                 options={{
                     tabBarLabel: 'Avis',
                     tabBarIcon: ({ color, size }) => (
