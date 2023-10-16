@@ -2,10 +2,11 @@ import React from 'react';
 
 import OfferCandidates from '../../components/offer/OfferCandidates';
 
-const OfferCandidatesScreen = () => {
+const OfferCandidatesScreen = ({ navigation, route }) => {
+
 
     return (
-        <OfferCandidates />
+        <OfferCandidates navigation={navigation} route={route} />
     )
 };
 

@@ -93,6 +93,8 @@ const translations = {
         cancelHiring: "Cancel hiring",
         references: "References",
         experiences: "Experiences",
+        reviews: "reviews",
+        candidates: "Candidates",
     },
 
     fr: {
@@ -186,6 +188,8 @@ const translations = {
         cancelHiring: "Annuler le recrutement",
         references: "Référents",
         experiences: "Expériences",
+        reviews: "avis",
+        candidates: "Candidats",
     },
 }
 
