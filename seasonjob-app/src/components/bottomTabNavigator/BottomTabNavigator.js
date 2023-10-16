@@ -7,12 +7,14 @@ import AvisStack from "../../screens/avis/AvisStack";
 import EstablishmentStack from "../../screens/establishment/EstablishmentStack";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import i18n from "../../localization/i18n";
-import OfferStack from '../../screens/offer/OfferStack';
+import OfferStack from '../../screens/offer/OfferStack'
+
+import Colors from '../../assets/colors/Colors';
 
 const Tab = createBottomTabNavigator();
 export default function BottomTabNavigator() {
     return (
-        <Tab.Navigator screenOptions={{ tabBarStyle: { position: 'absolute' }, tabBarActiveTintColor: '#e91e63' }}>
+        <Tab.Navigator screenOptions={{ tabBarStyle: { position: 'absolute' }, tabBarActiveTintColor: Colors.green.color }}>
             <Tab.Screen
                 name={i18n.t("home")}
                 component={CandidateStack}

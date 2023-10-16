@@ -2,10 +2,10 @@ import React from 'react';
 
 import OfferDetails from '../../components/offer/OfferDetails';
 
-const OfferDetailsScreen = () => {
+const OfferDetailsScreen = ({ route }) => {
 
     return (
-        <OfferDetails />
+        <OfferDetails route={route} />
     )
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     KeyboardAvoidingView,
@@ -16,7 +16,7 @@ import { Datepicker, Select, Text, SelectItem } from '@ui-kitten/components';
 
 import t from '../../utils/translation';
 
-const OfferDetails = ({ id }) => {
+const OfferDetails = ({ route }) => {
     const [establishment, setEstablishment] = useState('');
     const [jobCategory, setJobCategory] = useState('');
     const [jobName, setJobName] = useState('');
@@ -39,6 +39,18 @@ const OfferDetails = ({ id }) => {
         'Caissier',
         'Livreur'
     ]);
+
+    useEffect(() => {
+        if (route.params) {
+            setEstablishment(route.params.establishment);
+            setJobCategory(route.params.jobCategory);
+            setJobName(route.params.title);
+            setPerks(route.params.perks);
+            setSalary(route.params.salary);
+            setStartDate(route.params.startDate);
+            setEndDate(route.params.endDate);
+        }
+    }, [route.params]);
 
     const handleSubmit = () => {
         console.log('Établissement :', establishment);

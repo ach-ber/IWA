@@ -55,7 +55,7 @@ export default function AvisDetailsScreen({ route }) {
                         onSelect={onItemSelect}
                         onBackdropPress={() => setVisible(false)}
                     >
-                        <MenuItem title={i18n.t("modificate")} />
+                        <MenuItem title={i18n.t("edit")} />
                         <MenuItem title={i18n.t("delete")} />
                     </OverflowMenu>
                 </View>
