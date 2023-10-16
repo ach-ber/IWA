@@ -159,7 +159,11 @@ const translations = {
         errorInput: {
             required: "Ce champ est requis",
             length: "Ce champ doit contenir au moins %{min} caractères",
-        }
+        },
+        hireCandidate: "Recruter le candidat",
+        cancelHiring: "Annuler le recrutement",
+        references: "Référents",
+        experiences: "Expériences",
     },
 }
 

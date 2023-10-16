@@ -1,17 +1,16 @@
-import {Pressable, View, StyleSheet, Image, Text} from "react-native";
+import { Pressable, View, StyleSheet, Image, Text } from "react-native";
 import Colors from "../../assets/colors/Colors";
-import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import React from "react";
 import RatingStars from "../../utils/RatingStars";
 
-export default function AvisItem({avis,onpress}) {
+export default function AvisItem({ avis, onpress }) {
 
-    return avis.note?(
+    return avis.note ? (
         <Pressable style={styles.avisContainer} onPress={onpress}>
             <View style={styles.imageContainer}>
-                <Image src="" style={styles.image}/>
+                <Image src="" style={styles.image} />
             </View>
-            <View style={styles.condidatContainer}>
+            <View style={styles.candidatContainer}>
                 <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
                 <Text>{avis.job}</Text>
             </View>
@@ -20,19 +19,16 @@ export default function AvisItem({avis,onpress}) {
                 <Text style={styles.date}>{avis.date}</Text>
             </View>
         </Pressable>
-    ):(
+    ) : (
         <Pressable style={styles.avisContainer} onPress={onpress}>
             <View style={styles.imageContainer}>
-                <Image src="" style={styles.image}/>
+                <Image src="" style={styles.image} />
             </View>
-            <View style={styles.condidatContainer}>
+            <View style={styles.candidatContainer}>
                 <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
                 <Text>{avis.job}</Text>
             </View>
-            <View style={styles.noteContainer}>
-                <Text>{avis.note}
-                    <IconAwesome name="star" size={12} color="yellow" />
-                </Text>
+            <View style={styles.rightContainer}>
                 <Text >{avis.date}</Text>
             </View>
         </Pressable>
@@ -60,9 +56,9 @@ const styles = StyleSheet.create({
         height: 60,
         width: 60,
         borderRadius: 100,
-        backgroundColor:'grey'
+        backgroundColor: 'grey'
     },
-    condidatContainer: {
+    candidatContainer: {
         width: "40%",
         height: "100%",
         alignItems: 'flex-start',

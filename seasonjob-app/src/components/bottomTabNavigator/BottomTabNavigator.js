@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ConnectionStack from "../../screens/connection/ConnectionStack";
+import CandidateStack from '../../screens/candidate/CandidateStack';
 import AccountStack from "../../screens/account/AccountStack";
 import AvisStack from "../../screens/avis/AvisStack";
 import EstablishmentStack from "../../screens/establishment/EstablishmentStack";
@@ -14,7 +15,7 @@ export default function BottomTabNavigator() {
         <Tab.Navigator screenOptions={{ tabBarStyle: { position: 'absolute' }, tabBarActiveTintColor: '#e91e63' }}>
             <Tab.Screen
                 name={i18n.t("home")}
-                component={ConnectionStack}
+                component={CandidateStack}
                 options={{
                     tabBarLabel: 'Accueil',
                     tabBarIcon: ({ color, size }) => (
