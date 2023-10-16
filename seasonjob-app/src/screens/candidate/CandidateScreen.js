@@ -76,7 +76,7 @@ const CandidateScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView>
-            <ScrollView>
+            <ScrollView style={{marginBottom: 50}}>
                 <View style={styles.candidateContainer}>
                     <View style={styles.imageContainer}>
                         <Image src="" style={styles.image} />
