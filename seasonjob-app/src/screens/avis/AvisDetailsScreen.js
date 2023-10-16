@@ -1,9 +1,9 @@
-import {View, Text, Image, StyleSheet, ScrollView, Pressable} from "react-native";
-import React, {useEffect, useState} from "react";
+import { View, Text, Image, StyleSheet, ScrollView, Pressable } from "react-native";
+import React, { useEffect, useState } from "react";
 import Colors from "../../assets/colors/Colors";
 import IconAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import RatingStars from "../../utils/RatingStars";
-import {MenuItem, OverflowMenu} from "@ui-kitten/components";
+import { MenuItem, OverflowMenu } from "@ui-kitten/components";
 import i18n from "../../localization/i18n";
 
 export default function AvisDetailsScreen({ route }) {
@@ -24,8 +24,8 @@ export default function AvisDetailsScreen({ route }) {
     }, [route.params]);
 
     const renderToggleButton = () => (
-        <Pressable style={styles.modifierContainer}  onPress={() => setVisible(true)} >
-            <IconAwesome5  name="ellipsis-v" size={24} color='black'  />
+        <Pressable style={styles.modifierContainer} onPress={() => setVisible(true)} >
+            <IconAwesome5 name="ellipsis-v" size={24} color='black' />
         </Pressable>
     );
 
@@ -42,14 +42,13 @@ export default function AvisDetailsScreen({ route }) {
         <ScrollView style={styles.scrollContainer}>
             <View style={styles.topContainer}>
                 <View style={styles.imageContainer}>
-                    <Image src="" style={styles.image}/>
+                    <Image src="" style={styles.image} />
                 </View>
                 <View style={styles.condidatContainer}>
                     <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
                     <Text>{avis.job}</Text>
                 </View>
                 <View style={styles.rightContainer}>
-
                     <OverflowMenu
                         anchor={renderToggleButton}
                         visible={visible}
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
         width: "80%",
         marginLeft: "10%",
     },
-    topContainer:{
+    topContainer: {
         width: "100%",
         height: 100,
         alignItems: 'center',
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
         height: "100%",
         alignItems: 'flex-start',
         justifyContent: 'center',
-        marginLeft:'10%',
+        marginLeft: '10%',
     },
     candidatInfo: {
         fontSize: 16,
