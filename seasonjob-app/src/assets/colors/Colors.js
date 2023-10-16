@@ -20,6 +20,9 @@ const Colors = {
   },
   green: {
     color: '#66CA98',
+  },
+  yellowStar: {
+    color: '#FFC80D',
   }
 };
 

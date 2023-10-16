@@ -1,0 +1,15 @@
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AvisListScreen from "./AvisListScreen";
+import AvisDetailsScreen from "./AvisDetailsScreen";
+import AvisAddScreen from "./AvisAddScreen";
+const Stack = createNativeStackNavigator();
+
+export default function AvisStack() {
+    return (
+        <Stack.Navigator initialRouteName="AvisList">
+            <Stack.Screen name="AvisList" component={AvisListScreen} options={{ headerShown: false, gestureEnabled: true }} />
+            <Stack.Screen name="AvisDetails" component={AvisDetailsScreen} options={{ headerShown: true, gestureEnabled: true }} />
+            <Stack.Screen name="AvisAdd" component={AvisAddScreen} options={{ headerShown: true, gestureEnabled: true }} />
+        </Stack.Navigator>
+    );
+}

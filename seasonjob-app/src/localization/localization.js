@@ -73,6 +73,26 @@ const translations = {
             other: "%{count} matches",
         },
         offer_details: "Offer details",
+        edit: "Edit",
+        delete: "Delete",
+        note: "Note",
+        title: "Title",
+        comment: "Comment",
+        textNote: {
+            horrible:"Horrible",
+            awful: "Awful",
+            medium: "Medium",
+            good: "Good",
+            excellent: "Excellent",
+        },
+        errorInput: {
+            required: "This field is required",
+            length: "This field must be at least %{min} characters long",
+        },
+        hireCandidate: "Hire candidate",
+        cancelHiring: "Cancel hiring",
+        references: "References",
+        experiences: "Experiences",
     },
 
     fr: {
@@ -136,7 +156,6 @@ const translations = {
         sort: "Trier",
         my_establishments: "Mes établissements",
         employees: "Employés",
-        offers: "Offres",
         past_offers: "Passées",
         offers_associated_with_establishment: "Offres associées à cet établissement",
         fulltime: "Temps plein",
@@ -146,6 +165,27 @@ const translations = {
             other: "%{count} matches",
         },
         offer_details: "Détails de l'offre",
+        edit: "Modifier",
+        delete: "Supprimer",
+        note: "Note",
+        title: "Titre",
+        comment: "Commentaire",
+        textNote: {
+
+            horrible:"Horrible",
+            awful: "Mauvais",
+            medium: "Moyen",
+            good: "Bon",
+            excellent: "Excellent",
+        },
+        errorInput: {
+            required: "Ce champ est requis",
+            length: "Ce champ doit contenir au moins %{min} caractères",
+        },
+        hireCandidate: "Recruter le candidat",
+        cancelHiring: "Annuler le recrutement",
+        references: "Référents",
+        experiences: "Expériences",
     },
 }
 

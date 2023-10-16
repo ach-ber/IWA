@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@eva-design/eva": "^2.2.0",
+    "@expo/html-elements": "^0.5.1",
     "@expo/vector-icons": "^13.0.0",
     "@react-native-community/viewpager": "^5.0.11",
     "@react-navigation/bottom-tabs": "^6.5.9",
