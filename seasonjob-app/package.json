@@ -17,7 +17,7 @@
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/native-stack": "^6.9.14",
     "@ui-kitten/components": "^5.3.1",
-    "expo": "~49.0.13",
+    "expo": "^49.0.13",
     "expo-localization": "~14.3.0",
     "expo-status-bar": "~1.6.0",
     "i18n-js": "^4.3.2",

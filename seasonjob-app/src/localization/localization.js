@@ -72,6 +72,29 @@ const translations = {
             one: "%{count} match",
             other: "%{count} matches",
         },
+        offer_details: "Offer details",
+        edit: "Edit",
+        delete: "Delete",
+        note: "Note",
+        title: "Title",
+        comment: "Comment",
+        textNote: {
+            horrible:"Horrible",
+            awful: "Awful",
+            medium: "Medium",
+            good: "Good",
+            excellent: "Excellent",
+        },
+        errorInput: {
+            required: "This field is required",
+            length: "This field must be at least %{min} characters long",
+        },
+        hireCandidate: "Hire candidate",
+        cancelHiring: "Cancel hiring",
+        references: "References",
+        experiences: "Experiences",
+        reviews: "reviews",
+        candidates: "Candidates",
     },
 
     fr: {
@@ -143,7 +166,8 @@ const translations = {
             one: "%{count} match",
             other: "%{count} matches",
         },
-        modificate: "Modifier",
+        offer_details: "Détails de l'offre",
+        edit: "Modifier",
         delete: "Supprimer",
         note: "Note",
         title: "Titre",
@@ -164,6 +188,8 @@ const translations = {
         cancelHiring: "Annuler le recrutement",
         references: "Référents",
         experiences: "Expériences",
+        reviews: "avis",
+        candidates: "Candidats",
     },
 }
 
