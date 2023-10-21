@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Pressable, Text } from 'react-native';
 
-export default function FormuleAccountComponent({ label, color, backgroundColor, borderColor,date, onPress }) {
+export default function FormuleUniqueComponent({ label, color, backgroundColor, borderColor,date, onPress }) {
 
     return (
         <View style={[styles.formuleContainer, {borderColor: borderColor }]}>

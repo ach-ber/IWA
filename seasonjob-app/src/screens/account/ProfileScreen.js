@@ -4,7 +4,7 @@ import LinkShared from "../../shared/links/LinkShared";
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import ButtonShared from "../../shared/buttons/ButtonShared";
-import FormuleAccountComponent from "../../components/formule/FormuleAccountComponent";
+import FormuleUniqueComponent from "../../components/Formule/FormuleUniqueComponent";
 import Colors from '../../assets/colors/Colors';
 import i18n from "../../localization/i18n";
 const ProfileScreen = ({ navigation }) => {
@@ -19,7 +19,7 @@ const ProfileScreen = ({ navigation }) => {
                     <View style={styles.titleSectionContainer}>
                         <MaterialIcons name="stars" size={24} color="#111425" /><Text style={styles.titleSection}>{i18n.t("formula")}</Text>
                     </View>
-                    <FormuleAccountComponent
+                    <FormuleUniqueComponent
                         date={i18n.t("renewal", { date: "10-09-2023" })}
                         backgroundColor="grey"
                         borderColor={Colors.borderGrey.color}
