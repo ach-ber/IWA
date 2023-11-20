@@ -6,12 +6,17 @@ const transformDate = (date) => {
     return date.split("T")[0]
 }
 
+const transformPhone = (phone) => {
+    // remove whitespace from phone number
+    return phone.replace(/\s/g, "")
+}
+
 const transformCandidate = (candidate) => {
     const candidateDetails = {
         id: candidate.id,
         name: `${candidate.firstname} ${candidate.lastname}`,
         address: transformAddress(candidate.address),
-        phone: candidate.phone,
+        phone: transformPhone(candidate.phone),
         email: candidate.email,
     }
 
