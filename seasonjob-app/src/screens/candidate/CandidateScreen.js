@@ -1,25 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, SafeAreaView, Linking, Image } from 'react-native';
 import Colors from '../../assets/colors/Colors';
 import i18n from "../../localization/i18n";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { A } from "@expo/html-elements";
 import AvisItem from '../../components/avis/AvisItem';
+import ReferenceItem from '../../components/candidate/ReferenceItem';
 import ButtonShared from '../../shared/buttons/ButtonShared';
 import IconText from '../../components/IconText';
+import transformCandidate from './CandidateUtils';
+import axios from 'axios';
 
 const CandidateScreen = ({ navigation }) => {
+    const apiUrl = process.env.EXPO_PUBLIC_API_URL
+
     const handleEmailPress = (email) => {
-        Linking.openURL(`mailto:${email}`);
+        Linking.openURL(`mailto:${email}`)
     }
 
     const handlePhonePress = (phone) => {
-        Linking.openURL(`tel:${phone}`);
+        Linking.openURL(`tel:${phone}`)
     }
-
-    const [hiring, setHiring] = useState(true);
-    const [hireButtonColor, setHireButtonColor] = useState("green");
-    const [hireButtonText, setHireButtonText] = useState(i18n.t("hireCandidate"));
 
     const handleHireButtonPress = () => {
         if (hiring) {
@@ -35,6 +36,10 @@ const CandidateScreen = ({ navigation }) => {
         }
     }
 
+    const [hiring, setHiring] = useState(true)
+    const [hireButtonColor, setHireButtonColor] = useState("green")
+    const [hireButtonText, setHireButtonText] = useState(i18n.t("hireCandidate"))
+
     const candidateDetailsExample = {
         id: 1,
         name: "John Doe",
@@ -42,6 +47,7 @@ const CandidateScreen = ({ navigation }) => {
         phone: "+33707070707",
         email: "candidat2@email.com",
     }
+    const [candidateDetails, setCandidateDetails] = useState(candidateDetailsExample)
 
     const avisExample = [
         {
@@ -53,6 +59,7 @@ const CandidateScreen = ({ navigation }) => {
             avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
         },
     ]
+    const [candidateAvis, setCandidateAvis] = useState(avisExample)
 
     const referencesExample = [
         {
@@ -64,29 +71,54 @@ const CandidateScreen = ({ navigation }) => {
             avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
         },
     ]
+    const [candidateReferences, setCandidateReferences] = useState(referencesExample)
 
     const experiencesExample = [
         { id: 1, entreprise: "KFC", job: "Serveur", period: "Janvier-Mars 2023", },
         { id: 2, entreprise: "McDonald's", job: "Employé polyvalent", period: "Juin-Août 2023", },
     ]
+    const [candidateExperiences, setCandidateExperiences] = useState(experiencesExample)
 
     const navigateAvisDetails = (avis) => {
         navigation.navigate('AvisDetails', { avis });
-    };
+    }
+
+    const fetchData = async () => {
+        // const userId = "06556182-64a8-7704-800e-fb8673e24d0f"
+        const userId = "06556182-64ec-7e23-8032-1be4f97f7179"
+        // const response = await fetch(`${apiUrl}/candidates/${userId}`);
+        // const data = await response.json();
+        axios.get(`${apiUrl}/candidates/${userId}`)
+            .then((response) => {
+                const data = response.data
+                const candidate = transformCandidate(data)
+                setCandidateDetails(candidate.details)
+                setCandidateAvis(candidate.avis)
+                setCandidateExperiences(candidate.experiences)
+                setCandidateReferences(candidate.references)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <SafeAreaView>
-            <ScrollView style={{marginBottom: 50}}>
+            <ScrollView style={{ marginBottom: 50 }}>
                 <View style={styles.candidateContainer}>
                     <View style={styles.imageContainer}>
                         <Image src="" style={styles.image} />
                     </View>
 
                     <View style={styles.candidateInfos}>
-                        <Text style={styles.candidateName}>{candidateDetailsExample.name}</Text>
-                        <Text>{candidateDetailsExample.address}</Text>
-                        <A href={`tel:${candidateDetailsExample.phone}`}>{candidateDetailsExample.phone}</A>
-                        <A href={`mailto:${candidateDetailsExample.email}`}>{candidateDetailsExample.email}</A>
+                        <Text style={styles.candidateName}>{candidateDetails.name}</Text>
+                        <Text>{candidateDetails.address}</Text>
+                        <A href={`tel:${candidateDetails.phone}`}>{candidateDetails.phone}</A>
+                        <A href={`mailto:${candidateDetails.email}`}>{candidateDetails.email}</A>
 
                         <View style={styles.icons}>
                             <Icon name={"email"} size={styles.icons.size} color="#000" onPress={() => handleEmailPress(candidateDetailsExample.email)} />
@@ -107,7 +139,7 @@ const CandidateScreen = ({ navigation }) => {
                 <View style={styles.listContainer}>
                     <Text style={styles.listTitle}>{i18n.t("experiences")}</Text>
                     {
-                        experiencesExample.map((experience) => {
+                        candidateExperiences.map((experience) => {
                             return (
                                 <View key={experience.id} style={styles.experienceContainer}>
                                     <Text style={styles.entrepriseTitle}>{experience.entreprise}</Text>
@@ -122,7 +154,7 @@ const CandidateScreen = ({ navigation }) => {
                 <View style={styles.listContainer}>
                     <Text style={styles.listTitle}>{i18n.t("review")}</Text>
                     {
-                        avisExample.map((avis) => {
+                        candidateAvis.map((avis) => {
                             return <AvisItem key={avis.id} avis={avis} onpress={() => navigateAvisDetails(avis)} />
                         })
                     }
@@ -131,8 +163,8 @@ const CandidateScreen = ({ navigation }) => {
                 <View style={styles.listContainer}>
                     <Text style={styles.listTitle}>{i18n.t("references")}</Text>
                     {
-                        referencesExample.map((reference) => {
-                            return <AvisItem key={reference.id} avis={reference} onpress={() => navigateAvisDetails(reference)} />
+                        candidateReferences.map((reference) => {
+                            return <ReferenceItem key={reference.id} reference={reference} />
                         })
                     }
                 </View>
