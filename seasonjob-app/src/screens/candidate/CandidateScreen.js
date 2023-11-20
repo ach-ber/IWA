@@ -124,8 +124,8 @@ const CandidateScreen = ({ navigation }) => {
                         <A href={`mailto:${candidateDetails.email}`}>{candidateDetails.email}</A>
 
                         <View style={styles.icons}>
-                            <Icon name={"email"} size={styles.icons.size} color="#000" onPress={() => handleEmailPress(candidateDetailsExample.email)} />
-                            <Icon name={"phone"} size={styles.icons.size} color="#000" onPress={() => handlePhonePress(candidateDetailsExample.phone)} />
+                            <Icon name={"email"} size={styles.icons.size} color="#000" onPress={() => handleEmailPress(candidateDetails.email)} />
+                            <Icon name={"phone"} size={styles.icons.size} color="#000" onPress={() => handlePhonePress(candidateDetails.phone)} />
                         </View>
                     </View>
                 </View>
