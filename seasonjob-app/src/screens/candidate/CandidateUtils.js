@@ -22,7 +22,7 @@ const transformCandidate = (candidate) => {
             prenom: "prenom",
             job: "job",
             note: opinion.score,
-            date: opinion.providedAt.split("T")[0],
+            date: transformDate(opinion.providedAt),
             titre: "titre avis 1",
         }
     })

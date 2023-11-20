@@ -84,10 +84,7 @@ const CandidateScreen = ({ navigation }) => {
     }
 
     const fetchData = async () => {
-        // const userId = "06556182-64a8-7704-800e-fb8673e24d0f"
         const userId = "06556182-64ec-7e23-8032-1be4f97f7179"
-        // const response = await fetch(`${apiUrl}/candidates/${userId}`);
-        // const data = await response.json();
         axios.get(`${apiUrl}/candidates/${userId}`)
             .then((response) => {
                 const data = response.data
