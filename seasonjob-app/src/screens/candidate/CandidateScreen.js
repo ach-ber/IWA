@@ -83,8 +83,7 @@ const CandidateScreen = ({ navigation }) => {
         navigation.navigate('AvisDetails', { avis });
     }
 
-    const fetchData = async () => {
-        const userId = "06556182-64ec-7e23-8032-1be4f97f7179"
+    const fetchData = async (userId) => {
         axios.get(`${apiUrl}/candidates/${userId}`)
             .then((response) => {
                 const data = response.data
@@ -100,7 +99,14 @@ const CandidateScreen = ({ navigation }) => {
     }
 
     useEffect(() => {
-        fetchData();
+        // const userId = "06556182-64ec-7e23-8032-1be4f97f7179"
+        const userId = process.env.EXPO_PUBLIC_USER_ID_EXAMPLE
+
+        // for now this page is directly on homepage
+        // but it will be when clicking on list of details
+        // therefore we should get userId from navigation parameters like this:
+        // const userId = navigation.getParam('userId')
+        fetchData(userId);
     }, []);
 
     return (
