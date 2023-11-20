@@ -6,6 +6,10 @@ Projet IWA
 
 To develop the app, follow these steps
 
+1. Copy `.env.example` to `.env` and enter the correct values
+
+2. Launch these commands
+
 ```bash
 cd seasonjob-app
 yarn install      # install dependencies
