@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvisItem tests AvisItem renders correctly 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "white",
+      "borderRadius": 10,
+      "flexDirection": "row",
+      "height": 100,
+      "justifyContent": "center",
+      "marginBottom": 10,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "height": "100%",
+        "justifyContent": "center",
+        "width": "30%",
+      }
+    }
+  >
+    <Image
+      src=""
+      style={
+        {
+          "backgroundColor": "grey",
+          "borderRadius": 100,
+          "height": 60,
+          "width": 60,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "column",
+        "height": "100%",
+        "justifyContent": "center",
+        "width": "40%",
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#111425",
+          "fontSize": 20,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      nom
+       
+      prenom
+    </Text>
+    <Text>
+      Serveur
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "height": "100%",
+        "justifyContent": "space-around",
+        "width": "30%",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-end",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "width": "70%",
+        }
+      }
+    >
+      <Text />
+      <Text />
+      <Text />
+      <Text />
+      <Text />
+    </View>
+    <Text
+      style={
+        {
+          "color": "#a3a3a3",
+          "fontSize": 12,
+          "textAlign": "left",
+        }
+      }
+    >
+      11/09/2023
+    </Text>
+  </View>
+</View>
+`;
