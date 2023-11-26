@@ -49,9 +49,8 @@ export default function AvisDetailsScreen({ route }) {
 
     const handleEditPressed = () => {
         console.log("edit selected")
-        console.log(avis)
         // navigate to add avis screen
-        navigation.navigate("AvisAdd")
+        navigation.navigate("AvisAdd", { avisDetails: avis })
     }
 
     const handleDeletePressed = () => {
@@ -83,7 +82,6 @@ export default function AvisDetailsScreen({ route }) {
             ]
         );
     }
-
 
     return (
         <ScrollView style={styles.scrollContainer}>

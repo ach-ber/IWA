@@ -9,7 +9,7 @@ import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 
 
-export default function AvisAddScreen() {
+export default function AvisAddScreen({ route }) {
     const navigation = useNavigation()
 
     const [rating, setRating] = useState(0);
@@ -30,22 +30,22 @@ export default function AvisAddScreen() {
         } else {
             setTitreError('')
         }
-    };
+    }
 
     useEffect(() => {
         if (titreTouched) {
-            validateTitre();
+            validateTitre()
         }
-    }, [titre, titreTouched]);
+    }, [titre, titreTouched])
 
     const validateCommentaire = () => {
         if (commentaireTouched && commentaire.length === 0) {
-            setCommentaireError(i18n.t("errorInput.required"));
+            setCommentaireError(i18n.t("errorInput.required"))
         }
         else if (commentaireTouched && commentaire.length < 20) {
-            setCommentaireError(i18n.t("errorInput.length", { min: "20" }));
+            setCommentaireError(i18n.t("errorInput.length", { min: "20" }))
         } else {
-            setCommentaireError('');
+            setCommentaireError('')
         }
     }
 
@@ -53,12 +53,12 @@ export default function AvisAddScreen() {
         if (commentaireTouched) {
             validateCommentaire();
         }
-    }, [commentaire, commentaireTouched]);
+    }, [commentaire, commentaireTouched])
 
     const handleStarPress = (starIndex) => {
-        const newRating = starIndex + 1;
-        setRating(newRating);
-        let text = '';
+        const newRating = starIndex + 1
+        setRating(newRating)
+        let text = ''
         switch (newRating) {
             case 1:
                 text = i18n.t("textNote.horrible")
@@ -76,10 +76,11 @@ export default function AvisAddScreen() {
                 text = i18n.t("textNote.excellent")
                 break;
             default:
-                text = '';
+                text = ''
         }
-        setRatingText(text);
-    };
+        setRatingText(text)
+    }
+
     const stars = [];
     for (let i = 0; i < 5; i++) {
         const isFilled = i < rating;
@@ -92,7 +93,7 @@ export default function AvisAddScreen() {
                     style={{ marginRight: 10 }}
                 />
             </TouchableOpacity>
-        );
+        )
     }
 
     const [avis, setAvis] = useState({
@@ -102,7 +103,7 @@ export default function AvisAddScreen() {
         job: "serveur",
         note: 0,
         date: "",
-    });
+    })
 
     const publishPressed = () => {
         let valid = true
@@ -121,6 +122,30 @@ export default function AvisAddScreen() {
         }
 
         console.log("publish pressed")
+
+        // edit
+        if (route.params?.avisDetails) {
+            // merge avisDetails with "rating", "titre", "commentaire" eventually changed
+            const avisDetails = route.params.avisDetails
+            console.log(avisDetails)
+            const newAvis = {
+                id: avisDetails.id,
+                title: titre,
+                rating: rating,
+                comment: commentaire,
+            }
+
+            axios.put(`${process.env.EXPO_PUBLIC_API_URL}/review/api/reviews/${avisDetails.id}`, newAvis)
+                .then((response) => {
+                    navigation.goBack()
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+            return
+        }
+
+        // add
         const newAvis = {
             title: titre,
             rating: rating,
@@ -138,6 +163,16 @@ export default function AvisAddScreen() {
                 console.log(error)
             })
     }
+
+    useEffect(() => {
+        if (route.params?.avisDetails) {
+            const avisDetails = route.params.avisDetails
+            setAvis(avisDetails)
+            setRating(avisDetails.note)
+            setTitre(avisDetails.titre)
+            setCommentaire(avisDetails.avis)
+        }
+    }, [route.params])
 
     return (
         <ScrollView style={styles.scrollContainer}>
