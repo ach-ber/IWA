@@ -169,6 +169,7 @@ const translations = {
         offer_details: "Détails de l'offre",
         edit: "Modifier",
         delete: "Supprimer",
+        delete_confirm: "Confirmez-vous la suppression ?",
         note: "Note",
         title: "Titre",
         comment: "Commentaire",
