@@ -41,14 +41,20 @@ export default function AvisDetailsScreen({ route }) {
         setVisible(false);
 
         if (index.row === 0) {
-            console.log("edit selected")
+            handleEditPressed()
         } else if (index.row === 1) {
             handleDeletePressed()
         }
-    };
+    }
+
+    const handleEditPressed = () => {
+        console.log("edit selected")
+        console.log(avis)
+        // navigate to add avis screen
+        navigation.navigate("AvisAdd")
+    }
 
     const handleDeletePressed = () => {
-
         const deleteAction = () => {
             console.log("Delete pressed")
             console.log(avis.id)

@@ -5,7 +5,6 @@ import IconAwesome from "react-native-vector-icons/FontAwesome";
 import ButtonShared from "../../shared/buttons/ButtonShared";
 import { Input } from '@ui-kitten/components';
 import i18n from "../../localization/i18n";
-import { Alert } from "react-native";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 
@@ -24,12 +23,12 @@ export default function AvisAddScreen() {
 
     const validateTitre = () => {
         if (titreTouched && titre.length === 0) {
-            setTitreError(i18n.t("errorInput.required"));
+            setTitreError(i18n.t("errorInput.required"))
         }
         else if (titreTouched && titre.length < 8) {
-            setTitreError(i18n.t("errorInput.length", { min: "8" }));
+            setTitreError(i18n.t("errorInput.length", { min: "8" }))
         } else {
-            setTitreError('');
+            setTitreError('')
         }
     };
 
@@ -106,27 +105,23 @@ export default function AvisAddScreen() {
     });
 
     const publishPressed = () => {
-        const alertFieldNotFilled = () => {
-            Alert.alert(
-                i18n.t("publishing_error"),
-                i18n.t("errorInput.required"),
-                [
-                    { text: i18n.t("ok"), onPress: () => { return } }
-                ],
-                { cancelable: false }
-            );
-        }
-
+        let valid = true
         if (titre.length === 0) {
-            alertFieldNotFilled()
-            return
-        } else if (commentaire.length === 0) {
-            alertFieldNotFilled()
+            setTitreTouched(true)
+            validateTitre()
+            valid = false
+        }
+        if (commentaire.length === 0) {
+            setCommentaireTouched(true)
+            validateCommentaire()
+            valid = false
+        }
+        if (!valid) {
             return
         }
 
         console.log("publish pressed")
-        const avis = {
+        const newAvis = {
             title: titre,
             rating: rating,
             comment: commentaire,
@@ -135,7 +130,7 @@ export default function AvisAddScreen() {
             jobId: -1, // from navigation
             createdAt: Math.floor(Date.now() / 1000),
         }
-        axios.post(`${process.env.EXPO_PUBLIC_API_URL}/review/api/reviews`, avis)
+        axios.post(`${process.env.EXPO_PUBLIC_API_URL}/review/api/reviews`, newAvis)
             .then((response) => {
                 navigation.goBack()
             })
