@@ -191,6 +191,8 @@ const translations = {
         experiences: "Expériences",
         reviews: "avis",
         candidates: "Candidats",
+        ok: "OK",
+        publishing_error: "Erreur lors de publication",
     },
 }
 
