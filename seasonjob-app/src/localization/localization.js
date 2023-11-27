@@ -169,6 +169,7 @@ const translations = {
         offer_details: "Détails de l'offre",
         edit: "Modifier",
         delete: "Supprimer",
+        delete_confirm: "Confirmez-vous la suppression ?",
         note: "Note",
         title: "Titre",
         comment: "Commentaire",
@@ -190,6 +191,8 @@ const translations = {
         experiences: "Expériences",
         reviews: "avis",
         candidates: "Candidats",
+        ok: "OK",
+        publishing_error: "Erreur lors de publication",
     },
 }
 

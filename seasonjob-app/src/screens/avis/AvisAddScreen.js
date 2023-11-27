@@ -1,13 +1,16 @@
-import {View, Text, Image, StyleSheet, ScrollView, TouchableOpacity} from "react-native";
-import React, {useEffect, useState} from "react";
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
 import Colors from "../../assets/colors/Colors";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
 import ButtonShared from "../../shared/buttons/ButtonShared";
 import { Input } from '@ui-kitten/components';
 import i18n from "../../localization/i18n";
+import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 
-export default function AvisAddScreen() {
+export default function AvisAddScreen({ route }) {
+    const navigation = useNavigation()
 
     const [rating, setRating] = useState(0);
     const [ratingText, setRatingText] = useState('');
@@ -20,29 +23,29 @@ export default function AvisAddScreen() {
 
     const validateTitre = () => {
         if (titreTouched && titre.length === 0) {
-            setTitreError(i18n.t("errorInput.required"));
+            setTitreError(i18n.t("errorInput.required"))
         }
         else if (titreTouched && titre.length < 8) {
-            setTitreError(i18n.t("errorInput.length", { min: "8" }));
+            setTitreError(i18n.t("errorInput.length", { min: "8" }))
         } else {
-            setTitreError('');
+            setTitreError('')
         }
-    };
+    }
 
     useEffect(() => {
         if (titreTouched) {
-            validateTitre();
+            validateTitre()
         }
-    }, [titre, titreTouched]);
+    }, [titre, titreTouched])
 
     const validateCommentaire = () => {
         if (commentaireTouched && commentaire.length === 0) {
-            setCommentaireError(i18n.t("errorInput.required"));
+            setCommentaireError(i18n.t("errorInput.required"))
         }
         else if (commentaireTouched && commentaire.length < 20) {
-            setCommentaireError(i18n.t("errorInput.length", { min: "20" }));
+            setCommentaireError(i18n.t("errorInput.length", { min: "20" }))
         } else {
-            setCommentaireError('');
+            setCommentaireError('')
         }
     }
 
@@ -50,12 +53,12 @@ export default function AvisAddScreen() {
         if (commentaireTouched) {
             validateCommentaire();
         }
-    }, [commentaire, commentaireTouched]);
+    }, [commentaire, commentaireTouched])
 
     const handleStarPress = (starIndex) => {
-        const newRating = starIndex + 1;
-        setRating(newRating);
-        let text = '';
+        const newRating = starIndex + 1
+        setRating(newRating)
+        let text = ''
         switch (newRating) {
             case 1:
                 text = i18n.t("textNote.horrible")
@@ -73,10 +76,11 @@ export default function AvisAddScreen() {
                 text = i18n.t("textNote.excellent")
                 break;
             default:
-                text = '';
+                text = ''
         }
-        setRatingText(text);
-    };
+        setRatingText(text)
+    }
+
     const stars = [];
     for (let i = 0; i < 5; i++) {
         const isFilled = i < rating;
@@ -89,7 +93,7 @@ export default function AvisAddScreen() {
                     style={{ marginRight: 10 }}
                 />
             </TouchableOpacity>
-        );
+        )
     }
 
     const [avis, setAvis] = useState({
@@ -99,13 +103,80 @@ export default function AvisAddScreen() {
         job: "serveur",
         note: 0,
         date: "",
-    });
+    })
+
+    const publishPressed = () => {
+        let valid = true
+        if (titre.length === 0) {
+            setTitreTouched(true)
+            validateTitre()
+            valid = false
+        }
+        if (commentaire.length === 0) {
+            setCommentaireTouched(true)
+            validateCommentaire()
+            valid = false
+        }
+        if (!valid) {
+            return
+        }
+
+        // edit
+        if (route.params?.avisDetails) {
+            // merge avisDetails with "rating", "titre", "commentaire" eventually changed
+            const avisDetails = route.params.avisDetails
+            const newAvis = {
+                id: avisDetails.id,
+                title: titre,
+                rating: rating,
+                comment: commentaire,
+            }
+
+            axios.put(`${process.env.EXPO_PUBLIC_API_URL}/review/api/reviews/${avisDetails.id}`, newAvis)
+                .then((response) => {
+                    // go back with avisDetails updated
+                    navigation.navigate("AvisDetails", { newAvis: newAvis })
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+            return
+        }
+
+        // add
+        const newAvis = {
+            title: titre,
+            rating: rating,
+            comment: commentaire,
+            recruiterId: -1, //"à chercher dans le storage",
+            candidateId: "5", // from navigation
+            jobId: -1, // from navigation
+            createdAt: Math.floor(Date.now() / 1000),
+        }
+        axios.post(`${process.env.EXPO_PUBLIC_API_URL}/review/api/reviews`, newAvis)
+            .then((response) => {
+                navigation.goBack()
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+    useEffect(() => {
+        if (route.params?.avisDetails) {
+            const avisDetails = route.params.avisDetails
+            setAvis(avisDetails)
+            setRating(avisDetails.note)
+            setTitre(avisDetails.titre)
+            setCommentaire(avisDetails.avis)
+        }
+    }, [route.params])
 
     return (
         <ScrollView style={styles.scrollContainer}>
             <View style={styles.topContainer}>
                 <View style={styles.imageContainer}>
-                    <Image src="" style={styles.image}/>
+                    <Image src="" style={styles.image} />
                 </View>
                 <View style={styles.condidatContainer}>
                     <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
@@ -118,7 +189,7 @@ export default function AvisAddScreen() {
                 {stars}
                 <Text style={{ marginLeft: 20 }}>{ratingText}</Text>
             </View>
-            {rating!=0&&(
+            {rating != 0 && (
                 <View>
                     <Text style={styles.titleFields}>{i18n.t("title")}</Text>
                     <Input
@@ -146,7 +217,7 @@ export default function AvisAddScreen() {
                         {commentaireError}
                     </Text>
                     <View style={styles.buttonContainer}>
-                        <ButtonShared label="Publier" color="white" backgroundColor={Colors.darkGrey.color} borderColor={Colors.darkGrey.color} onPress={() => alert('You pressed a button.')} />
+                        <ButtonShared label="Publier" color="white" backgroundColor={Colors.darkGrey.color} borderColor={Colors.darkGrey.color} onPress={() => publishPressed()} />
                     </View>
                 </View>
             )}
@@ -160,7 +231,7 @@ const styles = StyleSheet.create({
         width: "80%",
         marginLeft: "10%",
     },
-    topContainer:{
+    topContainer: {
         width: "100%",
         height: 100,
         alignItems: 'center',
@@ -184,7 +255,7 @@ const styles = StyleSheet.create({
         height: "100%",
         alignItems: 'flex-start',
         justifyContent: 'center',
-        marginLeft:'10%',
+        marginLeft: '10%',
     },
     candidatInfo: {
         fontSize: 16,
@@ -228,7 +299,7 @@ const styles = StyleSheet.create({
         color: Colors.lightGrey.color,
         lineHeight: 22,
     },
-    titleFields:{
+    titleFields: {
         marginTop: 10,
         marginBottom: 10,
         fontSize: 16,
@@ -246,7 +317,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         marginTop: 5,
     },
-    buttonContainer:{
+    buttonContainer: {
         width: "100%",
         height: 100,
         alignItems: 'center',
