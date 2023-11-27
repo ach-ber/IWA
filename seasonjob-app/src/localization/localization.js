@@ -189,6 +189,9 @@ const translations = {
         experiences: "Expériences",
         reviews: "avis",
         candidates: "Candidats",
+        phone: "Téléphone",
+        firstname: "Prénom",
+        lastname: "Nom",
     },
 }
 
