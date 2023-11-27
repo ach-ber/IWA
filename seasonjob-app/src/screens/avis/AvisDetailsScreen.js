@@ -24,6 +24,11 @@ export default function AvisDetailsScreen({ route }) {
     useEffect(() => {
         if (route.params && route.params.avis) {
             setAvis(route.params.avis)
+        } else if (route.params && route.params.newAvis) {
+            // partial update with only titre update
+            const titre = route.params.newAvis.title
+            const avisComment = route.params.newAvis.comment
+            setAvis({ ...avis, titre: titre, avis: avisComment })
         }
     }, [route.params]);
 
@@ -55,10 +60,7 @@ export default function AvisDetailsScreen({ route }) {
 
     const handleDeletePressed = () => {
         const deleteAction = () => {
-            console.log("Delete pressed")
-            console.log(avis.id)
             const deleteUrl = `${process.env.EXPO_PUBLIC_API_URL}/review/api/reviews/${avis.id}`
-            console.log(deleteUrl)
             axios.delete(deleteUrl)
                 .then((response) => {
                     navigation.goBack()

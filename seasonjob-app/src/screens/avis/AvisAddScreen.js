@@ -121,13 +121,10 @@ export default function AvisAddScreen({ route }) {
             return
         }
 
-        console.log("publish pressed")
-
         // edit
         if (route.params?.avisDetails) {
             // merge avisDetails with "rating", "titre", "commentaire" eventually changed
             const avisDetails = route.params.avisDetails
-            console.log(avisDetails)
             const newAvis = {
                 id: avisDetails.id,
                 title: titre,
@@ -137,7 +134,8 @@ export default function AvisAddScreen({ route }) {
 
             axios.put(`${process.env.EXPO_PUBLIC_API_URL}/review/api/reviews/${avisDetails.id}`, newAvis)
                 .then((response) => {
-                    navigation.goBack()
+                    // go back with avisDetails updated
+                    navigation.navigate("AvisDetails", { newAvis: newAvis })
                 })
                 .catch((error) => {
                     console.log(error)
