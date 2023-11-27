@@ -12,7 +12,7 @@ import transformCandidate from './CandidateUtils';
 import axios from 'axios';
 
 const CandidateScreen = ({ navigation }) => {
-    const apiUrl = process.env.EXPO_PUBLIC_API_URL
+    const apiUrl = process.env.EXPO_PUBLIC_API_URL_CANDIDATE
 
     const handleEmailPress = (email) => {
         Linking.openURL(`mailto:${email}`)
