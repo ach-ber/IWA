@@ -1,12 +1,16 @@
-import { View, Text, Image, StyleSheet, ScrollView, Pressable } from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView, Pressable, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import Colors from "../../assets/colors/Colors";
 import IconAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import RatingStars from "../../utils/RatingStars";
 import { MenuItem, OverflowMenu } from "@ui-kitten/components";
 import i18n from "../../localization/i18n";
+import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 export default function AvisDetailsScreen({ route }) {
+
+    const navigation = useNavigation()
 
     const [avis, setAvis] = useState({
         id: 0,
@@ -20,6 +24,11 @@ export default function AvisDetailsScreen({ route }) {
     useEffect(() => {
         if (route.params && route.params.avis) {
             setAvis(route.params.avis)
+        } else if (route.params && route.params.newAvis) {
+            // partial update with only titre update
+            const titre = route.params.newAvis.title
+            const avisComment = route.params.newAvis.comment
+            setAvis({ ...avis, titre: titre, avis: avisComment })
         }
     }, [route.params]);
 
@@ -35,8 +44,46 @@ export default function AvisDetailsScreen({ route }) {
     const onItemSelect = (index) => {
         setSelectedIndex(index);
         setVisible(false);
-    };
 
+        if (index.row === 0) {
+            handleEditPressed()
+        } else if (index.row === 1) {
+            handleDeletePressed()
+        }
+    }
+
+    const handleEditPressed = () => {
+        console.log("edit selected")
+        // navigate to add avis screen
+        navigation.navigate("AvisAdd", { avisDetails: avis })
+    }
+
+    const handleDeletePressed = () => {
+        const deleteAction = () => {
+            const deleteUrl = `${process.env.EXPO_PUBLIC_API_URL}/review/api/reviews/${avis.id}`
+            axios.delete(deleteUrl)
+                .then((response) => {
+                    navigation.goBack()
+                })
+        }
+
+        Alert.alert(
+            i18n.t("delete"),
+            i18n.t("delete_confirm"),
+            [
+                {
+                    text: i18n.t("cancel"),
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                {
+                    text: i18n.t("delete"),
+                    onPress: () => deleteAction(),
+                    style: "destructive"
+                }
+            ]
+        );
+    }
 
     return (
         <ScrollView style={styles.scrollContainer}>
