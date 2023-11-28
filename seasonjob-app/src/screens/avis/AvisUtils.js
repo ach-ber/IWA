@@ -10,7 +10,7 @@ const transformAvis = function (listAvis) {
             id: avis.review.id,
             nom: avis.candidate ? avis.candidate.firstname : "nom",
             prenom: avis.candidate ? avis.candidate.lastname : "prenom",
-            job: "job n°" + avis.review.jobId,
+            job: avis.job.name,
             note: avis.review.rating,
             date: transformEpochToDate(avis.review.createdAt),
             titre: avis.review.title,
