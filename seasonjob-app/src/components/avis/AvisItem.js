@@ -5,7 +5,7 @@ import RatingStars from "../../utils/RatingStars";
 
 export default function AvisItem({ avis, onpress }) {
 
-    return avis.note ? (
+    return avis?.note >= 0 ? (
         <Pressable style={styles.avisContainer} onPress={onpress}>
             <View style={styles.candidatContainer}>
                 <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
