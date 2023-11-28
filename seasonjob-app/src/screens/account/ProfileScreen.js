@@ -11,10 +11,13 @@ import axios from 'axios';
 import {UserContext} from "../../context/UserContext";
 import { LinearGradient } from 'expo-linear-gradient';
 
-import fetchUserInfo from "../../utils/fetchUserInfo";
 const ProfileScreen = ({ navigation }) => {
 
-    const backendUrl = 'http://192.168.1.194';
+    useEffect(() => {
+        console.log("user", user);
+    }, []);
+
+    const backendUrl = process.env.EXPO_PUBLIC_API_URL;
     const navigateFormule = () => {
         navigation.navigate('Formule');
     };
@@ -31,9 +34,11 @@ const ProfileScreen = ({ navigation }) => {
             email: user.email,
             password: user.password,
         };
+
+        console.log("requestBody", requestBody);
         // 192.168.1.194
 
-        const response =  axios.post(`${backendUrl}:8090/user/api/public/token`, requestBody,{
+        const response =  axios.post(`${backendUrl}/user/api/public/token`, requestBody,{
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -41,7 +46,7 @@ const ProfileScreen = ({ navigation }) => {
         })
             .then(response => {
                 let token = response.data;
-                axios.get(`${backendUrl}:8090/user/api/protected/userInfo`,{
+                axios.get(`${backendUrl}/user/api/protected/userInfo`,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
@@ -67,9 +72,27 @@ const ProfileScreen = ({ navigation }) => {
                 )
             })
             .catch(error => {
-                console.error('Erreur lors de la requête au microservice :', error);
+                console.error('Erreur lors de la requête pour récupérer le profile :', error);
             });
     }, []);
+
+    const logout = () => {
+        setUser({
+            ...user,
+            id: null,
+            firstName: null,
+            lastName: null,
+            phone: null,
+            createdAt: null,
+            subscription: null,
+            subscription_startDate: null,
+            subscription_endDate: null,
+            company_id: null,
+            establishments: null,
+            token: null,
+            login: false
+        });
+    }
 
     return (
         <SafeAreaView style={styles.safeAreaView}>
@@ -113,7 +136,7 @@ const ProfileScreen = ({ navigation }) => {
                 </View>
                 <View style={[styles.view, { marginVertical: 40 }]}>
                     <ButtonShared label={i18n.t("disconnect")}
-                        onPress={() => alert('You pressed a button.')}
+                        onPress={logout}
                         color="white"
                         backgroundColor={Colors.red.color}
                         borderColor={Colors.red.color}

@@ -9,15 +9,16 @@ const UserProvider = ({ children }) => {
         firstName: '',
         lastName: '',
         phone: '',
-        email: 'PeterMartin@gmail.com',
+        email: '',
         createdAt: '',
         subscription: '',
         subscription_startDate: '',
         subscription_endDate: '',
         company_id: null,
         establishments: null,
-        password: 'password',
+        password: '',
         token: null,
+        login: false
     });
 
     return (

@@ -12,7 +12,7 @@ export default function EditProfileScreen({ navigation }) {
         navigation.navigate('Profile');
     };
 
-    const backendUrl = 'http://192.168.1.194';
+    const backendUrl = process.env.EXPO_PUBLIC_API_URL;
 
     const [user, setUserContext] = useContext(UserContext);
     const [lastName, setLastName] = useState('');

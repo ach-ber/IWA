@@ -195,6 +195,13 @@ const translations = {
         phone: "Téléphone",
         firstname: "Prénom",
         lastname: "Nom",
+        enter_phone: "Veuillez entrer un numéro de téléphone",
+        enter_firstname: "Veuillez entrer votre prénom",
+        enter_lastname: "Veuillez entrer votre nom",
+        enter_valid_phone: "Veuillez entrer un numéro de téléphone valide",
+        wrong_credentials: "Identifiants incorrects",
+        enter_password: "Veuillez entrer votre mot de passe",
+
     },
 }
 

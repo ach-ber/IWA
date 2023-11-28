@@ -68,7 +68,7 @@ const FormuleScreen = ({navigation}) => {
 
     }
 
-    const backendUrl = 'http://192.168.1.194';
+    const backendUrl = process.env.EXPO_PUBLIC_API_URL;
 
     useEffect( () => {
         if (initialise) {
@@ -222,7 +222,7 @@ const FormuleScreen = ({navigation}) => {
             establishments: user.establishments,
         };
         try {
-            await axios.put(`${backendUrl}:8090/recruiter/api/protected/recruiters/${user.id}`, requestBody, {
+            await axios.put(`${backendUrl}/recruiter/api/protected/recruiters/${user.id}`, requestBody, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
