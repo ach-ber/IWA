@@ -23,8 +23,11 @@ const transformCandidate = (candidate) => {
     const avis = candidate.opinions.map((opinion) => {
         return {
             id: opinion.id,
-            nom: "nom",
-            prenom: "prenom",
+            // i think it should be employer’s name there,
+            // because we are on the candidate’s page
+            // then here what’s relevant is the employer’s name
+            nom: candidate.firstname,
+            prenom: candidate.lastname,
             job: "job",
             note: opinion.score,
             date: transformDate(opinion.providedAt),

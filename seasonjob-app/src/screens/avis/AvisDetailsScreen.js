@@ -88,10 +88,7 @@ export default function AvisDetailsScreen({ route }) {
     return (
         <ScrollView style={styles.scrollContainer}>
             <View style={styles.topContainer}>
-                <View style={styles.imageContainer}>
-                    <Image src="" style={styles.image} />
-                </View>
-                <View style={styles.condidatContainer}>
+                <View style={styles.candidatContainer}>
                     <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
                     <Text>{avis.job}</Text>
                 </View>
@@ -127,27 +124,13 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 100,
         alignItems: 'center',
-        justifyContent: 'center',
         flexDirection: 'row',
     },
-    imageContainer: {
-        width: "20%",
-        height: "100%",
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-    },
-    image: {
-        width: 60,
-        height: 60,
-        borderRadius: 100,
-        backgroundColor: 'grey',
-    },
-    condidatContainer: {
+    candidatContainer: {
         width: "60%",
         height: "100%",
         alignItems: 'flex-start',
         justifyContent: 'center',
-        marginLeft: '10%',
     },
     candidatInfo: {
         fontSize: 16,
@@ -155,10 +138,12 @@ const styles = StyleSheet.create({
         color: Colors.darkGrey.color,
     },
     rightContainer: {
-        width: "10%",
+        width: "45%",
         height: "100%",
-        alignItems: 'center',
+        alignItems: 'flex-end',
         justifyContent: 'center',
+        // put at flex-end
+        
     },
     modifierContainer: {
         width: 40,
