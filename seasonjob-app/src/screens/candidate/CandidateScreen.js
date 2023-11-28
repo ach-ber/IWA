@@ -113,10 +113,6 @@ const CandidateScreen = ({ navigation }) => {
         <SafeAreaView>
             <ScrollView style={{ marginBottom: 50 }}>
                 <View style={styles.candidateContainer}>
-                    {/* <View style={styles.imageContainer}>
-                        <Image src="" style={styles.image} />
-                    </View> */}
-
                     <View style={styles.candidateInfos}>
                         <Text style={styles.candidateName}>{candidateDetails.name}</Text>
                         <Text>{candidateDetails.address}</Text>
