@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Colors from "../../assets/colors/Colors";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
 import ButtonShared from "../../shared/buttons/ButtonShared";
@@ -7,11 +7,13 @@ import { Input } from '@ui-kitten/components';
 import i18n from "../../localization/i18n";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
+import { UserContext } from "../../context/UserContext";
 
 
 export default function AvisAddScreen({ route }) {
     const navigation = useNavigation()
 
+    const [user, setUser] = useContext(UserContext);
     const [rating, setRating] = useState(0);
     const [ratingText, setRatingText] = useState('');
     const [titre, setTitre] = React.useState('');
@@ -132,7 +134,7 @@ export default function AvisAddScreen({ route }) {
                 comment: commentaire,
             }
 
-            axios.put(`${process.env.EXPO_PUBLIC_API_URL}/review/api/reviews/${avisDetails.id}`, newAvis)
+            axios.put(`${process.env.EXPO_PUBLIC_API_URL}/review/api/public/reviews/${avisDetails.id}`, newAvis)
                 .then((response) => {
                     // go back with avisDetails updated
                     navigation.navigate("AvisDetails", { newAvis: newAvis })
@@ -148,12 +150,12 @@ export default function AvisAddScreen({ route }) {
             title: titre,
             rating: rating,
             comment: commentaire,
-            recruiterId: -1, //"à chercher dans le storage",
+            recruiterId: user.id, //"à chercher dans le storage",
             candidateId: "5", // from navigation
             jobId: -1, // from navigation
             createdAt: Math.floor(Date.now() / 1000),
         }
-        axios.post(`${process.env.EXPO_PUBLIC_API_URL}/review/api/reviews`, newAvis)
+        axios.post(`${process.env.EXPO_PUBLIC_API_URL}/review/api/public/reviews`, newAvis)
             .then((response) => {
                 navigation.goBack()
             })

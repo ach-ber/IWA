@@ -1,6 +1,5 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ConnectionStack from "../../screens/connection/ConnectionStack";
 import CandidateStack from '../../screens/candidate/CandidateStack';
 import AccountStack from "../../screens/account/AccountStack";
 import AvisStack from "../../screens/avis/AvisStack";

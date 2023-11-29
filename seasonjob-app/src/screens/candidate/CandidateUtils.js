@@ -22,7 +22,7 @@ const transformCandidate = (candidate) => {
 
     const avis = candidate.opinions.map((opinion) => {
         return {
-            id: opinion.id,
+            id: Math.random().toString(36).substring(2),
             // i think it should be employer’s name there,
             // because we are on the candidate’s page
             // then here what’s relevant is the employer’s name
@@ -37,7 +37,7 @@ const transformCandidate = (candidate) => {
 
     const experiences = candidate.experiences.map((experience) => {
         return {
-            id: experience.id,
+            id: Math.random().toString(36).substring(2),
             entreprise: experience.establishment.establishmentName,
             job: experience.job,
             period: `${transformDate(experience.startedAt)} - ${transformDate(experience.endedAt)}`,
@@ -46,7 +46,7 @@ const transformCandidate = (candidate) => {
 
     const references = candidate.references.map((reference) => {
         return {
-            id: reference.id,
+            id: Math.random().toString(36).substring(2),
             nomComplet: reference.refName,
             phone: reference.refPhone,
             email: reference.refEmail,
