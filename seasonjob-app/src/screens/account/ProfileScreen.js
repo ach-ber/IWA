@@ -1,10 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, StyleSheet, ScrollView, SafeAreaView, Pressable} from 'react-native';
-import LinkShared from "../../shared/links/LinkShared";
 import {Entypo, Ionicons} from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
 import ButtonShared from "../../shared/buttons/ButtonShared";
-import FormuleUniqueComponent from "../../components/Formule/FormuleUniqueComponent";
+import FormuleUniqueComponent from "../../components/formule/FormuleUniqueComponent";
 import Colors from '../../assets/colors/Colors';
 import i18n from "../../localization/i18n";
 import axios from 'axios';
