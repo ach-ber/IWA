@@ -94,6 +94,8 @@ const translations = {
         experiences: "Experiences",
         reviews: "reviews",
         candidates: "Candidates",
+        exciting: "Exciting news!",
+        exciting_chat_description: "We're working on bringing you a new chat feature soon. Stay tuned for updates!",
     },
 
     fr: {
