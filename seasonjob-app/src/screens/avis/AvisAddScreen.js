@@ -151,8 +151,8 @@ export default function AvisAddScreen({ route }) {
             rating: rating,
             comment: commentaire,
             recruiterId: user.id, //"à chercher dans le storage",
-            candidateId: "5", // from navigation
-            jobId: -1, // from navigation
+            candidateId: `${process.env.EXPO_PUBLIC_USER_ID_EXAMPLE}`, // from navigation
+            jobId: 1, // from navigation
             createdAt: Math.floor(Date.now() / 1000),
         }
         axios.post(`${process.env.EXPO_PUBLIC_API_URL}/review/api/public/reviews`, newAvis)
