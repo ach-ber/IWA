@@ -63,7 +63,6 @@ const translations = {
         sort: "Sort",
         my_establishments: "My establishments",
         employees: "Employees",
-        offers: "Offers",
         past_offers: "Past",
         offers_associated_with_establishment: "Offers associated with this establishment",
         fulltime: "Full time",
@@ -193,6 +192,16 @@ const translations = {
         candidates: "Candidats",
         ok: "OK",
         publishing_error: "Erreur lors de publication",
+        phone: "Téléphone",
+        firstname: "Prénom",
+        lastname: "Nom",
+        enter_phone: "Veuillez entrer un numéro de téléphone",
+        enter_firstname: "Veuillez entrer votre prénom",
+        enter_lastname: "Veuillez entrer votre nom",
+        enter_valid_phone: "Veuillez entrer un numéro de téléphone valide",
+        wrong_credentials: "Identifiants incorrects",
+        enter_password: "Veuillez entrer votre mot de passe",
+
     },
 }
 

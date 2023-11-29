@@ -1,21 +1,252 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import React, {useContext, useEffect, useState} from 'react';
+import {View, Text, TextInput, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import t from '../../utils/translation';
+import {UserContext} from "../../context/UserContext";
+import axios from "axios";
 
 const SignInScreen = ({ navigation }) => {
 
+  const backendUrl = process.env.EXPO_PUBLIC_API_URL;
+  const [user, setUser] = useContext(UserContext);
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [handle, setHandle] = useState(false);
+  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState('');
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!isPasswordVisible);
   };
 
-  const handleSignIn = () => {
-    // fonction de connexion
+  const handleSignIn =  () => {
+    if (email && password) {
+      setHandle(true);
+    } else {
+        setPasswordError(t("enter_password"));
+        setEmailError(t("enter_email"));
+    }
+    /*
+    try {
+      const requestBody = {
+        email: email,
+        password: password,
+      };
+
+      const response = axios.post(
+          `${backendUrl}/user/api/public/token`,
+          requestBody,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+          }
+      ).then(
+          response   => {
+            console.log(response.data);
+            const token = response.data;
+            const userInfoResponse = axios.get(`${backendUrl}/user/api/protected/userInfo`,{
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + token
+              }
+            }).then(
+                response => {
+                  setUser(
+                      {
+                        ...user,
+                    id: response.data.id,
+                    firstName: response.data.firstName,
+                    lastName: response.data.lastName,
+                    phone: response.data.phone,
+                    createdAt: response.data.createdAt,
+                    subscription: response.data.subscription,
+                    subscription_startDate: response.data.subscription_startDate,
+                    subscription_endDate: response.data.subscription_endDate,
+                    company_id: response.data.company_id,
+                    establishments: response.data.establishments,
+                    token: token,
+                  }
+                  );
+                }
+            )
+                .catch(error => {
+                  console.error('Erreur lors de la requête signin :', error);
+                });
+          }
+        )
+        .catch(error => {
+            console.error('Erreur lors de la requête token :', error);
+        }
+      );
+    } catch (error) {
+      console.error('Erreur lors de la requête au microservice :', error);
+    }
+
+
+
+     */
   };
+
+  useEffect(
+  () => {
+    if (handle) {
+      try {
+        const requestBody = {
+          email: email,
+          password: password,
+        };
+
+        const response = axios.post(
+            `${backendUrl}/user/api/public/token`,
+            requestBody,
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+            }
+        ).then(
+            response   => {
+              console.log(response.data);
+              const token = response.data;
+              const userInfoResponse = axios.get(`${backendUrl}/user/api/protected/userInfo`,{
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                  'Authorization': 'Bearer ' + token
+                }
+              }).then(
+                  response => {
+                    setUser(
+                        {
+                          ...user,
+                          email: email,
+                          password: password,
+                          id: response.data.id,
+                          firstName: response.data.firstName,
+                          lastName: response.data.lastName,
+                          phone: response.data.phone,
+                          createdAt: response.data.createdAt,
+                          subscription: response.data.subscription,
+                          subscription_startDate: response.data.subscription_startDate,
+                          subscription_endDate: response.data.subscription_endDate,
+                          company_id: response.data.company_id,
+                          establishments: response.data.establishments,
+                          token: token,
+                        }
+                    );
+                  }
+              )
+                  .catch(error => {
+                    //console.error('Erreur lors de la requête signin :', error);
+                    setEmailError(t("wrong_credentials"));
+                    setPasswordError(t("wrong_credentials"));
+                    setHandle(false);
+                  });
+            }
+        )
+            .catch(error => {
+                  //console.error('Erreur lors de la requête token :', error);
+                setEmailError(t("wrong_credentials"));
+                setPasswordError(t("wrong_credentials"));
+                setHandle(false);
+                }
+            );
+      } catch (error) {
+        console.error('Erreur lors de la requête au microservice :', error);
+          setHandle(false);
+      }
+      }
+    },
+[handle]
+  )
+
+
+  useEffect(
+        () => {
+          if (user.id) {
+            console.log("user", user);
+            //navigation.navigate('Home');
+            setUser({
+                ...user,
+                login: true
+            });
+          }
+        },[user.id]
+  )
+
+/*
+  useEffect(
+        () => {
+          try {
+            const requestBody = {
+              email: email,
+              password: password,
+            };
+
+            const response = axios.post(
+                `${backendUrl}/user/api/public/token`,
+                requestBody,
+                {
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                  },
+                }
+            ).then(
+                response   => {
+                  console.log(response.data);
+                  const token = response.data;
+                  const userInfoResponse = axios.get(`${backendUrl}/user/api/protected/userInfo`,{
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json',
+                      'Authorization': 'Bearer ' + token
+                    }
+                  }).then(
+                      response => {
+                        setUser(
+                            {
+                              ...user,
+                              id: response.data.id,
+                              firstName: response.data.firstName,
+                              lastName: response.data.lastName,
+                              phone: response.data.phone,
+                              createdAt: response.data.createdAt,
+                              subscription: response.data.subscription,
+                              subscription_startDate: response.data.subscription_startDate,
+                              subscription_endDate: response.data.subscription_endDate,
+                              company_id: response.data.company_id,
+                              establishments: response.data.establishments,
+                              token: token,
+                            }
+                        );
+                        console.log("id:", response.data.id);
+                        console.log("res user:",response.data);
+                        console.log("user:", user);
+                      }
+                  )
+                      .catch(error => {
+                        console.error('Erreur lors de la requête signin :', error);
+                      });
+                }
+            )
+                .catch(error => {
+                      console.error('Erreur lors de la requête token :', error);
+                    }
+                );
+          } catch (error) {
+            console.error('Erreur lors de la requête au microservice :', error);
+          }
+        }, [isUserFound]
+  );
+
+ */
+
 
   return (
     <View style={styles.container}>
@@ -28,17 +259,28 @@ const SignInScreen = ({ navigation }) => {
             {t("email")}
           </Text>
           <TextInput
-            style={styles.input}
+              style={[
+                  styles.input,
+                  emailError && { borderColor: 'red' }
+              ]}
             placeholder="recruteur@gmail.com"
             keyboardType="email-address"
             autoCapitalize="none"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
+            {emailError ? (
+                <Text style={styles.errorText}>{emailError}</Text>
+            ) : null}
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>
             {t("password")}
           </Text>
-          <View style={styles.passwordInputContainer}>
+          <View style={[
+              styles.passwordInputContainer,
+              emailError && { borderColor: 'red' }
+          ]}>
             <TextInput
               style={styles.passwordInput}
               placeholder="Minimum 8 caractères"
@@ -57,12 +299,10 @@ const SignInScreen = ({ navigation }) => {
               />
             </TouchableOpacity>
           </View>
-          <Text
-            style={styles.forgotPwdLink}
-          >
-            {t("forgot_password")}
-          </Text>
         </View>
+          {passwordError ? (
+              <Text style={styles.errorText}>{passwordError}</Text>
+          ) : null}
       </View>
       <View style={styles.bottomSection}>
         <TouchableOpacity style={styles.button} onPress={handleSignIn}>
@@ -166,6 +406,10 @@ const styles = StyleSheet.create({
     marginTop: 12,
     textAlign: 'right',
   },
+    errorText: {
+        color: 'red',
+        fontSize: 14,
+    },
 });
 
 export default SignInScreen;

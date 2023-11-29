@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import React, {useContext, useState} from 'react';
+import {View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import t from '../../utils/translation';
+import i18n from "../../localization/i18n";
+import axios from "axios";
+import {UserContext} from "../../context/UserContext";
 
 const SignUpScreen = ({ navigation }) => {
 
+  const [user, setUser] = useContext(UserContext);
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [fullNameError, setFullNameError] = useState('');
   const [emailError, setEmailError] = useState('');
-
+  const [phoneError, setPhoneError] = useState('');
+  const [firstNameError, setFirstNameError] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
+  const backendUrl = process.env.EXPO_PUBLIC_API_URL;
   const togglePasswordVisibility = () => {
     setPasswordVisible(!isPasswordVisible);
   };
@@ -23,12 +31,12 @@ const SignUpScreen = ({ navigation }) => {
     return emailRegex.test(email);
   };
 
-  const handleSignUp = () => {
-    if (!fullName) {
-      setFullNameError(t("enter_complete_name"));
-    } else {
-      setFullNameError("");
-    }
+  const validatePhone = (phone) => {
+    const phoneRegex = /^[0-9]{10}$/;
+    return phoneRegex.test(phone);
+  }
+
+  const handleSignUp = async () => {
 
     if (!email) {
       setEmailError(t("enter_email"));
@@ -44,34 +52,120 @@ const SignUpScreen = ({ navigation }) => {
       setPasswordError("");
     }
 
-    if (fullName && email && password && password.length >= 8) {
-      // créer le compte
+    if (!phone) {
+        setPhoneError(t("enter_phone"));
+    } else if (!validatePhone(phone)) {
+        setPhoneError(t("enter_valid_phone"));
+    } else {
+        setPhoneError("");
+    }
+
+    if (!firstName) {
+        setFirstNameError(t("enter_firstname"));
+    } else {
+        setFirstNameError("");
+    }
+
+    if (!lastName) {
+        setLastNameError(t("enter_lastname"));
+    } else {
+        setLastNameError("");
+    }
+
+    if ( email && password && password.length >= 8 && phone && firstName && lastName && validateEmail(email) && validatePhone(phone)) {
+        const actualDate = getCurrentDate();
+        const requestBody = {
+            firstName: firstName,
+            lastName: lastName,
+            password: password,
+            phone: phone,
+            email: email,
+            createdAt: actualDate,
+            subscription: "ROLE_FREE",
+            subscription_startDate: actualDate,
+            subscription_endDate:null,
+            company_id: null,
+            establishments: null,
+        };
+        await axios.post(`${backendUrl}/recruiter/api/public/recruiters`, requestBody, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        })
+            .then((response) => {
+                  console.log(response.data);
+                    Alert.alert(
+                        t("account_created"),
+                    );
+                  navigation.navigate('Connexion');
+                }
+            )
+            .catch(error => {
+              console.error('Erreur lors de la requête au microservice :', error);
+            }
+        );
     }
   };
 
+  function getCurrentDate() {
+    const currentDate = new Date();
+
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Ajouter un zéro devant si nécessaire
+    const day = currentDate.getDate().toString().padStart(2, '0'); // Ajouter un zéro devant si nécessaire
+
+    // Formatter la date au format "YYYY-MM-DD"
+    const formattedDate = `${year}-${month}-${day}`;
+
+    return formattedDate;
+  }
+
   return (
-    <View style={styles.container}>
+
+   <SafeAreaView style={styles.safeAreaView}>
+     <ScrollView style={styles.scrollView}>
       <View style={styles.topSection}>
         <Text style={styles.title}>
           {t("signup")}
         </Text>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>
-            {t("full_name")}
+            {i18n.t("lastname")}
           </Text>
           <TextInput
-            style={[
-              styles.input,
-              fullNameError && { borderColor: 'red' }
-            ]}
-            placeholder="Jan Kowalski"
-            autoCapitalize="words"
-            value={fullName}
-            onChangeText={(text) => setFullName(text)}
+              style={[
+                styles.input,
+                lastNameError && { borderColor: 'red' }
+              ]}
+              keyboardType="default"
+              autoCapitalize="none"
+              onChangeText={text => setLastName(text)}
           />
-          {fullNameError ? (
-            <Text style={styles.errorText}>{fullNameError}</Text>
-          ) : null}
+          {
+            lastNameError ? (
+                <Text style={styles.errorText}>{lastNameError}</Text>
+            ) : null
+          }
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>
+            {i18n.t("firstname")}
+          </Text>
+          <TextInput
+              style={[
+                styles.input,
+                firstNameError && { borderColor: 'red' }
+              ]}
+              keyboardType="default"
+              autoCapitalize="none"
+              onChangeText={text => setFirstName(text)}
+          />
+          {
+            firstNameError ? (
+                <Text style={styles.errorText}>{firstNameError}</Text>
+            ) : null
+          }
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>
@@ -96,11 +190,10 @@ const SignUpScreen = ({ navigation }) => {
           <Text style={styles.label}>
             {t("password")}
           </Text>
-          <View style={styles.passwordInputContainer}>
+          <View style={[styles.passwordInputContainer,passwordError && { borderColor: 'red' }]}>
             <TextInput
               style={[
-                styles.passwordInput,
-                passwordError && { borderColor: 'red' }
+                styles.passwordInput
               ]}
               placeholder={t("min_8_characters")}
               secureTextEntry={!isPasswordVisible}
@@ -123,6 +216,25 @@ const SignUpScreen = ({ navigation }) => {
           ) : null}
         </View>
       </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>
+          {i18n.t("phone")}
+        </Text>
+        <TextInput
+            style={[
+              styles.input,
+              phoneError && { borderColor: 'red' }
+            ]}
+            keyboardType="phone-pad"
+            autoCapitalize="none"
+            onChangeText={text => setPhone(text)}
+        />
+        {
+            phoneError ? (
+                <Text style={styles.errorText}>{phoneError}</Text>
+            ) : null
+        }
+      </View>
       <View style={styles.bottomSection}>
         <TouchableOpacity style={styles.button} onPress={handleSignUp}>
           <Text style={styles.buttonText}>
@@ -139,11 +251,27 @@ const SignUpScreen = ({ navigation }) => {
           </Text>
         </Text>
       </View>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollView: {
+    width: '100%',
+    marginTop: 20,
+  },
+  safeAreaView: {
+    width: '100%',
+    marginTop: 0,
+    borderRadius: 10,
+    marginHorizontal: "0%",
+    height: '100%',
+    backgroundColor: 'white',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     justifyContent: 'space-between',
@@ -167,8 +295,9 @@ const styles = StyleSheet.create({
     marginTop: 32,
   },
   inputContainer: {
-    width: '100%',
+    width: '90%',
     marginBottom: 12,
+    marginHorizontal: "5%",
   },
   label: {
     fontSize: 16,
@@ -200,11 +329,13 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    width: '100%',
+    width: '90%',
     backgroundColor: '#66CA98',
     borderRadius: 4,
     paddingVertical: 12,
     alignItems: 'center',
+    marginHorizontal: "5%",
+    marginTop: 20,
   },
   buttonText: {
     color: 'white',
