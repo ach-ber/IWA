@@ -100,7 +100,7 @@ const ProfileScreen = ({ navigation }) => {
             subscription_startDate: null,
             subscription_endDate: null,
             company_id: null,
-            establishments: null,
+            establishments: [],
             token: null,
             login: false
         });

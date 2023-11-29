@@ -15,7 +15,7 @@ const UserProvider = ({ children }) => {
         subscription_startDate: '',
         subscription_endDate: '',
         company_id: null,
-        establishments: null,
+        establishments: [],
         password: '',
         token: null,
         login: false

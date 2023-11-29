@@ -6,6 +6,7 @@ import EstablishmentListScreen from "../account/EstablishmentListScreen";
 import EstablishmentDetailsScreen from "../establishment/EstablishmentDetailsScreen";
 import CompanyScreen from "./CompanyScreen";
 import EditCompany from "./EditCompanyScreen";
+import EditEstablishmentScreen from "./EditEstablishmentScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ export default function AccountStack() {
             <Stack.Screen name="EtablishmentDetails" component={EstablishmentDetailsScreen} options={{ headerShown: false, gestureEnabled: true }} />
             <Stack.Screen name="Company" component={CompanyScreen} options={{ headerShown: false, gestureEnabled: true }} />
             <Stack.Screen name="EditCompany" component={EditCompany} options={{ headerShown: false, gestureEnabled: true }} />
+            <Stack.Screen name="EditEstablishment" component={EditEstablishmentScreen} options={{ headerShown: false, gestureEnabled: true }} />
         </Stack.Navigator>
     );
 }

@@ -43,19 +43,24 @@ const Company = ({navigation}) => {
             <ScrollView style={styles.scrollView}>
                 <View style={styles.view}>
                     <View style={styles.titleSectionContainer}>
-                        <Text style={styles.titleView}>{i18n.t("my_company")}</Text>
+                        <Text style={styles.title}>{i18n.t("my_company")}</Text>
                     </View>
                 </View>
-                <View style={styles.view}>
-                    <View style={styles.companyContainer}>
-                        <View style={styles.logoContainer}>
+                {
+                    user.company_id !== 0 ?<View style={styles.view}>
+                        <View style={styles.companyContainer}>
+                            <View style={styles.logoContainer}>
+                            </View>
+                            <View style={styles.companyTextContainer}>
+                                <Text style={styles.companyText}>{name}</Text>
+                                <Text style={styles.companyText}>{siret}</Text>
+                            </View>
                         </View>
-                        <View style={styles.companyTextContainer}>
-                            <Text style={styles.companyText}>{name}</Text>
-                            <Text style={styles.companyText}>{siret}</Text>
-                        </View>
+                    </View> : <View style={styles.view}>
+                        <Text style={styles.title}>{i18n.t("no_company")}</Text>
                     </View>
-                </View>
+                }
+
                 <View style={[styles.view, { marginVertical: 20 }]}>
                     <ButtonShared label={i18n.t("edit")}
                                   onPress={navigateEditCompany}
@@ -86,7 +91,7 @@ const styles = StyleSheet.create({
     titleSectionContainer: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
         height: 60,
         width: '100%',
@@ -95,6 +100,12 @@ const styles = StyleSheet.create({
     titleView: {
         fontSize: 34,
         fontWeight: 'bold',
+        color: Colors.darkGrey.color,
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        textAlign: 'center',
         color: Colors.darkGrey.color,
     },
     view: {
@@ -143,8 +154,8 @@ const styles = StyleSheet.create({
         paddingVertical: 22,
         paddingHorizontal: 16,
         borderWidth: 1,
-        borderColor: '#ccc',
-        backgroundColor: '#ccc',
+        borderColor: '#eaeaea',
+        backgroundColor: '#eaeaea',
         borderRadius: 4,
         marginBottom: 16,
         marginTop: 16,

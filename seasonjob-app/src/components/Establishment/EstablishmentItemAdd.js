@@ -2,34 +2,38 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 
 import i18n from '../../localization/i18n';
+import Colors from "../../assets/colors/Colors";
 
-const EstablishmentItem = ({ onPress, name, address, numJobs }) => {
+const EstablishmentItemAdd = ({ onPress, name, address, selected }) => {
     return (
         <TouchableOpacity style={styles.establishment} onPress={onPress}>
-            <View style={styles.infoContainer}>
+            <View style={[styles.infoContainer,selected?{borderWidth:1,borderColor:Colors.darkGrey.color}:
+                {borderWidth: 1,borderColor: '#eaeaea'}]}>
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.address}>{address}</Text>
             </View>
-            {
-                numJobs!=null?<Text style={styles.numJobs}>({i18n.t("numJobs", { numJobs })})</Text>:null
-            }
-
         </TouchableOpacity>
     );
 };
 
 const styles = StyleSheet.create({
     establishment: {
+        marginTop: 10,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         width: '100%',
-        padding: 10,
         borderRadius: 4,
-        paddingVertical: 12,
         backgroundColor: '#eaeaea',
         color: "#1C1F1E",
+    },
+    infoContainer: {
+        padding: 10,
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        borderRadius: 4,
     },
     name: {
         fontSize: 18,
@@ -43,4 +47,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default EstablishmentItem;
+export default EstablishmentItemAdd;

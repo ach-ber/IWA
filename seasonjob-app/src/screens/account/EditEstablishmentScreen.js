@@ -5,9 +5,12 @@ import i18n from "../../localization/i18n";
 import Colors from "../../assets/colors/Colors";
 import CompanyComponent from "../../components/company/CompanyComponent";
 import axios from "axios";
-import {UserContext} from "../../context/UserContext"; // Importation de l'icône de recherche
+import {UserContext} from "../../context/UserContext";
+import EstablishmentItem from "../../components/Establishment/EstablishmentItem";
+import EstablishmentItemAdd from "../../components/Establishment/EstablishmentItemAdd";
+import ButtonShared from "../../shared/buttons/ButtonShared"; // Importation de l'icône de recherche
 
-const EditCompany = ({navigation}) => {
+const EditEstablishmentScreen = ({navigation}) => {
 
     const backendUrl = process.env.EXPO_PUBLIC_API_URL;
     const[user, setUser] = useContext(UserContext)
@@ -16,70 +19,54 @@ const EditCompany = ({navigation}) => {
     const [companies, setCompanies] = useState([{}]);
     const [change, setChange] = useState(false);
     const [selectedCompany, setSelectedCompany] = useState();
+    const [selectedItems, setSelectedItems] = useState([]);
+    const [establishmentsDispo, setEstablishmentsDispo] = useState([{}]);
 
-    async function putCompany(id) {
 
-        Alert.alert(
-            'Confirmation',
-            'Les établissements associés à votre compte seront supprimés. Voulez-vous continuer ?',
-            [
-                {
-                    text: 'Annuler', // Bouton pour annuler l'action
-                    style: 'cancel', // Style pour le bouton d'annulation
-                    onPress: () => {
+    async function putEstablishments() {
+
+        try {
+            const requestBody = {
+                firstName: user.firstName,
+                lastName: user.lastName,
+                phone: user.phone,
+                email: user.email,
+                createdAt: user.createdAt,
+                subscription: user.subscription,
+                subscription_startDate: user.subscription_startDate,
+                subscription_endDate: user.subscription_endDate,
+                company_id: user.company_id,
+                establishments: selectedItems,
+            };
+
+            await axios.put(`${backendUrl}/recruiter/api/protected/recruiters/${user.id}`, requestBody, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + user.token
+                }
+            })
+                .then((response) => {
+                        console.log(response.data);
+                        setUser(
+                            {
+                                ...user,
+                                establishments:response.data.establishments,
+                            });
                         navigation.navigate('Profile');
                     }
-                },
-                {
-                    text: 'Confirmer', // Bouton pour confirmer l'action
-                    onPress: async () => {
-                        try {
-                            const requestBody = {
-                                firstName: user.firstName,
-                                lastName: user.lastName,
-                                phone: user.phone,
-                                email: user.email,
-                                createdAt: user.createdAt,
-                                subscription: user.subscription,
-                                subscription_startDate: user.subscription_startDate,
-                                subscription_endDate: user.subscription_endDate,
-                                company_id: id,
-                                establishments: [],
-                            };
+                )
+        }
+        catch (error) {
+            console.error('Erreur lors de la requête au microservice :', error);
+        }
 
-                            await axios.put(`${backendUrl}/recruiter/api/protected/recruiters/${user.id}`, requestBody, {
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Accept': 'application/json',
-                                    'Authorization': 'Bearer ' + user.token
-                                }
-                            })
-                                .then((response) => {
-                                        console.log(response.data);
-                                        setUser(
-                                            {
-                                                ...user,
-                                                company_id: response.data.company_id,
-                                                establishments:response.data.establishments,
-                                            });
-                                        navigation.navigate('Profile');
-                                    }
-                                )
-                        }
-                        catch (error) {
-                            console.error('Erreur lors de la requête au microservice :', error);
-                        }
-                    },
-                },
-            ],
-            {cancelable: false}
-        );
 
     }
 
     useEffect(() => {
-
-        const response =  axios.get(`${backendUrl}/recruiter/api/protected/companies`, {
+        setSelectedItems(user.establishments);
+        const response =  axios.get(`${backendUrl}/recruiter/api/protected/establishments`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -87,19 +74,27 @@ const EditCompany = ({navigation}) => {
             },
         })
             .then(response => {
-                setCompanies(response.data);
+                //setCompanies(response.data);
                 setSearchResults(response.data);
+                //setEstablishmentsDispo(response.data.filter((item) => !user.establishments.includes(item.id)));
             })
             .catch(error => {
 
             });
     }, []);
 
+    useEffect(
+        () => {
+            console.log(selectedItems);
+        }
+    , [selectedItems]);
+
+
     // Fonction de recherche
     const handleSearch = (query) => {
 
-        if (companies.length !== 0) {
-            const filteredResults = companies.filter((item) =>
+        if (searchResults.length !== 0) {
+            const filteredResults = searchResults.filter((item) =>
                 item.name.toLowerCase().includes(query.toLowerCase())
             );
             setSearchResults(filteredResults);
@@ -111,7 +106,7 @@ const EditCompany = ({navigation}) => {
         <SafeAreaView style={styles.safeAreaView}>
             <View style={styles.view}>
                 <View style={styles.titleSectionContainer}>
-                    <Text style={styles.title}>{i18n.t("company")}</Text>
+                    <Text style={styles.title}>{i18n.t("establishment")}</Text>
                 </View>
             </View>
             <View style={styles.container}>
@@ -137,12 +132,23 @@ const EditCompany = ({navigation}) => {
                         data={searchResults}
                         keyExtractor={(item) => item.id.toString()}
                         renderItem={({ item }) => (
-                            <CompanyComponent item={item} onPress={(id) => putCompany(id)} />
+                            //<CompanyComponent item={item} onPress={(id) => putCompany(id)} />
+                            <EstablishmentItemAdd key={item.id} onPress={() => selectedItems.find(
+                                (id) => id === item.id
+                            )? setSelectedItems(selectedItems.filter(id => id !== item.id)) : setSelectedItems([...selectedItems, item.id])} name={item.name} address={item.address} selected={
+                                selectedItems.find((id) => id === item.id)}/>
                         )}
                     />
                 )}
             </View>
-
+                <View style={[styles.view, {marginVertical: 20}]}>
+                    <ButtonShared label={i18n.t("save")}
+                                  color="white"
+                                  backgroundColor={Colors.darkGrey.color}
+                                  borderColor={Colors.darkGrey.color}
+                                  onPress={() => putEstablishments()}
+                    />
+                </View>
         </SafeAreaView>
     );
 };
@@ -187,6 +193,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
+        maxHeight:'60%'
+        //maxHeight: 400,
     },
     searchContainer: {
         flexDirection: 'row',
@@ -224,4 +232,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default EditCompany;
+export default EditEstablishmentScreen;

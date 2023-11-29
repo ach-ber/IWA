@@ -202,6 +202,9 @@ const translations = {
         wrong_credentials: "Identifiants incorrects",
         enter_password: "Veuillez entrer votre mot de passe",
         my_company: "Mon entreprise",
+        add: "Ajouter",
+        save: "Sauvegarder",
+        no_establishment: "Vous n'avez pas encore d'établissement",
     },
 }
 
