@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     },
     topSection: {
         flex: 1,
+
         justifyContent: 'flex-start',
         width: '100%',
         maxHeight: "60%",
