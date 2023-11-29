@@ -11,6 +11,10 @@ const transformPhone = (phone) => {
     return phone.replace(/\s/g, "")
 }
 
+const randomId = () => {
+    return Math.random().toString(36).substring(2)
+}
+
 const transformCandidate = (candidate) => {
     const candidateDetails = {
         id: candidate.id,
@@ -22,7 +26,7 @@ const transformCandidate = (candidate) => {
 
     const avis = candidate.opinions.map((opinion) => {
         return {
-            id: Math.random().toString(36).substring(2),
+            id: randomId(),
             // i think it should be employer’s name there,
             // because we are on the candidate’s page
             // then here what’s relevant is the employer’s name
@@ -37,7 +41,7 @@ const transformCandidate = (candidate) => {
 
     const experiences = candidate.experiences.map((experience) => {
         return {
-            id: Math.random().toString(36).substring(2),
+            id: randomId(),
             entreprise: experience.establishment.establishmentName,
             job: experience.job,
             period: `${transformDate(experience.startedAt)} - ${transformDate(experience.endedAt)}`,
@@ -46,7 +50,7 @@ const transformCandidate = (candidate) => {
 
     const references = candidate.references.map((reference) => {
         return {
-            id: Math.random().toString(36).substring(2),
+            id: randomId(),
             nomComplet: reference.refName,
             phone: reference.refPhone,
             email: reference.refEmail,
