@@ -1,20 +1,23 @@
-import React, { useContext, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, SafeAreaView, Pressable } from 'react-native';
-import { Entypo, Ionicons } from '@expo/vector-icons';
+import React, {useContext, useEffect, useState} from 'react';
+import {View, Text, StyleSheet, ScrollView, SafeAreaView, Pressable} from 'react-native';
+import {Entypo, Ionicons} from '@expo/vector-icons';
 import ButtonShared from "../../shared/buttons/ButtonShared";
 import FormuleUniqueComponent from "../../components/formule/FormuleUniqueComponent";
 import Colors from '../../assets/colors/Colors';
 import i18n from "../../localization/i18n";
 import axios from 'axios';
-import { UserContext } from "../../context/UserContext";
+import {UserContext} from "../../context/UserContext";
+import { LinearGradient } from 'expo-linear-gradient';
 
 const ProfileScreen = ({ navigation }) => {
 
-    useEffect(() => {
-        console.log("user", user);
-    }, []);
-
-    const backendUrl = process.env.EXPO_PUBLIC_API_URL;
+    const navigateCompany = () => {
+        if (user.company_id != 0) {
+            navigation.navigate('Company');
+        } else {
+            navigation.navigate('EditCompany');
+        }
+    }
     const navigateFormule = () => {
         navigation.navigate('Formule');
     };
@@ -22,6 +25,16 @@ const ProfileScreen = ({ navigation }) => {
     const navigateEdit = () => {
         navigation.navigate('EditProfile');
     };
+
+    const navigateEstablishments = () => {
+        navigation.navigate('EtablishmentList');
+    }
+
+    useEffect(() => {
+        console.log("user", user);
+    }, []);
+
+    const backendUrl = process.env.EXPO_PUBLIC_API_URL;
 
     const [user, setUser] = useContext(UserContext);
 
@@ -35,7 +48,7 @@ const ProfileScreen = ({ navigation }) => {
         console.log("requestBody", requestBody);
         // 192.168.1.194
 
-        const response = axios.post(`${backendUrl}/user/api/public/token`, requestBody, {
+        const response =  axios.post(`${backendUrl}/user/api/public/token`, requestBody,{
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -43,7 +56,7 @@ const ProfileScreen = ({ navigation }) => {
         })
             .then(response => {
                 let token = response.data;
-                axios.get(`${backendUrl}/user/api/protected/userInfo`, {
+                axios.get(`${backendUrl}/user/api/protected/userInfo`,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
@@ -85,7 +98,7 @@ const ProfileScreen = ({ navigation }) => {
             subscription_startDate: null,
             subscription_endDate: null,
             company_id: null,
-            establishments: null,
+            establishments: [],
             token: null,
             login: false
         });
@@ -123,7 +136,16 @@ const ProfileScreen = ({ navigation }) => {
                     </Pressable>
                 </View>
                 <View style={styles.view}>
-                    <Pressable style={styles.linkDetailsContainer} >
+                    <Pressable style={styles.linkDetailsContainer} onPress={navigateCompany} >
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Ionicons name="person-circle" size={24} color="#111425" />
+                            <Text style={styles.linkText}>{i18n.t("my_company")}</Text>
+                        </View>
+                        <Entypo name="chevron-right" size={24} color="#111425" />
+                    </Pressable>
+                </View>
+                <View style={styles.view}>
+                    <Pressable style={styles.linkDetailsContainer} onPress={user.company_id!==0?navigateEstablishments:navigateCompany}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Ionicons name="person-circle" size={24} color="#111425" />
                             <Text style={styles.linkText}>{i18n.t("my_establishments")}</Text>
@@ -205,7 +227,7 @@ const styles = StyleSheet.create({
     },
     initialLetter: {
         fontSize: 18,
-        fontWeight: 'normal',
+        fontWeight:'normal',
         color: 'white',
         textAlign: 'center',
     },
@@ -222,7 +244,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderBottomColor: Colors.lightGrey.color,
+        borderBottomColor:Colors.lightGrey.color,
         borderBottomWidth: 1,
     },
     linkText: {

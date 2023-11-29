@@ -47,7 +47,7 @@ const translations = {
         chat: "Chat",
         review: "Review",
         jobName: "Job name",
-        establishment: "Establishment",
+        establishment: "establishment",
         jobCategory: "Job category",
         perks: "Perks",
         salary: "Salary",
@@ -97,7 +97,6 @@ const translations = {
         exciting: "Exciting news!",
         exciting_chat_description: "We're working on bringing you a new chat feature soon. Stay tuned for updates!",
     },
-
     fr: {
         signin: "Se connecter",
         signin_screen: "Écran de connexion",
@@ -203,7 +202,10 @@ const translations = {
         enter_valid_phone: "Veuillez entrer un numéro de téléphone valide",
         wrong_credentials: "Identifiants incorrects",
         enter_password: "Veuillez entrer votre mot de passe",
-
+        my_company: "Mon entreprise",
+        add: "Ajouter",
+        save: "Sauvegarder",
+        no_establishment: "Vous n'avez pas encore d'établissement",
     },
 }
 

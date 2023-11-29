@@ -10,7 +10,10 @@ const EstablishmentItem = ({ onPress, name, address, numJobs }) => {
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.address}>{address}</Text>
             </View>
-            <Text style={styles.numJobs}>({i18n.t("numJobs", { numJobs })})</Text>
+            {
+                numJobs!=null?<Text style={styles.numJobs}>({i18n.t("numJobs", { numJobs })})</Text>:null
+            }
+
         </TouchableOpacity>
     );
 };
@@ -25,7 +28,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 4,
         paddingVertical: 12,
-        backgroundColor: "white",
+        backgroundColor: '#eaeaea',
         color: "#1C1F1E",
     },
     name: {
