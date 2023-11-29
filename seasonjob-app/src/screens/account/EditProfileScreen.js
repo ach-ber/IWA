@@ -1,11 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
-import t from '../../utils/translation';
 import i18n from "../../localization/i18n";
-import {UserContext} from "../../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import axios from "axios";
+import ButtonShared from '../../shared/buttons/ButtonShared';
+import Colors from '../../assets/colors/Colors';
 
 export default function EditProfileScreen({ navigation }) {
     const navigateProfile = () => {
@@ -31,9 +31,9 @@ export default function EditProfileScreen({ navigation }) {
         }
     }, [user]);
 
-    const handleLastNameChange = (event) => {setLastName(event.target.value);};
-    const handleFirstNameChange = (event) => {setFirstName(event.target.value);};
-    const handlePhoneChange = (event) => {setPhone(event.target.value);};
+    const handleLastNameChange = (event) => { setLastName(event.target.value); };
+    const handleFirstNameChange = (event) => { setFirstName(event.target.value); };
+    const handlePhoneChange = (event) => { setPhone(event.target.value); };
 
 
     const putUser = async () => {
@@ -59,15 +59,15 @@ export default function EditProfileScreen({ navigation }) {
                 }
             })
                 .then((response) => {
-                        console.log(response.data);
-                        setUserContext({
-                            ...user,
-                            lastName: response.data.lastName,
-                            firstName: response.data.firstName,
-                            phone: response.data.phone,
-                        });
-                        navigation.navigate('Profile');
-                    }
+                    console.log(response.data);
+                    setUserContext({
+                        ...user,
+                        lastName: response.data.lastName,
+                        firstName: response.data.firstName,
+                        phone: response.data.phone,
+                    });
+                    navigation.navigate('Profile');
+                }
                 )
         }
         catch (error) {
@@ -119,13 +119,13 @@ export default function EditProfileScreen({ navigation }) {
                     />
                 </View>
             </View>
-            <View style={styles.bottomSection}>
-                <TouchableOpacity style={styles.button} onPress={putUser} >
-                    <Text style={styles.buttonText}>
-                        {i18n.t("edit")}
-                    </Text>
-                </TouchableOpacity>
-
+            <View style={[styles.view, { marginVertical: 20 }]}>
+                <ButtonShared label={i18n.t("edit")}
+                    color="white"
+                    backgroundColor={Colors.darkGrey.color}
+                    borderColor={Colors.darkGrey.color}
+                    onPress={putUser}
+                />
             </View>
         </View>
     );
@@ -134,7 +134,7 @@ export default function EditProfileScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         padding: 16,
     },
@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         width: '100%',
+        maxHeight: "60%",
     },
     bottomSection: {
         width: '100%',

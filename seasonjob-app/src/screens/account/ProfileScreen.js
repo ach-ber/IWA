@@ -1,12 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {View, Text, StyleSheet, ScrollView, SafeAreaView, Pressable} from 'react-native';
-import {Entypo, Ionicons} from '@expo/vector-icons';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, SafeAreaView, Pressable } from 'react-native';
+import { Entypo, Ionicons, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import ButtonShared from "../../shared/buttons/ButtonShared";
 import FormuleUniqueComponent from "../../components/formule/FormuleUniqueComponent";
 import Colors from '../../assets/colors/Colors';
 import i18n from "../../localization/i18n";
 import axios from 'axios';
-import {UserContext} from "../../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { LinearGradient } from 'expo-linear-gradient';
 
 const ProfileScreen = ({ navigation }) => {
@@ -48,7 +48,7 @@ const ProfileScreen = ({ navigation }) => {
         console.log("requestBody", requestBody);
         // 192.168.1.194
 
-        const response =  axios.post(`${backendUrl}/user/api/public/token`, requestBody,{
+        const response = axios.post(`${backendUrl}/user/api/public/token`, requestBody, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -56,7 +56,7 @@ const ProfileScreen = ({ navigation }) => {
         })
             .then(response => {
                 let token = response.data;
-                axios.get(`${backendUrl}/user/api/protected/userInfo`,{
+                axios.get(`${backendUrl}/user/api/protected/userInfo`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
@@ -138,16 +138,16 @@ const ProfileScreen = ({ navigation }) => {
                 <View style={styles.view}>
                     <Pressable style={styles.linkDetailsContainer} onPress={navigateCompany} >
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Ionicons name="person-circle" size={24} color="#111425" />
+                            <FontAwesome name="building" size={20} color="black" />
                             <Text style={styles.linkText}>{i18n.t("my_company")}</Text>
                         </View>
                         <Entypo name="chevron-right" size={24} color="#111425" />
                     </Pressable>
                 </View>
                 <View style={styles.view}>
-                    <Pressable style={styles.linkDetailsContainer} onPress={user.company_id!==0?navigateEstablishments:navigateCompany}>
+                    <Pressable style={styles.linkDetailsContainer} onPress={user.company_id !== 0 ? navigateEstablishments : navigateCompany}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Ionicons name="person-circle" size={24} color="#111425" />
+                            <FontAwesome5 name="store" size={20} color="black" />
                             <Text style={styles.linkText}>{i18n.t("my_establishments")}</Text>
                         </View>
                         <Entypo name="chevron-right" size={24} color="#111425" />
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     },
     initialLetter: {
         fontSize: 18,
-        fontWeight:'normal',
+        fontWeight: 'normal',
         color: 'white',
         textAlign: 'center',
     },
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderBottomColor:Colors.lightGrey.color,
+        borderBottomColor: Colors.lightGrey.color,
         borderBottomWidth: 1,
     },
     linkText: {
