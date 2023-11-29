@@ -1,5 +1,4 @@
 import {View, Text, StyleSheet, ScrollView, SafeAreaView} from "react-native";
-import AvisItem from "../../components/avis/AvisItem";
 import i18n from "../../localization/i18n";
 import CandidateList from "../../components/candidate/CandidateList";
 
@@ -23,7 +22,7 @@ export default function AvisSelectionListScreen({ navigation }) {
     return (
         <SafeAreaView style={styles.listContainer}>
             <ScrollView style={styles.scrollContainer}>
-                <Text style={styles.title}>{i18n.t("review")} Candidat a evaluer</Text>
+                <Text style={styles.title}>{i18n.t("review")}</Text>
                 <CandidateList Candidates={Candidates} onPress={() => navigateAvisAdd()} navigation={ navigation } />
             </ScrollView>
         </SafeAreaView>

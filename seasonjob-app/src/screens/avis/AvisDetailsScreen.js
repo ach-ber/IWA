@@ -60,7 +60,7 @@ export default function AvisDetailsScreen({ route }) {
 
     const handleDeletePressed = () => {
         const deleteAction = () => {
-            const deleteUrl = `${process.env.EXPO_PUBLIC_API_URL}/review/api/reviews/${avis.id}`
+            const deleteUrl = `${process.env.EXPO_PUBLIC_API_URL}/review/api/public/reviews/${avis.id}`
             axios.delete(deleteUrl)
                 .then((response) => {
                     navigation.goBack()

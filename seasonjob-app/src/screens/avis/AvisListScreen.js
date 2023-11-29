@@ -12,7 +12,7 @@ export default function AvisListScreen({ navigation }) {
     const apiUrl = process.env.EXPO_PUBLIC_API_URL
 
     const avisExample = [
-        { id: 1, nom: "nom2", prenom: "prenom", note: 9, job: "Serveur", date: "11-09-2023", titre: "titre avis 1", avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation", },
+        { id: 1, nom: "nom", prenom: "prenom", note: 9, job: "Serveur", date: "11-09-2023", titre: "titre avis 1", avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation", },
         { id: 2, nom: "nom", prenom: "prenom", note: 8, job: "Serveur", date: "11-09-2023", titre: "titre avis 2", avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation", },
         { id: 3, nom: "nom", prenom: "prenom", note: 3, job: "Serveur", date: "11-09-2023", titre: "titre avis 3", avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation", },
         { id: 4, nom: "nom", prenom: "prenom", note: 5, job: "Serveur", date: "11-09-2023", titre: "titre avis 4", avis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation", },
@@ -29,8 +29,8 @@ export default function AvisListScreen({ navigation }) {
     };
 
     const fetchData = async (recruiterId) => {
-        // axios.get(`${apiUrl}/review/api/reviews/${recruiterId}`)
-        axios.get(`${apiUrl}/review/api/reviews`)
+        // axios.get(`${apiUrl}/review/api/public/reviews/${recruiterId}`)
+        axios.get(`${apiUrl}/review/api/public/reviews`)
             .then((response) => {
                 const data = response.data
                 const avis = transformAvis(data)
