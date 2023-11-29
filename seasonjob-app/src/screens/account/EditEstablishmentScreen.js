@@ -66,7 +66,7 @@ const EditEstablishmentScreen = ({navigation}) => {
 
     useEffect(() => {
         setSelectedItems(user.establishments);
-        const response =  axios.get(`${backendUrl}/recruiter/api/protected/establishments`, {
+        const response =  axios.get(`${backendUrl}/recruiter/api/protected/companies/${user.company_id}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -75,7 +75,8 @@ const EditEstablishmentScreen = ({navigation}) => {
         })
             .then(response => {
                 //setCompanies(response.data);
-                setSearchResults(response.data);
+                console.log("response", response.data.establishments);
+                setSearchResults(response.data.establishments);
                 //setEstablishmentsDispo(response.data.filter((item) => !user.establishments.includes(item.id)));
             })
             .catch(error => {
@@ -136,7 +137,8 @@ const EditEstablishmentScreen = ({navigation}) => {
                             <EstablishmentItemAdd key={item.id} onPress={() => selectedItems.find(
                                 (id) => id === item.id
                             )? setSelectedItems(selectedItems.filter(id => id !== item.id)) : setSelectedItems([...selectedItems, item.id])} name={item.name} address={item.address} selected={
-                                selectedItems.find((id) => id === item.id)}/>
+                                selectedItems.find((id) => id === item.id)}
+                                                  addressDTO={item.addressDTO}/>
                         )}
                     />
                 )}

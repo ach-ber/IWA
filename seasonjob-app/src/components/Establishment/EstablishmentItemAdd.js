@@ -4,13 +4,13 @@ import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import i18n from '../../localization/i18n';
 import Colors from "../../assets/colors/Colors";
 
-const EstablishmentItemAdd = ({ onPress, name, address, selected }) => {
+const EstablishmentItemAdd = ({ onPress, name, address, selected, addressDTO }) => {
     return (
         <TouchableOpacity style={styles.establishment} onPress={onPress}>
             <View style={[styles.infoContainer,selected?{borderWidth:1,borderColor:Colors.darkGrey.color}:
                 {borderWidth: 1,borderColor: '#eaeaea'}]}>
                 <Text style={styles.name}>{name}</Text>
-                <Text style={styles.address}>{address}</Text>
+                <Text style={styles.address}>{addressDTO.streetNum} {addressDTO.street}, {addressDTO.city} {addressDTO.city}</Text>
             </View>
         </TouchableOpacity>
     );

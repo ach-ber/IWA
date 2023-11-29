@@ -40,7 +40,7 @@ const EstablishmentListScreen = ({ navigation }) => {
         };
 
         user.establishments.map(establishment => {
-            axios.get(`${backendUrl}/recruiter/api/protected/establishments/${establishment}`,{
+            axios.get(`${backendUrl}/recruiter/api/protected/establishments/dto/${establishment}`,{
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -96,7 +96,9 @@ const EstablishmentListScreen = ({ navigation }) => {
                     {
                         establishments.length !== 0 ?
                             <View style={styles.listContainer}>
-                                {establishments.map(item => (<EstablishmentItem key={item.id} onPress={() => onPress(item)} name={item.name} address={item.addressId} numJobs={0} />))}
+                                {establishments.map(item => (<EstablishmentItem key={item.id} onPress={() => onPress(item)} name={item.name} address={
+                                 item.addressDTO.streetNum + " " +  item.addressDTO.street + ", " + item.addressDTO.zipCode + " " + item.addressDTO.city
+                                } numJobs={0} />))}
                             </View> :
                             <View style={styles.view}>
                                 <Text style={{}}>{i18n.t("no_establishment")}</Text>

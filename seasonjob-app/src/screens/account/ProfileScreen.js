@@ -147,7 +147,7 @@ const ProfileScreen = ({ navigation }) => {
                     </Pressable>
                 </View>
                 <View style={styles.view}>
-                    <Pressable style={styles.linkDetailsContainer} onPress={navigateEstablishments}>
+                    <Pressable style={styles.linkDetailsContainer} onPress={user.company_id!==0?navigateEstablishments:navigateCompany}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Ionicons name="person-circle" size={24} color="#111425" />
                             <Text style={styles.linkText}>{i18n.t("my_establishments")}</Text>
