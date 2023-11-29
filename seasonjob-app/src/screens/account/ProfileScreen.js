@@ -13,11 +13,13 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const ProfileScreen = ({ navigation }) => {
 
-    useEffect(() => {
-        console.log("user", user);
-    }, []);
-
-    const backendUrl = process.env.EXPO_PUBLIC_API_URL;
+    const navigateCompany = () => {
+        if (user.company_id != 0) {
+            navigation.navigate('Company');
+        } else {
+            navigation.navigate('EditCompany');
+        }
+    }
     const navigateFormule = () => {
         navigation.navigate('Formule');
     };
@@ -25,6 +27,16 @@ const ProfileScreen = ({ navigation }) => {
     const navigateEdit = () => {
         navigation.navigate('EditProfile');
     };
+
+    const navigateEstablishments = () => {
+        navigation.navigate('EtablishmentList');
+    }
+
+    useEffect(() => {
+        console.log("user", user);
+    }, []);
+
+    const backendUrl = process.env.EXPO_PUBLIC_API_URL;
 
     const [user, setUser] = useContext(UserContext);
 
@@ -126,7 +138,16 @@ const ProfileScreen = ({ navigation }) => {
                     </Pressable>
                 </View>
                 <View style={styles.view}>
-                    <Pressable style={styles.linkDetailsContainer} >
+                    <Pressable style={styles.linkDetailsContainer} onPress={navigateCompany} >
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Ionicons name="person-circle" size={24} color="#111425" />
+                            <Text style={styles.linkText}>{i18n.t("my_company")}</Text>
+                        </View>
+                        <Entypo name="chevron-right" size={24} color="#111425" />
+                    </Pressable>
+                </View>
+                <View style={styles.view}>
+                    <Pressable style={styles.linkDetailsContainer} onPress={navigateEstablishments}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Ionicons name="person-circle" size={24} color="#111425" />
                             <Text style={styles.linkText}>{i18n.t("my_establishments")}</Text>

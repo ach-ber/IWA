@@ -201,7 +201,7 @@ const translations = {
         enter_valid_phone: "Veuillez entrer un numéro de téléphone valide",
         wrong_credentials: "Identifiants incorrects",
         enter_password: "Veuillez entrer votre mot de passe",
-
+        my_company: "Mon entreprise",
     },
 }
 
