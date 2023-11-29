@@ -6,8 +6,8 @@ import Colors from "../../assets/colors/Colors";
 import CompanyComponent from "../../components/company/CompanyComponent";
 import axios from "axios";
 import {UserContext} from "../../context/UserContext";
-import EstablishmentItem from "../../components/Establishment/EstablishmentItem";
-import EstablishmentItemAdd from "../../components/Establishment/EstablishmentItemAdd";
+import EstablishmentItem from "../../components/establishment/EstablishmentItem";
+import EstablishmentItemAdd from "../../components/establishment/EstablishmentItemAdd";
 import ButtonShared from "../../shared/buttons/ButtonShared"; // Importation de l'icône de recherche
 
 const EditEstablishmentScreen = ({navigation}) => {

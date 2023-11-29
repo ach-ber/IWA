@@ -1,6 +1,5 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ConnectionStack from "../../screens/connection/ConnectionStack";
 import CandidateStack from '../../screens/candidate/CandidateStack';
 import AccountStack from "../../screens/account/AccountStack";
 import AvisStack from "../../screens/avis/AvisStack";
@@ -10,6 +9,7 @@ import i18n from "../../localization/i18n";
 import OfferStack from '../../screens/offer/OfferStack'
 
 import Colors from '../../assets/colors/Colors';
+import ChatStack from '../../screens/chat/ChatStack';
 
 const Tab = createBottomTabNavigator();
 export default function BottomTabNavigator() {
@@ -51,7 +51,8 @@ export default function BottomTabNavigator() {
             />
             <Tab.Screen
                 name={i18n.t("chat")}
-                component={EstablishmentStack}
+                // component={EstablishmentStack}
+                component={ChatStack}
                 options={{
                     tabBarLabel: 'Chat',
                     tabBarIcon: ({ color, size }) => (

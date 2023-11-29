@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import SmallButton from '../../shared/buttons/SmallButton';
-import EstablishmentList from '../../components/Establishment/EstablishmentList';
+import EstablishmentList from '../../components/establishment/EstablishmentList';
 
 import i18n from "../../localization/i18n"
 import TopBar from '../../shared/TopBar';

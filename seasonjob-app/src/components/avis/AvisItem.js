@@ -5,11 +5,8 @@ import RatingStars from "../../utils/RatingStars";
 
 export default function AvisItem({ avis, onpress }) {
 
-    return avis.note ? (
+    return avis?.note >= 0 ? (
         <Pressable style={styles.avisContainer} onPress={onpress}>
-            <View style={styles.imageContainer}>
-                <Image src="" style={styles.image} />
-            </View>
             <View style={styles.candidatContainer}>
                 <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
                 <Text>{avis.job}</Text>
@@ -21,9 +18,6 @@ export default function AvisItem({ avis, onpress }) {
         </Pressable>
     ) : (
         <Pressable style={styles.avisContainer} onPress={onpress}>
-            <View style={styles.imageContainer}>
-                <Image src="" style={styles.image} />
-            </View>
             <View style={styles.candidatContainer}>
                 <Text style={styles.candidatInfo}>{avis.nom} {avis.prenom}</Text>
                 <Text>{avis.job}</Text>

@@ -3,8 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 import i18n from "../../localization/i18n";
 import Colors from "../../assets/colors/Colors";
 
-import EstablishmentEmployeesDetails from '../../components/Establishment/EstablishmentEmployeesDetails';
-import JobOfferList from '../../components/Establishment/JobOfferList';
+import EstablishmentEmployeesDetails from '../../components/establishment/EstablishmentEmployeesDetails';
+import JobOfferList from '../../components/establishment/JobOfferList';
 
 const EstablishmentDetailsScreen = ({ route }) => {
   const { establishment } = route.params;

@@ -47,7 +47,7 @@ const translations = {
         chat: "Chat",
         review: "Review",
         jobName: "Job name",
-        establishment: "Establishment",
+        establishment: "establishment",
         jobCategory: "Job category",
         perks: "Perks",
         salary: "Salary",

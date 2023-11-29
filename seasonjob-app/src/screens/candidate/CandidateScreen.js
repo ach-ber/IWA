@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, SafeAreaView, Linking, Image } from 'react-native';
-import Colors from '../../assets/colors/Colors';
-import i18n from "../../localization/i18n";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { A } from "@expo/html-elements";
-import AvisItem from '../../components/avis/AvisItem';
-import ReferenceItem from '../../components/candidate/ReferenceItem';
-import ButtonShared from '../../shared/buttons/ButtonShared';
-import IconText from '../../components/IconText';
-import transformCandidate from './CandidateUtils';
-import axios from 'axios';
+import { useState, useEffect } from 'react'
+import { View, Text, StyleSheet, ScrollView, SafeAreaView, Linking } from 'react-native'
+import Colors from '../../assets/colors/Colors'
+import i18n from "../../localization/i18n"
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { A } from "@expo/html-elements"
+import AvisItem from '../../components/avis/AvisItem'
+import ReferenceItem from '../../components/candidate/ReferenceItem'
+import ButtonShared from '../../shared/buttons/ButtonShared'
+import IconText from '../../components/IconText'
+import transformCandidate from './CandidateUtils'
+import axios from 'axios'
 
 const CandidateScreen = ({ navigation }) => {
     const apiUrl = process.env.EXPO_PUBLIC_API_URL_CANDIDATE
@@ -26,12 +26,12 @@ const CandidateScreen = ({ navigation }) => {
         if (hiring) {
             setHiring(false);
             setHireButtonColor("red");
-            setHireButtonText(i18n.t("cancelHiring"));
+            setHireButtonText(i18n.t("cancelHiring"))
             // cancel hiring process
         } else {
             setHiring(true);
             setHireButtonColor("green");
-            setHireButtonText(i18n.t("hireCandidate"));
+            setHireButtonText(i18n.t("hireCandidate"))
             // hiring process
         }
     }
@@ -113,10 +113,6 @@ const CandidateScreen = ({ navigation }) => {
         <SafeAreaView>
             <ScrollView style={{ marginBottom: 50 }}>
                 <View style={styles.candidateContainer}>
-                    <View style={styles.imageContainer}>
-                        <Image src="" style={styles.image} />
-                    </View>
-
                     <View style={styles.candidateInfos}>
                         <Text style={styles.candidateName}>{candidateDetails.name}</Text>
                         <Text>{candidateDetails.address}</Text>
@@ -198,6 +194,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         gap: 5,
+        marginLeft: 10,
     },
     candidateName: {
         fontSize: 20,

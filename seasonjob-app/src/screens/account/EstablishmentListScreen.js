@@ -2,13 +2,13 @@ import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
 
 import SmallButton from '../../shared/buttons/SmallButton';
-import EstablishmentList from '../../components/Establishment/EstablishmentList';
+import EstablishmentList from '../../components/establishment/EstablishmentList';
 
 import i18n from "../../localization/i18n"
 import TopBar from '../../shared/TopBar';
 import Colors from "../../assets/colors/Colors";
 import ButtonShared from "../../shared/buttons/ButtonShared";
-import EstablishmentItem from "../../components/Establishment/EstablishmentItem";
+import EstablishmentItem from "../../components/establishment/EstablishmentItem";
 import axios from "axios";
 import {UserContext} from "../../context/UserContext";
 
