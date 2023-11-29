@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, StyleSheet, ScrollView, SafeAreaView, Pressable} from 'react-native';
 import LinkShared from "../../shared/links/LinkShared";
-import {Entypo, Ionicons} from '@expo/vector-icons';
+import {Entypo, FontAwesome, FontAwesome5, Ionicons} from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import ButtonShared from "../../shared/buttons/ButtonShared";
 import FormuleUniqueComponent from "../../components/Formule/FormuleUniqueComponent";
@@ -39,6 +39,8 @@ const ProfileScreen = ({ navigation }) => {
     const backendUrl = process.env.EXPO_PUBLIC_API_URL;
 
     const [user, setUser] = useContext(UserContext);
+
+
 
     useEffect(() => {
 
@@ -140,7 +142,7 @@ const ProfileScreen = ({ navigation }) => {
                 <View style={styles.view}>
                     <Pressable style={styles.linkDetailsContainer} onPress={navigateCompany} >
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Ionicons name="person-circle" size={24} color="#111425" />
+                            <FontAwesome name="building" size={24} color="black" />
                             <Text style={styles.linkText}>{i18n.t("my_company")}</Text>
                         </View>
                         <Entypo name="chevron-right" size={24} color="#111425" />
@@ -149,7 +151,7 @@ const ProfileScreen = ({ navigation }) => {
                 <View style={styles.view}>
                     <Pressable style={styles.linkDetailsContainer} onPress={user.company_id!==0?navigateEstablishments:navigateCompany}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Ionicons name="person-circle" size={24} color="#111425" />
+                            <FontAwesome5 name="store" size={20} color="black" />
                             <Text style={styles.linkText}>{i18n.t("my_establishments")}</Text>
                         </View>
                         <Entypo name="chevron-right" size={24} color="#111425" />

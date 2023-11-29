@@ -6,6 +6,8 @@ import t from '../../utils/translation';
 import i18n from "../../localization/i18n";
 import {UserContext} from "../../context/UserContext";
 import axios from "axios";
+import ButtonShared from "../../shared/buttons/ButtonShared";
+import Colors from "../../assets/colors/Colors";
 
 export default function EditProfileScreen({ navigation }) {
     const navigateProfile = () => {
@@ -119,13 +121,14 @@ export default function EditProfileScreen({ navigation }) {
                     />
                 </View>
             </View>
-            <View style={styles.bottomSection}>
-                <TouchableOpacity style={styles.button} onPress={putUser} >
-                    <Text style={styles.buttonText}>
-                        {i18n.t("edit")}
-                    </Text>
-                </TouchableOpacity>
 
+            <View style={[styles.view, {marginVertical: 20}]}>
+                <ButtonShared label={i18n.t("edit")}
+                              color="white"
+                              backgroundColor={Colors.darkGrey.color}
+                              borderColor={Colors.darkGrey.color}
+                              onPress={putUser}
+                />
             </View>
         </View>
     );
@@ -134,7 +137,7 @@ export default function EditProfileScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         padding: 16,
     },
@@ -142,6 +145,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         width: '100%',
+        maxHeight: "60%",
     },
     bottomSection: {
         width: '100%',
